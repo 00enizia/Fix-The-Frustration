@@ -1,17 +1,17 @@
 import {
-loadInventory
+    loadInventory
 }
 from "./src/components/inventory.js";
 
 
 import {
-enableDrop
+    enableDrop
 }
 from "./src/components/drop.js";
 
 
 import {
-finishDesign
+    finishDesign
 }
 from "./src/components/finish.js";
 
@@ -25,19 +25,20 @@ let selectedGroup = "";
 
 
 
-// ==============================
+
+// ==========================
 // GROUP SELECTION
-// ==============================
+// ==========================
 
 
-const groups =
+const groupButtons =
 document.querySelectorAll(
 ".group-btn"
 );
 
 
 
-const display =
+const groupDisplay =
 document.getElementById(
 "group-display"
 );
@@ -46,16 +47,15 @@ document.getElementById(
 
 
 
-groups.forEach(button=>{
+groupButtons.forEach(button=>{
 
 
 button.addEventListener(
 "click",
-
 ()=>{
 
 
-groups.forEach(btn=>{
+groupButtons.forEach(btn=>{
 
 btn.classList.remove(
 "selected"
@@ -76,7 +76,7 @@ button.dataset.group;
 
 
 
-display.innerHTML =
+groupDisplay.innerHTML =
 "Selected: "
 +
 selectedGroup;
@@ -86,6 +86,7 @@ selectedGroup;
 }
 
 );
+
 
 
 });
@@ -98,9 +99,11 @@ selectedGroup;
 
 
 
-// ==============================
-// START DESIGN
-// ==============================
+
+
+// ==========================
+// START GAME
+// ==========================
 
 
 document
@@ -109,7 +112,6 @@ document
 )
 .addEventListener(
 "click",
-
 ()=>{
 
 
@@ -117,7 +119,7 @@ if(selectedGroup===""){
 
 
 alert(
-"Please choose your group first!"
+"Please select your group first!"
 );
 
 
@@ -129,10 +131,12 @@ return;
 
 
 
+
 localStorage.setItem(
 "group",
 selectedGroup
 );
+
 
 
 
@@ -181,9 +185,13 @@ enableDrop();
 
 
 
-// ==============================
-// FINISH
-// ==============================
+
+
+
+// ==========================
+// FINISH DESIGN
+// ==========================
+
 
 
 document
@@ -192,59 +200,10 @@ document
 )
 .addEventListener(
 "click",
-
 ()=>{
 
 
 finishDesign();
-
-
-
-});
-
-
-
-
-
-document
-.getElementById(
-"save-button"
-)
-.addEventListener(
-"click",
-
-()=>{
-
-
-const group =
-document.getElementById(
-"group-number"
-)
-.value;
-
-
-
-if(group===""){
-
-
-alert(
-"Enter your group number first"
-);
-
-
-return;
-
-
-}
-
-
-
-alert(
-
-`🎉 Group ${group} Design Completed!\n\nTake a screenshot and send it to the GC.`
-
-);
-
 
 
 });

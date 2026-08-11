@@ -1,49 +1,45 @@
-export function makeDraggable(element){
+export function makeDraggable(element, component){
+
+
+    element.draggable = true;
 
 
 
-element.addEventListener(
-"dragstart",
-
-(e)=>{
-
-
-const data = {
+    element.addEventListener(
+        "dragstart",
+        (event)=>{
 
 
-id:
-element.dataset.id,
+            event.dataTransfer.setData(
+                "component",
+                JSON.stringify(component)
+            );
 
 
-name:
-element.dataset.name,
+            element.classList.add(
+                "dragging"
+            );
 
 
-type:
-element.dataset.type,
-
-
-icon:
-element.dataset.icon
-
-
-};
+        }
+    );
 
 
 
-e.dataTransfer.setData(
-
-"component",
-
-JSON.stringify(data)
-
-);
 
 
+    element.addEventListener(
+        "dragend",
+        ()=>{
 
-}
 
-);
+            element.classList.remove(
+                "dragging"
+            );
+
+
+        }
+    );
 
 
 

@@ -1,111 +1,201 @@
-export const components={
+export const components = {
 
 
-Profile:[
+    Profile: [
 
-{
-id:"profile1",
-name:"Classic Profile",
-icon:"👤",
-type:"profile"
-},
-
-
-{
-id:"profile2",
-name:"Modern Profile",
-icon:"🧑",
-type:"profile"
-}
+        {
+            id: "profile-classic",
+            name: "Classic Profile",
+            icon: "👤",
+            type: "profile",
+            style: "classic",
+            allowedSection: "sidebar"
+        },
 
 
-],
+        {
+            id: "profile-modern",
+            name: "Modern Profile",
+            icon: "✨",
+            type: "profile",
+            style: "modern",
+            allowedSection: "sidebar"
+        },
 
 
+        {
+            id: "profile-minimal",
+            name: "Minimal Profile",
+            icon: "◻️",
+            type: "profile",
+            style: "minimal",
+            allowedSection: "sidebar"
+        },
 
 
-Academic:[
+        {
+            id: "profile-playful",
+            name: "Playful Profile",
+            icon: "🌸",
+            type: "profile",
+            style: "playful",
+            allowedSection: "sidebar"
+        },
 
 
-{
-id:"schedule1",
-name:"Schedule Card",
-icon:"📅",
-type:"schedule"
-},
+        {
+            id: "profile-professional",
+            name: "Professional Profile",
+            icon: "💼",
+            type: "profile",
+            style: "professional",
+            allowedSection: "sidebar"
+        }
 
-
-{
-id:"grades1",
-name:"Grade Card",
-icon:"📊",
-type:"grades"
-},
-
-
-{
-id:"courses1",
-name:"Course Card",
-icon:"📚",
-type:"courses"
-}
-
-
-
-],
-
-
-
-
-
-Communication:[
-
-
-{
-id:"notification1",
-name:"Notification Box",
-icon:"🔔",
-type:"notification"
-},
-
-
-
-{
-id:"announcement1",
-name:"Announcement Board",
-icon:"📢",
-type:"announcement"
-}
-
-
-
-],
+    ],
 
 
 
 
 
-System:[
+
+    Academic: [
+
+        {
+            id: "schedule-classic",
+            name: "Classic Schedule",
+            icon: "📅",
+            type: "schedule",
+            style: "classic",
+            allowedSection: "dashboard"
+        },
 
 
-{
-id:"search1",
-name:"Search Bar",
-icon:"🔍",
-type:"search"
-},
+        {
+            id: "schedule-calendar",
+            name: "Calendar Schedule",
+            icon: "🗓️",
+            type: "schedule",
+            style: "calendar",
+            allowedSection: "dashboard"
+        },
+
+
+        {
+            id: "schedule-timeline",
+            name: "Timeline Schedule",
+            icon: "⏱️",
+            type: "schedule",
+            style: "timeline",
+            allowedSection: "dashboard"
+        },
+
+
+        {
+            id: "grades-card",
+            name: "Modern Grade Card",
+            icon: "📊",
+            type: "grades",
+            style: "card",
+            allowedSection: "dashboard"
+        },
+
+
+        {
+            id: "grades-progress",
+            name: "Grade Progress",
+            icon: "📈",
+            type: "grades",
+            style: "progress",
+            allowedSection: "dashboard"
+        },
+
+
+        {
+            id: "course-list",
+            name: "Course List",
+            icon: "📚",
+            type: "courses",
+            style: "default",
+            allowedSection: "dashboard"
+        }
+
+    ],
 
 
 
-{
-id:"settings1",
-name:"Settings",
-icon:"⚙",
-type:"settings"
-}
 
 
-]
 
+    Communication: [
+
+        {
+            id: "notification-card",
+            name: "Notification Card",
+            icon: "🔔",
+            type: "notification",
+            style: "card",
+            allowedSection: "footer"
+        },
+
+
+        {
+            id: "announcement-board",
+            name: "Announcement Board",
+            icon: "📢",
+            type: "announcement",
+            style: "board",
+            allowedSection: "footer"
+        },
+
+
+        {
+            id: "message-box",
+            name: "Message Box",
+            icon: "💬",
+            type: "message",
+            style: "default",
+            allowedSection: "footer"
+        }
+
+    ],
+
+
+
+
+
+
+    System: [
+
+        {
+            id: "search-bar",
+            name: "Smart Search",
+            icon: "🔍",
+            type: "search",
+            style: "modern",
+            allowedSection: "navbar"
+        },
+
+
+        {
+            id: "settings-card",
+            name: "Settings",
+            icon: "⚙️",
+            type: "settings",
+            style: "default",
+            allowedSection: "footer"
+        },
+
+
+        {
+            id: "logout-button",
+            name: "Logout Button",
+            icon: "🚪",
+            type: "logout",
+            style: "default",
+            allowedSection: "footer"
+        }
+
+    ]
 
 };

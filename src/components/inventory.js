@@ -1,13 +1,15 @@
 import {
-components
+    components
 }
 from "../../data/components.js";
 
 
 import {
-makeDraggable
+    makeDraggable
 }
 from "./drag.js";
+
+
 
 
 
@@ -17,7 +19,7 @@ export function loadInventory(){
 
 
 
-const categoryButtons =
+const buttons =
 document.querySelectorAll(
 ".category-buttons button"
 );
@@ -26,13 +28,12 @@ document.querySelectorAll(
 
 
 
-categoryButtons.forEach(button=>{
 
+buttons.forEach(button=>{
 
 
 button.addEventListener(
 "click",
-
 ()=>{
 
 
@@ -41,7 +42,7 @@ button.dataset.category;
 
 
 
-displayComponents(
+showComponents(
 category
 );
 
@@ -67,7 +68,7 @@ category
 
 
 
-function displayComponents(category){
+function showComponents(category){
 
 
 
@@ -79,6 +80,7 @@ document.getElementById(
 
 
 
+
 container.innerHTML="";
 
 
@@ -86,14 +88,20 @@ container.innerHTML="";
 
 
 
-if(!components[category]){
+const list =
+components[category];
 
+
+
+
+
+
+if(!list){
 
 container.innerHTML=
-"<p>No components available</p>";
+"<p>No choices available</p>";
 
 return;
-
 
 }
 
@@ -102,10 +110,8 @@ return;
 
 
 
-components[category]
-.forEach(component=>{
 
-
+list.forEach(component=>{
 
 
 
@@ -123,47 +129,9 @@ item.className =
 
 
 
-item.draggable=true;
 
 
-
-
-
-// send data to drag.js
-
-
-item.dataset.id =
-component.id;
-
-
-
-item.dataset.name =
-component.name;
-
-
-
-item.dataset.icon =
-component.icon;
-
-
-
-item.dataset.type =
-component.type;
-
-
-
-item.dataset.allowed =
-JSON.stringify(
-component.allowedSections
-);
-
-
-
-
-
-
-
-item.innerHTML=
+item.innerHTML =
 
 `
 
@@ -183,9 +151,10 @@ ${component.name}
 
 <small>
 
-Drag me
+Drag to use
 
 </small>
+
 
 `;
 
@@ -195,8 +164,47 @@ Drag me
 
 
 
+
+// send information to drag.js
+
+
+item.dataset.id =
+component.id;
+
+
+
+item.dataset.name =
+component.name;
+
+
+
+item.dataset.type =
+component.type;
+
+
+
+item.dataset.style =
+component.style;
+
+
+
+item.dataset.icon =
+component.icon;
+
+
+
+item.dataset.section =
+component.allowedSection;
+
+
+
+
+
+
+
 makeDraggable(
-item
+item,
+component
 );
 
 
@@ -207,7 +215,6 @@ item
 container.appendChild(
 item
 );
-
 
 
 
