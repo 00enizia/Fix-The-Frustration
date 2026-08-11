@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Fix The Frustration</title>
 
     <link rel="stylesheet" href="style.css">
@@ -15,100 +16,52 @@
 
 <header>
 
-    <h1>✨ Fix The Frustration ✨</h1>
-    <p>
-        Human-Centered Design Website Dress-Up Challenge
-    </p>
+    <h1>🎨 Fix The Frustration</h1>
+    <p>Student Portal Design Challenge</p>
 
 </header>
 
 
 
-<section class="game-container">
+<main class="game">
 
 
-<!-- LEFT SIDE MENU -->
+<!-- LEFT PANEL -->
 
-<div class="menu">
+<section class="panel">
+
+<h2>Customize Portal</h2>
 
 
-<h2>Design Categories</h2>
-
-
-<button onclick="openCategory('components')">
-🧩 Components
+<button onclick="showCategory('profile')">
+👤 Profile
 </button>
 
 
-<button onclick="openCategory('layout')">
-🖥 Layout
+<button onclick="showCategory('academic')">
+📚 Academic
 </button>
 
 
-<button onclick="openCategory('theme')">
-🎨 Theme
+<button onclick="showCategory('communication')">
+🔔 Communication
 </button>
 
 
-<button onclick="openCategory('navigation')">
-🧭 Navigation
+<button onclick="showCategory('system')">
+⚙ System
+</button>
+
+
+<button onclick="showCategory('appearance')">
+🎨 Appearance
 </button>
 
 
 
-<div id="options">
+<div id="choices">
 
-<h3>
-Choose an option
-</h3>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<!-- WEBSITE CANVAS -->
-
-
-<div class="website-area">
-
-
-<h2>
-Your Website
-</h2>
-
-
-<div id="website">
-
-
-<h1 id="site-title">
-Student Portal
-</h1>
-
-
-<p>
-Design your website based on the user's needs.
-</p>
-
-
-
-<div id="dropped-items">
-
-</div>
-
-
-</div>
-
-
-<button class="test-btn" onclick="testDesign()">
-🧪 Test Design
-</button>
-
+<p>Select a category</p>
 
 </div>
 
@@ -119,7 +72,51 @@ Design your website based on the user's needs.
 
 
 
-<!-- TESTING AREA -->
+<!-- WEBSITE PREVIEW -->
+
+
+<section class="portal-section">
+
+
+<h2>Your Student Portal</h2>
+
+
+<div id="portal">
+
+
+<h1>
+🎓 Student Portal
+</h1>
+
+
+<p>
+Welcome back, Student!
+</p>
+
+
+
+<div id="features">
+
+
+</div>
+
+
+</div>
+
+
+<button onclick="testPortal()">
+🧪 Test Design
+</button>
+
+
+</section>
+
+
+
+</main>
+
+
+
 
 
 <section id="testing" class="testing hidden">
@@ -130,38 +127,31 @@ Design your website based on the user's needs.
 </h1>
 
 
-<p>
-Another user will evaluate your design.
-</p>
-
-
-
-<div class="questions">
+<h3>
+Evaluate the design:
+</h3>
 
 
 <p>
-⭐ Is the website easy to understand?
+✔ Is information easy to find?
 </p>
 
 
 <p>
-⭐ Are the features easy to find?
+✔ Are important features included?
 </p>
 
 
 <p>
-⭐ What should be improved?
+✔ Is the portal easy to understand?
 </p>
 
 
-<textarea></textarea>
 
-
-</div>
+<textarea placeholder="Give feedback here..."></textarea>
 
 
 </section>
-
 
 
 
@@ -169,5 +159,6 @@ Another user will evaluate your design.
 
 
 </body>
+
 
 </html>

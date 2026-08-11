@@ -1,47 +1,22 @@
-import {showOptions} from "./src/components/category.js";
-
-import {addWebsiteItem,changeWebsiteTheme} 
-from "./src/components/website.js";
+import {showCategory} from "./src/components/category.js";
 
 
-import "./src/components/draggable.js";
+window.showCategory=showCategory;
 
 
 
-window.openCategory=function(category){
-
-    showOptions(category);
-
-}
+window.testPortal=function(){
 
 
-
-window.addItem=function(item){
-
-    addWebsiteItem(item);
-
-}
-
-
-
-window.changeTheme=function(color){
-
-    changeWebsiteTheme(color);
-
-}
-
-
-
-window.testDesign=function(){
-
-document
-.querySelector(".game-container")
+document.querySelector(".game")
 .classList.add("hidden");
+
 
 
 document
 .getElementById("testing")
 .classList.remove("hidden");
+
 
 
 }

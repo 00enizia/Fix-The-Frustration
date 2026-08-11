@@ -1,127 +1,62 @@
-export function showOptions(category){
+import {items} from "./items.js";
 
-
-let options=document.getElementById("options");
-
-
-options.innerHTML="";
+import {addFeature,changeTheme} from "./portal.js";
 
 
 
-let items=[];
+export function showCategory(category){
+
+
+let choices=document.getElementById("choices");
+
+
+choices.innerHTML="";
 
 
 
-if(category==="components"){
+items[category].forEach(item=>{
 
 
-items=[
-"🔍 Search Bar",
-"📅 Calendar",
-"🔔 Notifications",
-"📝 Task List",
-"👤 Profile"
-];
+let button=document.createElement("div");
 
 
-}
+button.className="choice";
+
+
+button.innerHTML=item;
 
 
 
-
-if(category==="layout"){
-
-
-items=[
-"Sidebar Layout",
-"Dashboard Layout",
-"Minimal Layout"
-];
+button.onclick=function(){
 
 
-}
+if(item.includes("Theme")){
 
 
+changeTheme(item);
 
-if(category==="theme"){
-
-
-items=[
-"💙 Blue Theme",
-"💜 Purple Theme",
-"🌿 Green Theme"
-];
-
-
-}
-
-
-
-if(category==="navigation"){
-
-
-items=[
-"Home",
-"Dashboard",
-"Calendar",
-"Settings"
-];
-
-
-}
-
-
-
-
-items.forEach(item=>{
-
-
-let card=document.createElement("div");
-
-
-card.className="option-card";
-
-
-card.innerHTML=item;
-
-
-card.onclick=function(){
-
-
-if(item.includes("Blue")){
-
-changeTheme("#dbeafe");
-
-}
-
-else if(item.includes("Purple")){
-
-changeTheme("#ede9fe");
-
-}
-
-else if(item.includes("Green")){
-
-changeTheme("#dcfce7");
 
 }
 
 else{
 
-addItem(item);
+
+addFeature(item);
+
 
 }
 
 
+
 }
 
 
 
-options.appendChild(card);
+choices.appendChild(button);
+
 
 
 });
-
 
 
 }

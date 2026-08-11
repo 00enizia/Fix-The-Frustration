@@ -1,3 +1,1 @@
-console.log(
-"Drag and drop system ready"
-);
+console.log("Drag and drop feature ready");
