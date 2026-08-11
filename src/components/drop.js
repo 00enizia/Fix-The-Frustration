@@ -5,7 +5,6 @@ from "./renderer.js";
 
 
 
-
 export function enableDrop(){
 
 
@@ -16,23 +15,18 @@ document.querySelectorAll(
 
 
 
-
 sections.forEach(section=>{
 
 
 section.addEventListener(
 "dragover",
-
 (e)=>{
 
-
 e.preventDefault();
-
 
 section.classList.add(
 "drag-active"
 );
-
 
 }
 
@@ -44,7 +38,6 @@ section.classList.add(
 
 section.addEventListener(
 "dragleave",
-
 ()=>{
 
 
@@ -61,10 +54,8 @@ section.classList.remove(
 
 
 
-
 section.addEventListener(
 "drop",
-
 (e)=>{
 
 
@@ -85,10 +76,8 @@ e.dataTransfer.getData(
 
 
 
-
-
-if(!data)return;
-
+if(!data)
+return;
 
 
 
@@ -100,24 +89,18 @@ JSON.parse(data);
 
 
 renderComponent(
-
 component,
-
 section
-
 );
 
 
 
 }
 
-
 );
 
 
 
 });
-
-
 
 }

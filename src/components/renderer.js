@@ -1,26 +1,33 @@
 let usedComponents = [];
 
 
+
 export function renderComponent(component, section){
 
 
-    // prevent duplicate component
+    // CHECK ONLY INSIDE THIS SECTION
 
-    const alreadyAdded =
-    document.querySelector(
+    const existing =
+    section.querySelector(
         `[data-type="${component.type}"]`
     );
 
 
-    if(alreadyAdded){
+
+    if(existing){
+
 
         showMessage(
-        `${component.name} is already added`
+            `${component.name} is already added here`
         );
+
 
         return;
 
+
     }
+
+
 
 
 
@@ -33,6 +40,7 @@ export function renderComponent(component, section){
     "website-widget";
 
 
+
     card.dataset.type =
     component.type;
 
@@ -40,39 +48,49 @@ export function renderComponent(component, section){
 
 
     card.innerHTML =
-    generateComponent(component);
+    createComponent(component);
 
 
 
 
-    // delete button
 
-    const remove =
+    const deleteButton =
     document.createElement("button");
 
 
-    remove.className =
+
+    deleteButton.className =
     "delete-button";
 
 
-    remove.innerHTML =
+    deleteButton.innerHTML =
     "×";
 
 
 
-    remove.onclick=()=>{
+
+    deleteButton.onclick = ()=>{
+
 
         card.remove();
+
 
     };
 
 
 
-    card.appendChild(remove);
+
+
+    card.appendChild(
+        deleteButton
+    );
+
+
 
 
 
     section.appendChild(card);
+
 
 
 }
@@ -83,10 +101,13 @@ export function renderComponent(component, section){
 
 
 
-function generateComponent(component){
+
+
+function createComponent(component){
 
 
 switch(component.type){
+
 
 
 case "profile":
@@ -94,22 +115,31 @@ case "profile":
 
 return `
 
-<h3>👤 Student Profile</h3>
+<div class="component-header">
 
-<div class="profile-box">
+👤 Student Profile
+
+</div>
+
 
 <div class="avatar">
+
 👤
-</div>
-
-
-<input value="Student Name">
-
-
-<input value="BSIT Student">
-
 
 </div>
+
+
+<input 
+class="edit-field"
+value="Student Name"
+>
+
+
+<input 
+class="edit-field"
+value="BSIT Student"
+>
+
 
 `;
 
@@ -122,25 +152,51 @@ case "schedule":
 
 return `
 
-<h3>📅 Class Schedule</h3>
+<div class="component-header">
+
+📅 Class Schedule
+
+</div>
+
 
 <table>
 
 <tr>
-<td>8:00 AM</td>
-<td>Programming</td>
+
+<td>
+8:00 AM
+</td>
+
+
+<td>
+Programming
+</td>
+
+
 </tr>
 
 
 <tr>
-<td>10:00 AM</td>
-<td>Database</td>
+
+<td>
+10:00 AM
+</td>
+
+
+<td>
+Database
+</td>
+
+
 </tr>
 
 
 </table>
 
+
 `;
+
+
 
 
 
@@ -151,19 +207,32 @@ case "grades":
 
 return `
 
-<h3>📊 Grades</h3>
+
+<div class="component-header">
+
+📊 Grades
+
+</div>
+
+
 
 <p>
+
 Programming - 95%
+
 </p>
 
 
 <p>
+
 Database - 90%
+
 </p>
 
 
 `;
+
+
 
 
 
@@ -174,21 +243,38 @@ case "courses":
 
 return `
 
-<h3>📚 Course List</h3>
+
+<div class="component-header">
+
+📚 Course List
+
+</div>
+
 
 
 <ul>
 
-<li>Programming</li>
+<li>
+Programming
+</li>
 
-<li>Database</li>
 
-<li>Networking</li>
+<li>
+Database
+</li>
+
+
+<li>
+Networking
+</li>
 
 
 </ul>
 
+
 `;
+
+
 
 
 
@@ -199,32 +285,25 @@ case "notification":
 
 return `
 
-<h3>🔔 Notifications</h3>
+
+<div class="component-header">
+
+🔔 Notifications
+
+</div>
+
+
 
 <p>
+
 No new announcements
+
 </p>
 
-`;
-
-
-
-
-
-case "search":
-
-
-return `
-
-<h3>🔍 Search</h3>
-
-
-<input 
-placeholder="Search student portal..."
->
-
 
 `;
+
+
 
 
 
@@ -235,15 +314,56 @@ case "announcement":
 
 return `
 
-<h3>📢 Announcement</h3>
+
+<div class="component-header">
+
+📢 Announcement
+
+</div>
+
 
 
 <p>
-Latest school updates
+
+School Updates
+
 </p>
 
 
 `;
+
+
+
+
+
+
+
+case "search":
+
+
+return `
+
+
+<div class="component-header">
+
+🔍 Search
+
+</div>
+
+
+
+<input 
+
+class="search-field"
+
+placeholder="Search..."
+
+>
+
+
+`;
+
+
 
 
 
@@ -254,15 +374,24 @@ case "settings":
 
 return `
 
-<h3>⚙ Settings</h3>
+
+<div class="component-header">
+
+⚙ Settings
+
+</div>
 
 
 <p>
+
 Account Settings
+
 </p>
 
 
 `;
+
+
 
 
 
@@ -273,20 +402,21 @@ default:
 
 return `
 
-<h3>
+
+<div class="component-header">
 
 ${component.icon}
 
 ${component.name}
 
-</h3>
+</div>
+
 
 `;
 
 
 
 }
-
 
 
 }
@@ -305,21 +435,29 @@ const popup =
 document.createElement("div");
 
 
+
 popup.className =
 "warning-popup";
 
 
-popup.innerHTML=text;
+
+popup.innerHTML =
+text;
 
 
 
-document.body.appendChild(popup);
+
+document.body.appendChild(
+popup
+);
 
 
 
 setTimeout(()=>{
 
+
 popup.remove();
+
 
 },2000);
 
