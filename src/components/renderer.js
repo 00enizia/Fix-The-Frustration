@@ -26,15 +26,22 @@ if(item.type==="profile"){
 
 card.innerHTML+=`
 
-<img src="${item.image}">
+<div class="profile-icon">
+👤
+</div>
 
-<h3 contenteditable>
-Student Name
-</h3>
 
-<p contenteditable>
-BSIT Student
-</p>
+<input 
+class="student-name"
+placeholder="Enter Student Name"
+>
+
+
+<input 
+class="student-course"
+placeholder="Enter Course"
+>
+
 
 `;
 
@@ -108,7 +115,16 @@ if(item.type==="search"){
 
 card.innerHTML+=`
 
-<input placeholder="Search">
+<div class="search-widget">
+
+🔍
+
+<input 
+placeholder="Search courses, schedules, announcements..."
+>
+
+
+</div>
 
 `;
 

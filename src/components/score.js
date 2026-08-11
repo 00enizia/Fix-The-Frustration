@@ -57,15 +57,53 @@ score>=80
 
 ?
 
-`🎉 PASS<br>${score}/100`
+`
+<h1>🎉 PASS!</h1>
+
+<p>${score}/100</p>
+
+<button onclick="location.reload()">
+Play Again
+</button>
+
+`
 
 :
 
-`❌ TRY AGAIN<br>${score}/100`;
+`
+
+<button class="close-result">
+❌
+</button>
+
+
+<h1>
+❌ TRY AGAIN
+</h1>
+
+
+<p>
+${score}/100
+</p>
+
+
+<button onclick="location.reload()">
+🔄 Try Again
+</button>
+
+`;
 
 
 
 document.body.appendChild(box);
+
+
+
+document.querySelector(".close-result")
+?.addEventListener(
+"click",
+()=>box.remove()
+);
 
 
 }

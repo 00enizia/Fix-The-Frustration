@@ -37,6 +37,28 @@ JSON.parse(data);
 
 
 
+if(
+item.slot !== slot.dataset.slot
+){
+
+
+alert(
+
+"⚠️ Wrong Placement!\n\n"+
+item.name+
+" should be placed in "+
+item.slot.toUpperCase()
+
+);
+
+
+return;
+
+
+}
+
+
+
 renderComponent(
 item,
 slot

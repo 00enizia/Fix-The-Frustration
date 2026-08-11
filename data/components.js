@@ -66,24 +66,4 @@ slot:"header"
 
 
 
-
-theme:[
-
-{
-name:"Purple Theme",
-type:"purple"
-
-},
-
-
-{
-name:"Blue Theme",
-type:"blue"
-
-}
-
-
-]
-
-
 };
