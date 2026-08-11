@@ -1,118 +1,74 @@
-import {makeDraggable}
-from "./src/components/drag.js";
+import {loadProblem} from "./src/components/game.js";
 
+import {loadCategories} from "./src/components/inventory.js";
 
-import {enableDrop}
-from "./src/components/drop.js";
+import {enableDragging} from "./src/components/drag.js";
 
+import {enableDropping} from "./src/components/drop.js";
 
-import {startGame}
-from "./src/components/game.js";
+import {startTimer} from "./src/components/score.js";
 
-
-import {components}
-from "./data/components.js";
-
-
-import {testDesign}
-from "./src/components/tester.js";
-
-
-import {updateLeaderboard}
-from "./src/components/leaderboard.js";
+import {testWebsite} from "./src/components/tester.js";
 
 
 
 
 
-document.getElementById("join").onclick=()=>{
+window.onload = ()=>{
 
 
-let team=
-document.getElementById("team-name").value;
+loadProblem();
 
 
-localStorage.setItem(
-"team",
-team
-);
+loadCategories();
 
 
-
-document.getElementById(
-"team-screen"
-).style.display="none";
+enableDragging();
 
 
-startGame();
+enableDropping();
 
 
-updateLeaderboard();
-
-
-};
+startTimer();
 
 
 
+document
+.getElementById("test-button")
+.addEventListener(
+"click",
+()=>{
 
-
-document.querySelectorAll(".category button")
-.forEach(button=>{
-
-
-button.onclick=()=>{
-
-
-let category=
-button.dataset.category;
-
-
-
-let box=
-document.getElementById("items");
-
-
-box.innerHTML="";
-
-
-
-components[category]
-.forEach(item=>{
-
-
-let div=document.createElement("div");
-
-
-div.className="item";
-
-
-div.innerHTML=item.name;
-
-
-makeDraggable(
-div,
-item
-);
-
-
-
-box.appendChild(div);
-
-
-
-});
-
-
-};
-
+testWebsite();
 
 });
 
 
 
-document.getElementById("test")
-.onclick=testDesign;
+document
+.getElementById("retry-button")
+.addEventListener(
+"click",
+()=>{
+
+location.reload();
+
+});
 
 
 
-enableDrop();
+document
+.getElementById("close-result")
+.addEventListener(
+"click",
+()=>{
+
+document
+.getElementById("result-modal")
+.style.display="none";
+
+
+});
+
+
+}

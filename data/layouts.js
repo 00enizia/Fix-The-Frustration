@@ -1,14 +1,45 @@
-export const layouts=[
-
-{
-name:"Modern Student Portal",
-image:"assets/templates/template1.png"
-},
+export const layouts = {
 
 
-{
-name:"Dashboard Style",
-image:"assets/templates/template2.png"
-}
+"Student Profile":
+"sidebar",
 
-]
+
+"Student Information":
+"sidebar",
+
+
+
+"Class Schedule":
+"main",
+
+
+"Grades":
+"main",
+
+
+"Course List":
+"main",
+
+
+
+"Notifications":
+"main",
+
+
+"Announcements":
+"footer",
+
+
+
+"Search Bar":
+"header",
+
+
+
+"Settings":
+"footer"
+
+
+
+};

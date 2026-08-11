@@ -1,43 +1,148 @@
-import {currentProblem}
-from "./game.js";
-
-
-import {saveScore}
+import {
+getScore,
+addScore
+}
 from "./score.js";
 
 
 
-export function testDesign(){
 
-
-let cards=document.querySelectorAll(".card");
-
-
-let score=0;
+export function testWebsite(){
 
 
 
-currentProblem.required.forEach(req=>{
+let required =
+window.currentProblem.required;
 
 
-cards.forEach(card=>{
 
 
-if(card.dataset.type===req){
+let placed =
+[
 
-score+=30;
+...document
+.querySelectorAll(
+"[data-component]"
+)
+
+]
+.map(
+x=>x.dataset.component
+);
+
+
+
+
+
+let missing =
+required.filter(
+item=>
+!placed.includes(item)
+);
+
+
+
+
+
+let finalScore =
+placed.length * 20;
+
+
+
+
+if(missing.length===0){
+
+
+finalScore=100;
+
+
+showResult(
+true,
+finalScore,
+"Perfect website! All required features are included."
+);
+
+
+
+}
+
+else{
+
+
+showResult(
+
+false,
+
+finalScore,
+
+"Missing: "+missing.join(", ")
+
+);
+
 
 }
 
 
-});
-
-
-});
 
 
 
-saveScore(score);
+}
+
+
+
+
+
+function showResult(
+success,
+score,
+message
+){
+
+
+
+document
+.getElementById(
+"result-modal"
+)
+.style.display="flex";
+
+
+
+
+
+document
+.getElementById(
+"result-title"
+)
+.innerHTML =
+success ?
+
+"🎉 WEBSITE PASSED"
+
+:
+
+"❌ TRY AGAIN";
+
+
+
+
+
+document
+.getElementById(
+"final-score"
+)
+.innerText=
+score;
+
+
+
+document
+.getElementById(
+"feedback"
+)
+.innerText=
+message;
+
 
 
 }

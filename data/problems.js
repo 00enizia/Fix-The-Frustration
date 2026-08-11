@@ -3,40 +3,97 @@ export const problems=[
 
 {
 
-title:"Students cannot find schedules",
+
+title:
+"Students cannot find schedules",
+
 
 description:
-"Students need an easier way to view their class schedules and announcements.",
+"Students need an easier way to view class schedules and announcements.",
+
 
 
 required:[
-"profile",
-"calendar",
-"notifications"
+
+"Search Bar",
+
+"Class Schedule",
+
+"Notifications"
+
 ],
 
 
-time:120
+
+time:60
+
+
 
 },
 
 
 
+
+
 {
 
-title:"Students cannot monitor grades",
+
+title:
+"Students cannot monitor their academic progress",
+
 
 description:
-"Students need a portal where they can check academic performance easily.",
+"Students need quick access to grades and enrolled courses.",
+
 
 
 required:[
-"profile",
-"grades"
+
+"Student Profile",
+
+"Grades",
+
+"Course List"
+
 ],
 
 
-time:100
+time:60
+
+
+
+},
+
+
+
+
+
+{
+
+
+title:
+"Students miss important announcements",
+
+
+description:
+"Students need a better way to receive school updates.",
+
+
+
+required:[
+
+"Notifications",
+
+"Announcements",
+
+"Search Bar"
+
+],
+
+
+time:60
+
+
 
 }
 

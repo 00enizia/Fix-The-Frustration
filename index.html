@@ -2,98 +2,63 @@
 <html>
 
 <head>
+    <title>Fix The Frustration</title>
 
-<title>
-Fix The Frustration
-</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 
 <body>
 
+<header class="game-header">
 
-<!-- TEAM SCREEN -->
+    <h1>🎨 Fix The Frustration</h1>
 
-<div id="team-screen">
-
-
-<h1>
-🎨 Fix The Frustration
-</h1>
-
-
-<h2>
-Student Portal Design Challenge
-</h2>
-
-
-<input 
-id="team-name"
-placeholder="Enter Group Name"
->
-
-
-<button id="join">
-Start Game
-</button>
-
-
-</div>
-
-
-
-
-
-<header>
-
-<h1>
-🎮 Fix The Frustration
-</h1>
-
-<p>
-Human-Centered Design Challenge
-</p>
+    <p>Student Portal Designer Challenge</p>
 
 </header>
 
 
 
+<section class="mission-panel">
+
+    <div>
+        <h2>🎯 Mission</h2>
+
+        <h3 id="problem-title">
+            Loading problem...
+        </h3>
+
+        <p id="problem-description"></p>
+    </div>
 
 
-<div class="game-info">
+    <div class="game-info">
+
+        <h3>
+            ⏳ Time:
+            <span id="timer">60</span>
+        </h3>
 
 
-<h2>
-Mission
-</h2>
+        <h3>
+            ⭐ Score:
+            <span id="score">0</span>
+        </h3>
 
+    </div>
 
-<div id="scenario">
-
-</div>
-
-
-<div id="timer">
-⏳ Time: 0
-</div>
-
-
-</div>
+</section>
 
 
 
 
+<main class="game-container">
 
 
-<main>
+<!-- COMPONENT INVENTORY -->
 
-
-<!-- COMPONENT AREA -->
-
-<section class="closet">
+<section class="inventory">
 
 
 <h2>
@@ -101,35 +66,34 @@ Mission
 </h2>
 
 
-<div class="category">
+<div id="category-buttons">
 
 
-<button data-category="profile">
+<button data-category="Profile">
 👤 Profile
 </button>
 
 
-<button data-category="academic">
+<button data-category="Academic">
 📚 Academic
 </button>
 
 
-<button data-category="communication">
+<button data-category="Communication">
 🔔 Communication
 </button>
 
 
-<button data-category="system">
+<button data-category="System">
 ⚙ System
 </button>
-
 
 
 </div>
 
 
 
-<div id="items">
+<div id="inventory-items">
 
 </div>
 
@@ -141,41 +105,28 @@ Mission
 
 
 
+<!-- WEBSITE BUILDER -->
 
-<!-- WEBSITE -->
-
-<section class="prototype">
+<section class="website-area">
 
 
 <h2>
-Website Prototype
+💻 Website Prototype
 </h2>
 
 
 
-<div id="website">
+<div class="website-frame">
 
 
 <div 
-class="drop-slot header-slot"
-data-slot="header">
-
-Header
-
-</div>
+class="drop-zone header-zone"
+id="header">
 
 
-
-
-<div class="website-body">
-
-
-
-<div 
-class="drop-slot sidebar-slot"
-data-slot="sidebar">
-
-Sidebar
+<h3>
+HEADER
+</h3>
 
 
 </div>
@@ -184,25 +135,35 @@ Sidebar
 
 
 
+<div class="middle-layout">
+
+
 <div 
-class="drop-slot dashboard-slot"
-data-slot="dashboard">
+class="drop-zone sidebar-zone"
+id="sidebar">
 
 
-<h2 contenteditable="true">
-
-Welcome Student!
-
-</h2>
-
-
-<p>
-Drag components here
-</p>
+<h3>
+SIDEBAR
+</h3>
 
 
 </div>
 
+
+
+
+<div 
+class="drop-zone main-zone"
+id="main">
+
+
+<h3>
+MAIN DASHBOARD
+</h3>
+
+
+</div>
 
 
 </div>
@@ -212,23 +173,29 @@ Drag components here
 
 
 <div 
-class="drop-slot footer-slot"
-data-slot="footer">
+class="drop-zone footer-zone"
+id="footer">
 
-Footer
+
+<h3>
+FOOTER
+</h3>
+
+
+</div>
+
 
 </div>
 
 
 
-</div>
 
+<button id="test-button">
 
+🧪 Test Website
 
-
-<button id="test">
-🧪 Test Design
 </button>
+
 
 
 </section>
@@ -240,7 +207,6 @@ Footer
 
 <!-- LEADERBOARD -->
 
-
 <section class="leaderboard">
 
 
@@ -249,9 +215,26 @@ Footer
 </h2>
 
 
-<div id="leaderboard">
+<div>
+
+Group 1 ⭐ <span>0</span>
 
 </div>
+
+
+<div>
+
+Group 2 ⭐ <span>0</span>
+
+</div>
+
+
+<div>
+
+Group 3 ⭐ <span>0</span>
+
+</div>
+
 
 
 </section>
@@ -259,6 +242,59 @@ Footer
 
 
 </main>
+
+
+
+
+
+<!-- RESULT MODAL -->
+
+
+<div id="result-modal">
+
+
+<div class="result-box">
+
+
+<button id="close-result">
+❌
+</button>
+
+
+<h1 id="result-title">
+
+</h1>
+
+
+<h2>
+
+Score:
+<span id="final-score">
+
+</span>
+
+</h2>
+
+
+
+<div id="feedback">
+
+</div>
+
+
+
+<button id="retry-button">
+
+🔄 Try Again
+
+</button>
+
+
+
+</div>
+
+
+</div>
 
 
 

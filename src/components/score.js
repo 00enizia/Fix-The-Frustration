@@ -1,40 +1,19 @@
-import {players}
-from "../../data/players.js";
+let score=0;
 
 
-import {updateLeaderboard}
-from "./leaderboard.js";
+let time=60;
 
 
-
-export function saveScore(score){
-
-
-let team=
-localStorage.getItem("team");
+export function addScore(points){
 
 
-
-let player=
-players.find(
-p=>p.team===team
-);
+score += points;
 
 
-
-if(player){
-
-player.score=score;
-
-}
-
-
-
-updateLeaderboard();
-
-
-
-showResult(score);
+document
+.getElementById("score")
+.innerText =
+score;
 
 
 
@@ -42,68 +21,56 @@ showResult(score);
 
 
 
-function showResult(score){
+export function getScore(){
 
 
-let box=document.createElement("div");
+return score;
 
 
-box.className="result";
-
-
-box.innerHTML=
-
-score>=80
-
-?
-
-`
-<h1>🎉 PASS!</h1>
-
-<p>${score}/100</p>
-
-<button onclick="location.reload()">
-Play Again
-</button>
-
-`
-
-:
-
-`
-
-<button class="close-result">
-❌
-</button>
-
-
-<h1>
-❌ TRY AGAIN
-</h1>
-
-
-<p>
-${score}/100
-</p>
-
-
-<button onclick="location.reload()">
-🔄 Try Again
-</button>
-
-`;
+}
 
 
 
-document.body.appendChild(box);
+
+export function startTimer(){
 
 
 
-document.querySelector(".close-result")
-?.addEventListener(
-"click",
-()=>box.remove()
+let timer =
+setInterval(()=>{
+
+
+time--;
+
+
+
+document
+.getElementById("timer")
+.innerText=
+time;
+
+
+
+
+if(time<=0){
+
+
+
+clearInterval(timer);
+
+
+
+alert(
+"⏰ Time is up!"
 );
+
+
+}
+
+
+
+},1000);
+
 
 
 }

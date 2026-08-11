@@ -1,53 +1,101 @@
-import {renderComponent}
-from "./renderer.js";
+import {
+layouts
+}
+from "../../data/layouts.js";
 
 
 
-export function enableDrop(){
+export function enableDropping(){
 
 
-document.querySelectorAll(".drop-slot")
-.forEach(slot=>{
 
-
-slot.addEventListener(
-"dragover",
-e=>e.preventDefault()
+const zones =
+document.querySelectorAll(
+".drop-zone"
 );
 
 
 
-slot.addEventListener(
+zones.forEach(zone=>{
+
+
+
+zone.addEventListener(
+
+"dragover",
+
+(e)=>{
+
+e.preventDefault();
+
+}
+
+);
+
+
+
+
+
+zone.addEventListener(
+
 "drop",
-e=>{
+
+(e)=>{
 
 
 e.preventDefault();
 
 
-let data=
+
+let component =
 e.dataTransfer.getData(
 "component"
 );
 
 
 
-let item=
-JSON.parse(data);
+
+let correctArea =
+layouts[component];
 
 
 
-if(
-item.slot !== slot.dataset.slot
-){
+
+
+if(zone.id !== correctArea){
+
 
 
 alert(
 
-"⚠️ Wrong Placement!\n\n"+
-item.name+
-" should be placed in "+
-item.slot.toUpperCase()
+`❌ ${component} belongs in ${correctArea.toUpperCase()}`
+
+);
+
+
+
+return;
+
+
+}
+
+
+
+
+
+let existing =
+document.querySelector(
+`[data-component="${component}"]`
+);
+
+
+
+if(existing){
+
+
+alert(
+
+"⚠ This component is already added!"
 
 );
 
@@ -59,9 +107,9 @@ return;
 
 
 
-renderComponent(
-item,
-slot
+createCard(
+component,
+zone
 );
 
 
@@ -69,7 +117,178 @@ slot
 });
 
 
+
 });
 
+
+
+}
+
+
+
+
+
+
+function createCard(name,zone){
+
+
+
+let card =
+document.createElement(
+"div"
+);
+
+
+
+card.className=
+"website-card";
+
+
+
+card.dataset.component=
+name;
+
+
+
+card.innerHTML=
+`
+
+<button class="delete-btn">
+❌
+</button>
+
+
+<h3>
+
+${getIcon(name)}
+
+${name}
+
+</h3>
+
+
+${editableContent(name)}
+
+
+`;
+
+
+
+
+
+card
+.querySelector(
+".delete-btn"
+)
+.onclick=()=>{
+
+
+card.remove();
+
+
+};
+
+
+
+
+zone.appendChild(card);
+
+
+
+}
+
+
+
+
+
+
+
+function getIcon(name){
+
+
+const icons={
+
+"Student Profile":"👤",
+
+"Student Information":"📝",
+
+"Class Schedule":"📅",
+
+"Grades":"📊",
+
+"Course List":"📚",
+
+"Notifications":"🔔",
+
+"Announcements":"📢",
+
+"Search Bar":"🔍",
+
+"Settings":"⚙"
+
+
+};
+
+
+
+return icons[name] || "📌";
+
+
+}
+
+
+
+
+
+
+
+function editableContent(name){
+
+
+if(name==="Student Profile"){
+
+
+return `
+
+
+<input 
+class="edit-input"
+placeholder="Student Name">
+
+
+<input 
+class="edit-input"
+placeholder="Course">
+
+
+`;
+
+
+}
+
+
+
+
+if(name==="Search Bar"){
+
+
+return `
+
+
+<input
+
+class="search-input"
+
+placeholder="Search courses, schedules...">
+
+
+`;
+
+
+}
+
+
+
+return "";
 
 }

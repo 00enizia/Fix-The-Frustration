@@ -1,21 +1,35 @@
-export function makeDraggable(element,item){
+export function createDragItem(element){
 
-
-element.draggable=true;
 
 
 element.addEventListener(
 "dragstart",
+
 (e)=>{
 
 
 e.dataTransfer.setData(
+
 "component",
-JSON.stringify(item)
+
+element.dataset.name
+
 );
 
 
-});
 
+}
+
+);
+
+
+
+}
+
+
+
+export function enableDragging(){
+
+// reserved for future upgrades
 
 }
