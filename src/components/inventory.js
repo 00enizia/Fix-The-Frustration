@@ -1,4 +1,6 @@
-import {components}
+import {
+components
+}
 from "../../data/components.js";
 
 
@@ -15,22 +17,40 @@ export function loadInventory(){
 
 
 
-document
-.querySelectorAll(
-".category-button"
-)
-.forEach(button=>{
-
-
-button.onclick=()=>{
-
-
-showItems(
-button.dataset.category
+const categoryButtons =
+document.querySelectorAll(
+".category-buttons button"
 );
 
 
-};
+
+
+
+categoryButtons.forEach(button=>{
+
+
+
+button.addEventListener(
+"click",
+
+()=>{
+
+
+const category =
+button.dataset.category;
+
+
+
+displayComponents(
+category
+);
+
+
+
+}
+
+);
+
 
 
 });
@@ -45,14 +65,17 @@ button.dataset.category
 
 
 
-function showItems(category){
+
+
+function displayComponents(category){
 
 
 
 const container =
 document.getElementById(
-"inventory-items"
+"items"
 );
+
 
 
 
@@ -62,68 +85,129 @@ container.innerHTML="";
 
 
 
+
+if(!components[category]){
+
+
+container.innerHTML=
+"<p>No components available</p>";
+
+return;
+
+
+}
+
+
+
+
+
+
 components[category]
-.forEach(item=>{
+.forEach(component=>{
 
 
 
-const card =
+
+
+const item =
 document.createElement(
 "div"
 );
 
 
 
-card.className =
-"inventory-card";
+
+
+item.className =
+"component-item";
 
 
 
-card.draggable=true;
-
-
-
-card.dataset.id =
-item.id;
-
-
-
-card.dataset.name =
-item.name;
-
-
-
-card.dataset.icon =
-item.icon;
+item.draggable=true;
 
 
 
 
-card.innerHTML=
+
+// send data to drag.js
+
+
+item.dataset.id =
+component.id;
+
+
+
+item.dataset.name =
+component.name;
+
+
+
+item.dataset.icon =
+component.icon;
+
+
+
+item.dataset.type =
+component.type;
+
+
+
+item.dataset.allowed =
+JSON.stringify(
+component.allowedSections
+);
+
+
+
+
+
+
+
+item.innerHTML=
 
 `
 
-<h2>
-${item.icon}
-</h2>
+<h3>
+
+${component.icon}
+
+</h3>
+
 
 <p>
-${item.name}
+
+${component.name}
+
 </p>
 
+
 <small>
+
 Drag me
+
 </small>
 
 `;
 
 
 
-makeDraggable(card);
 
 
 
-container.appendChild(card);
+
+makeDraggable(
+item
+);
+
+
+
+
+
+
+container.appendChild(
+item
+);
+
 
 
 

@@ -1,5 +1,8 @@
-import { renderComponent }
+import {
+renderComponent
+}
 from "./renderer.js";
+
 
 
 
@@ -22,14 +25,17 @@ sections.forEach(section=>{
 
 
 
+
+
+
 section.addEventListener(
 
 "dragover",
 
-(e)=>{
+(event)=>{
 
 
-e.preventDefault();
+event.preventDefault();
 
 
 section.classList.add(
@@ -39,7 +45,12 @@ section.classList.add(
 
 }
 
+
+
 );
+
+
+
 
 
 
@@ -58,9 +69,12 @@ section.classList.remove(
 );
 
 
+
 }
 
 );
+
+
 
 
 
@@ -72,10 +86,11 @@ section.addEventListener(
 
 "drop",
 
-(e)=>{
+(event)=>{
 
 
-e.preventDefault();
+event.preventDefault();
+
 
 
 section.classList.remove(
@@ -86,9 +101,10 @@ section.classList.remove(
 
 
 
+
 const data =
 
-e.dataTransfer.getData(
+event.dataTransfer.getData(
 "component"
 );
 
@@ -106,6 +122,7 @@ return;
 
 
 
+
 const component =
 
 JSON.parse(data);
@@ -115,7 +132,7 @@ JSON.parse(data);
 
 
 
-const targetSection =
+const target =
 
 section.dataset.section;
 
@@ -124,16 +141,13 @@ section.dataset.section;
 
 
 
-
-/*
-CHECK LOCATION
-*/
+// CHECK IF ALLOWED
 
 
 if(
 
 !component.allowedSections.includes(
-targetSection
+target
 )
 
 ){
@@ -142,7 +156,7 @@ targetSection
 
 showWarning(
 component,
-targetSection
+target
 );
 
 
@@ -150,6 +164,7 @@ return;
 
 
 }
+
 
 
 
@@ -167,9 +182,9 @@ section
 
 
 
+
+
 }
-
-
 
 );
 
@@ -188,6 +203,7 @@ section
 
 
 
+
 function showWarning(
 component,
 section
@@ -195,17 +211,19 @@ section
 
 
 
-const message = document.createElement(
+const popup =
+document.createElement(
 "div"
 );
 
 
 
-message.className="warning-popup";
+popup.className =
+"warning-popup";
 
 
 
-message.innerHTML=
+popup.innerHTML =
 
 `
 
@@ -214,18 +232,22 @@ message.innerHTML=
 
 ${component.name}
 
-should be placed in:
+cannot be placed here.
+
+
+Try:
 
 ${component.allowedSections.join(", ")}
-
 
 `;
 
 
 
+
 document.body.appendChild(
-message
+popup
 );
+
 
 
 
@@ -234,7 +256,7 @@ message
 setTimeout(()=>{
 
 
-message.remove();
+popup.remove();
 
 
 },3000);

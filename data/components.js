@@ -1,7 +1,13 @@
 export const components = {
 
 
-profile: [
+/* =========================
+PROFILE COMPONENTS
+========================= */
+
+
+Profile:[
+
 
 {
 id:"profile-card",
@@ -10,16 +16,17 @@ name:"Student Profile Card",
 
 icon:"👤",
 
-type:"profile",
+type:"profile-card",
 
 allowedSections:[
 
 "sidebar",
-"main"
+"dashboard"
 
 ]
 
 },
+
 
 
 
@@ -43,22 +50,26 @@ allowedSections:[
 
 
 
+
 {
-id:"student-id",
+id:"student-info",
 
-name:"Student ID Profile",
+name:"Student Information",
 
-icon:"🪪",
+icon:"📝",
 
-type:"profile-id",
+type:"student-info",
 
 allowedSections:[
 
-"main"
+"sidebar",
+"dashboard"
 
 ]
 
 }
+
+
 
 
 ],
@@ -68,13 +79,18 @@ allowedSections:[
 
 
 
-academic:[
 
+/* =========================
+ACADEMIC COMPONENTS
+========================= */
+
+
+Academic:[
 
 
 {
 
-id:"schedule-card",
+id:"schedule",
 
 name:"Class Schedule",
 
@@ -84,11 +100,12 @@ type:"schedule",
 
 allowedSections:[
 
-"main"
+"dashboard"
 
 ]
 
 },
+
 
 
 
@@ -104,32 +121,13 @@ type:"calendar",
 
 allowedSections:[
 
-"main"
+"dashboard"
 
 ]
 
 },
 
 
-
-{
-
-id:"course-list",
-
-name:"Course List",
-
-icon:"📚",
-
-type:"courses",
-
-allowedSections:[
-
-"main",
-"sidebar"
-
-]
-
-},
 
 
 
@@ -145,11 +143,57 @@ type:"grades",
 
 allowedSections:[
 
-"main"
+"dashboard"
+
+]
+
+},
+
+
+
+
+
+{
+
+id:"courses",
+
+name:"Course List",
+
+icon:"📚",
+
+type:"courses",
+
+allowedSections:[
+
+"dashboard",
+"sidebar"
+
+]
+
+},
+
+
+
+
+
+{
+
+id:"assignment",
+
+name:"Assignments",
+
+icon:"📒",
+
+type:"assignment",
+
+allowedSections:[
+
+"dashboard"
 
 ]
 
 }
+
 
 
 ],
@@ -159,28 +203,37 @@ allowedSections:[
 
 
 
-communication:[
+
+/* =========================
+COMMUNICATION COMPONENTS
+========================= */
+
+
+Communication:[
+
 
 
 
 {
 
-id:"notifications",
+id:"notification",
 
-name:"Notifications",
+name:"Notification Center",
 
 icon:"🔔",
 
-type:"notifications",
+type:"notification",
 
 allowedSections:[
 
-"main",
-"navbar"
+"navbar",
+"dashboard"
 
 ]
 
 },
+
+
 
 
 
@@ -196,7 +249,7 @@ type:"announcement",
 
 allowedSections:[
 
-"main"
+"dashboard"
 
 ]
 
@@ -204,24 +257,29 @@ allowedSections:[
 
 
 
+
+
 {
 
-id:"messages",
+id:"message",
 
 name:"Message Center",
 
 icon:"💬",
 
-type:"messages",
+type:"message",
 
 allowedSections:[
 
 "sidebar",
-"main"
+"dashboard"
 
 ]
 
 }
+
+
+
 
 
 ],
@@ -231,7 +289,15 @@ allowedSections:[
 
 
 
-system:[
+
+/* =========================
+SYSTEM COMPONENTS
+========================= */
+
+
+System:[
+
+
 
 
 
@@ -248,11 +314,36 @@ type:"search",
 allowedSections:[
 
 "navbar",
-"main"
+"dashboard"
 
 ]
 
 },
+
+
+
+
+
+{
+
+id:"navigation",
+
+name:"Navigation Menu",
+
+icon:"☰",
+
+type:"navigation",
+
+allowedSections:[
+
+"navbar",
+"sidebar"
+
+]
+
+},
+
+
 
 
 
@@ -277,6 +368,8 @@ allowedSections:[
 
 
 
+
+
 {
 
 id:"logout",
@@ -295,6 +388,9 @@ allowedSections:[
 ]
 
 }
+
+
+
 
 
 ]

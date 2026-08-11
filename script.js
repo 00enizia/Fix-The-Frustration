@@ -1,60 +1,171 @@
-import { startGame } 
-from "./src/components/game.js";
+import {
+loadInventory
+}
+from "./src/components/inventory.js";
 
 
-import { finishDesign } 
+import {
+enableDrop
+}
+from "./src/components/drop.js";
+
+
+import {
+finishDesign
+}
 from "./src/components/finish.js";
 
 
 
 
 
-const startButton =
-document.getElementById(
-"start-button"
+let selectedGroup = "";
+
+
+
+
+
+// ==============================
+// GROUP SELECTION
+// ==============================
+
+
+const groups =
+document.querySelectorAll(
+".group-btn"
 );
 
 
 
-const gameScreen =
+const display =
 document.getElementById(
-"game-screen"
-);
-
-
-
-const startScreen =
-document.getElementById(
-"start-screen"
+"group-display"
 );
 
 
 
 
 
+groups.forEach(button=>{
 
 
-// START GAME
-
-startButton.addEventListener(
+button.addEventListener(
 "click",
 
 ()=>{
 
 
-startScreen.classList.add(
+groups.forEach(btn=>{
+
+btn.classList.remove(
+"selected"
+);
+
+});
+
+
+
+button.classList.add(
+"selected"
+);
+
+
+
+selectedGroup =
+button.dataset.group;
+
+
+
+display.innerHTML =
+"Selected: "
++
+selectedGroup;
+
+
+
+}
+
+);
+
+
+});
+
+
+
+
+
+
+
+
+
+// ==============================
+// START DESIGN
+// ==============================
+
+
+document
+.getElementById(
+"start-button"
+)
+.addEventListener(
+"click",
+
+()=>{
+
+
+if(selectedGroup===""){
+
+
+alert(
+"Please choose your group first!"
+);
+
+
+return;
+
+
+}
+
+
+
+
+localStorage.setItem(
+"group",
+selectedGroup
+);
+
+
+
+
+
+document
+.getElementById(
+"start-screen"
+)
+.classList.add(
 "hidden"
 );
 
 
 
-gameScreen.classList.remove(
+
+
+document
+.getElementById(
+"game-screen"
+)
+.classList.remove(
 "hidden"
 );
 
 
 
-startGame();
+
+
+loadInventory();
+
+
+enableDrop();
 
 
 
@@ -70,18 +181,16 @@ startGame();
 
 
 
-// FINISH DESIGN
+// ==============================
+// FINISH
+// ==============================
 
 
-const finishButton =
-document.getElementById(
+document
+.getElementById(
 "finish-button"
-);
-
-
-
-finishButton.addEventListener(
-
+)
+.addEventListener(
 "click",
 
 ()=>{
@@ -90,6 +199,52 @@ finishButton.addEventListener(
 finishDesign();
 
 
+
+});
+
+
+
+
+
+document
+.getElementById(
+"save-button"
+)
+.addEventListener(
+"click",
+
+()=>{
+
+
+const group =
+document.getElementById(
+"group-number"
+)
+.value;
+
+
+
+if(group===""){
+
+
+alert(
+"Enter your group number first"
+);
+
+
+return;
+
+
 }
 
+
+
+alert(
+
+`🎉 Group ${group} Design Completed!\n\nTake a screenshot and send it to the GC.`
+
 );
+
+
+
+});

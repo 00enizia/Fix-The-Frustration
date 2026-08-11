@@ -1,16 +1,19 @@
 export function finishDesign(){
 
 
+
 const gameScreen =
 document.getElementById(
 "game-screen"
 );
 
 
+
 const finalScreen =
 document.getElementById(
 "final-screen"
 );
+
 
 
 const website =
@@ -22,7 +25,25 @@ document.getElementById(
 
 
 
-// Hide editor
+
+// ==========================
+// GET GROUP NUMBER
+// ==========================
+
+
+const savedGroup =
+localStorage.getItem(
+"group"
+);
+
+
+
+
+
+// ==========================
+// HIDE DESIGNER
+// ==========================
+
 
 gameScreen.classList.add(
 "hidden"
@@ -32,7 +53,8 @@ gameScreen.classList.add(
 
 
 
-// Show final presentation
+// SHOW FINAL PAGE
+
 
 finalScreen.classList.remove(
 "hidden"
@@ -52,19 +74,68 @@ document.getElementById(
 
 
 
-// Clone website design
-
-const clone =
-website.cloneNode(true);
+output.innerHTML="";
 
 
 
 
 
-// Remove editing effects
 
-clone.id =
+
+// COPY WEBSITE
+
+
+const finalWebsite =
+website.cloneNode(
+true
+);
+
+
+
+
+
+finalWebsite.id =
 "final-website";
+
+
+
+
+
+
+// REMOVE EDITING FEATURES
+
+
+finalWebsite
+.querySelectorAll(
+".delete-button"
+)
+.forEach(button=>{
+
+
+button.remove();
+
+
+});
+
+
+
+
+
+
+
+finalWebsite
+.querySelectorAll(
+".resize-handle"
+)
+.forEach(handle=>{
+
+
+handle.remove();
+
+
+});
+
+
 
 
 
@@ -72,7 +143,8 @@ clone.id =
 
 // Remove dashed borders
 
-clone
+
+finalWebsite
 .querySelectorAll(
 ".website-section"
 )
@@ -95,28 +167,9 @@ section.style.background =
 
 
 
-// Remove unnecessary labels
-
-clone
-.querySelectorAll(
-".website-section h3"
-)
-.forEach(title=>{
-
-
-title.style.display =
-"none";
-
-
-});
-
-
-
-
-
 
 output.appendChild(
-clone
+finalWebsite
 );
 
 
@@ -124,7 +177,61 @@ clone
 
 
 
-setupScreenshotMode();
+
+
+// ADD GROUP LABEL
+
+
+const groupTitle =
+document.createElement(
+"div"
+);
+
+
+
+groupTitle.className =
+"final-group";
+
+
+
+groupTitle.innerHTML =
+
+`
+
+<h2>
+
+🎓 Student Portal Design
+
+</h2>
+
+
+<p>
+
+Created by:
+
+<strong>
+${savedGroup || "Group"}
+</strong>
+
+</p>
+
+
+`;
+
+
+
+
+
+output.prepend(
+groupTitle
+);
+
+
+
+
+
+
+addCompleteMessage();
 
 
 
@@ -138,41 +245,31 @@ setupScreenshotMode();
 
 
 
-
-function setupScreenshotMode(){
-
+function addCompleteMessage(){
 
 
-const button =
+
+const container =
 document.getElementById(
-"save-button"
+"final-screen"
 );
 
 
 
-button.onclick=()=>{
 
 
-
-const group =
-document.getElementById(
-"group-number"
-)
-.value;
-
-
-
-if(group.trim()===""){
-
-
-
-alert(
-"Please enter your group number first!"
+const old =
+document.querySelector(
+".completion-message"
 );
 
 
-return;
 
+
+
+if(old){
+
+old.remove();
 
 }
 
@@ -188,43 +285,39 @@ document.createElement(
 
 
 message.className =
-"complete-message";
+"completion-message";
 
 
 
-message.innerHTML=
+message.innerHTML =
 
 `
 
 <h2>
-🎉 Design Completed!
+
+🎉 Congratulations Designers!
+
 </h2>
 
 
+
 <p>
 
-Group ${group}
+Your Student Portal prototype is complete.
 
 </p>
 
 
 <p>
 
-Your Student Portal prototype is ready.
+📸 Take a screenshot of your final website.
 
 </p>
 
 
 <p>
 
-📸 Take a screenshot of this page.
-
-</p>
-
-
-<p>
-
-Send your final design to the class GC.
+Submit it to your class GC.
 
 </p>
 
@@ -235,26 +328,9 @@ Send your final design to the class GC.
 
 
 
-document
-.getElementById(
-"final-screen"
-)
-.appendChild(message);
-
-
-
-
-
-
-button.disabled=true;
-
-
-button.innerHTML=
-"✅ Ready for Submission";
-
-
-
-};
+container.appendChild(
+message
+);
 
 
 

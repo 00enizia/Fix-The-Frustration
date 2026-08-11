@@ -1,4 +1,7 @@
-let componentCounter = 0;
+let placedComponents = [];
+
+let counter = 0;
+
 
 
 
@@ -6,11 +9,48 @@ export function renderComponent(component, section){
 
 
 
-const widget = document.createElement("div");
+// ==========================
+// PREVENT DUPLICATE ITEMS
+// ==========================
+
+
+if(
+placedComponents.includes(component.id)
+){
+
+
+alert(
+`${component.name} is already added!`
+);
+
+
+return;
+
+
+}
 
 
 
-componentCounter++;
+
+
+placedComponents.push(
+component.id
+);
+
+
+
+
+
+counter++;
+
+
+
+
+
+const widget =
+document.createElement(
+"div"
+);
 
 
 
@@ -20,7 +60,9 @@ widget.className =
 
 
 widget.id =
-"widget-" + componentCounter;
+"component-" + counter;
+
+
 
 
 
@@ -29,30 +71,24 @@ component.type;
 
 
 
+
+
 widget.innerHTML =
-createComponentDesign(component);
+createDesign(component);
 
 
 
 
 
-// position inside section
-
-widget.style.left =
-"30px";
 
 
-widget.style.top =
-"30px";
+// DELETE BUTTON
 
-
-
-
-
-// Add delete button
 
 const deleteButton =
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 
 
@@ -65,11 +101,24 @@ deleteButton.innerHTML =
 
 
 
-deleteButton.onclick = ()=>{
+
+
+deleteButton.onclick=()=>{
+
 
 widget.remove();
 
+
+
+placedComponents =
+placedComponents.filter(
+item=>item !== component.id
+);
+
+
+
 };
+
 
 
 
@@ -77,6 +126,8 @@ widget.remove();
 widget.appendChild(
 deleteButton
 );
+
+
 
 
 
@@ -90,10 +141,33 @@ widget
 
 
 
-makeMovable(widget, section);
+
+// POSITION
 
 
-makeResizable(widget);
+widget.style.left =
+"30px";
+
+
+widget.style.top =
+"30px";
+
+
+
+
+
+
+
+enableMove(
+widget,
+section
+);
+
+
+
+enableResize(
+widget
+);
 
 
 
@@ -107,7 +181,12 @@ makeResizable(widget);
 
 
 
-function createComponentDesign(component){
+// ==================================
+// COMPONENT DESIGNS
+// ==================================
+
+
+function createDesign(component){
 
 
 
@@ -115,23 +194,18 @@ switch(component.type){
 
 
 
-// PROFILE
-
-case "profile":
+case "profile-card":
 
 
 return `
 
+
 <div class="component-header">
 
-${component.icon}
-
-Student Profile
+👤 Student Profile
 
 </div>
 
-
-<div class="profile-content">
 
 
 <div class="avatar">
@@ -141,10 +215,12 @@ Student Profile
 </div>
 
 
+
 <input 
 class="edit-field"
 value="Student Name"
 >
+
 
 
 <input 
@@ -153,7 +229,6 @@ value="BSIT Student"
 >
 
 
-</div>
 
 `;
 
@@ -162,16 +237,22 @@ value="BSIT Student"
 
 
 
-// MINI PROFILE
+
+
 
 case "profile-mini":
 
 
+
 return `
 
+
 <h3>
+
 🧑 Profile
+
 </h3>
+
 
 
 <p>
@@ -179,6 +260,11 @@ Student Name
 </p>
 
 
+<p>
+BSIT - 3A
+</p>
+
+
 `;
 
 
@@ -187,27 +273,35 @@ Student Name
 
 
 
-// STUDENT ID
 
 
-case "profile-id":
+case "student-info":
+
 
 
 return `
 
 
 <h3>
-🪪 Student ID
+
+📝 Student Information
+
 </h3>
 
 
+
 <p>
-Name: __________
+Name: Student Name
 </p>
 
 
 <p>
-Course: __________
+Course: BSIT
+</p>
+
+
+<p>
+Year Level: 3rd Year
 </p>
 
 
@@ -219,39 +313,72 @@ Course: __________
 
 
 
-
-
-// SCHEDULE
 
 
 case "schedule":
 
 
+
 return `
 
 
 <h3>
+
 📅 Class Schedule
+
 </h3>
+
 
 
 <table>
 
+
 <tr>
-<td>Mon</td>
-<td>Programming</td>
+
+<td>
+Monday
+</td>
+
+
+<td>
+Programming
+</td>
+
+
 </tr>
 
 
+
+
 <tr>
-<td>Tue</td>
-<td>Database</td>
+
+<td>
+Tuesday
+</td>
+
+
+<td>
+Database
+</td>
+
+
 </tr>
 
 
+
+
 <tr>
-<td>Wed</td>
-<td>Networking</td>
+
+<td>
+Wednesday
+</td>
+
+
+<td>
+Networking
+</td>
+
+
 </tr>
 
 
@@ -266,10 +393,10 @@ return `
 
 
 
-// CALENDAR
 
 
 case "calendar":
+
 
 
 return `
@@ -280,20 +407,17 @@ return `
 </h3>
 
 
-<div class="calendar-box">
+<div class="calendar">
 
 
 1 2 3 4 5
 
-
 <br>
-
 
 6 7 8 9 10
 
 
 <br>
-
 
 11 12 13 14 15
 
@@ -310,44 +434,9 @@ return `
 
 
 
-// COURSES
-
-
-case "courses":
-
-
-return `
-
-
-<h3>
-📚 Courses
-</h3>
-
-
-<ul>
-
-<li>Programming</li>
-
-<li>Database</li>
-
-<li>Networking</li>
-
-
-</ul>
-
-
-`;
-
-
-
-
-
-
-
-// GRADES
-
 
 case "grades":
+
 
 
 return `
@@ -368,30 +457,8 @@ Database - 90
 </p>
 
 
-`;
-
-
-
-
-
-
-
-// NOTIFICATIONS
-
-
-case "notifications":
-
-
-return `
-
-
-<h3>
-🔔 Notifications
-</h3>
-
-
 <p>
-3 New Announcements
+Networking - 92
 </p>
 
 
@@ -403,22 +470,130 @@ return `
 
 
 
-// ANNOUNCEMENT
+
+
+case "courses":
+
+
+
+return `
+
+
+<h3>
+
+📚 Course List
+
+</h3>
+
+
+<ul>
+
+<li>Programming</li>
+
+<li>Database</li>
+
+<li>Networking</li>
+
+</ul>
+
+
+`;
+
+
+
+
+
+
+
+
+
+case "assignment":
+
+
+
+return `
+
+
+<h3>
+
+📒 Assignments
+
+</h3>
+
+
+<p>
+
+No pending assignments
+
+</p>
+
+
+`;
+
+
+
+
+
+
+
+
+
+case "notification":
+
+
+
+return `
+
+
+<h3>
+
+🔔 Notifications
+
+</h3>
+
+
+<p>
+
+3 New Notifications
+
+</p>
+
+
+<p>
+
+Enrollment reminder
+
+</p>
+
+
+`;
+
+
+
+
+
+
+
 
 
 case "announcement":
 
 
+
 return `
 
 
 <h3>
-📢 Announcement Board
+
+📢 Announcement
+
 </h3>
 
 
 <p>
-Enrollment starts next week.
+
+School announcement here
+
 </p>
 
 
@@ -431,22 +606,25 @@ Enrollment starts next week.
 
 
 
-// MESSAGE
 
+case "message":
 
-case "messages":
 
 
 return `
 
 
 <h3>
+
 💬 Messages
+
 </h3>
 
 
 <p>
-No new messages.
+
+No new messages
+
 </p>
 
 
@@ -458,25 +636,28 @@ No new messages.
 
 
 
-// SEARCH
 
 
 case "search":
 
 
+
 return `
 
 
 <h3>
+
 🔍 Search
+
 </h3>
+
 
 
 <input
 
-class="search-field"
+class="search-box"
 
-placeholder="Search here..."
+placeholder="Search student portal..."
 
 >
 
@@ -489,27 +670,40 @@ placeholder="Search here..."
 
 
 
-// SETTINGS
 
 
-case "settings":
+case "navigation":
+
 
 
 return `
 
 
 <h3>
-⚙ Settings
+
+☰ Navigation
+
 </h3>
 
 
 <p>
-Account
+
+Home
+
 </p>
 
 
 <p>
-Preferences
+
+Profile
+
+</p>
+
+
+<p>
+
+Schedule
+
 </p>
 
 
@@ -521,10 +715,48 @@ Preferences
 
 
 
-// LOGOUT
+
+
+case "settings":
+
+
+
+return `
+
+
+<h3>
+
+⚙ Settings
+
+</h3>
+
+
+<p>
+
+Account
+
+</p>
+
+
+<p>
+
+Preferences
+
+</p>
+
+
+`;
+
+
+
+
+
+
+
 
 
 case "logout":
+
 
 
 return `
@@ -550,6 +782,7 @@ default:
 
 return `
 
+
 <h3>
 
 ${component.icon}
@@ -558,39 +791,41 @@ ${component.name}
 
 </h3>
 
+
 `;
 
 
-}
-
-
 
 }
 
 
 
+}
 
 
 
 
 
 
-// =============================
+
+
+
+// ==================================
 // MOVE COMPONENT
-// =============================
+// ==================================
 
 
-function makeMovable(widget, section){
+function enableMove(widget, section){
 
 
 
 let moving=false;
 
 
-let offsetX=0;
+let startX;
 
 
-let offsetY=0;
+let startY;
 
 
 
@@ -615,29 +850,31 @@ return;
 
 
 
+
 moving=true;
 
 
 
-offsetX =
+
+startX =
 e.clientX -
 widget.offsetLeft;
 
 
 
-offsetY =
+startY =
 e.clientY -
 widget.offsetTop;
 
 
 
-widget.style.zIndex=100;
+widget.style.zIndex=999;
 
 
 
-});
+}
 
-
+);
 
 
 
@@ -651,7 +888,6 @@ document.addEventListener(
 (e)=>{
 
 
-
 if(!moving)
 return;
 
@@ -662,7 +898,7 @@ return;
 let x =
 e.clientX -
 section.getBoundingClientRect().left -
-offsetX;
+startX;
 
 
 
@@ -670,7 +906,7 @@ offsetX;
 let y =
 e.clientY -
 section.getBoundingClientRect().top -
-offsetY;
+startY;
 
 
 
@@ -687,6 +923,7 @@ section.clientWidth -
 widget.offsetWidth
 )
 );
+
 
 
 
@@ -713,8 +950,9 @@ y+"px";
 
 
 
-});
+}
 
+);
 
 
 
@@ -731,7 +969,10 @@ document.addEventListener(
 moving=false;
 
 
-});
+}
+
+);
+
 
 
 }
@@ -744,28 +985,29 @@ moving=false;
 
 
 
-// =============================
+// ==================================
 // RESIZE COMPONENT
-// =============================
+// ==================================
 
 
-function makeResizable(widget){
+function enableResize(widget){
 
 
 
-const handle =
+const resize =
 document.createElement(
 "div"
 );
 
 
 
-handle.className =
+resize.className =
 "resize-handle";
 
 
+
 widget.appendChild(
-handle
+resize
 );
 
 
@@ -790,7 +1032,8 @@ let startHeight;
 
 
 
-handle.addEventListener(
+
+resize.addEventListener(
 "mousedown",
 
 (e)=>{
@@ -806,19 +1049,23 @@ resizing=true;
 
 startX=e.clientX;
 
-
 startY=e.clientY;
 
 
-startWidth=
+
+startWidth =
 widget.offsetWidth;
 
 
-startHeight=
+
+startHeight =
 widget.offsetHeight;
 
 
-});
+
+}
+
+);
 
 
 
@@ -832,20 +1079,23 @@ document.addEventListener(
 (e)=>{
 
 
+
 if(!resizing)
 return;
+
+
 
 
 
 widget.style.width =
 
 startWidth +
-
 (
 e.clientX-startX
 )
++
+"px";
 
-+"px";
 
 
 
@@ -854,16 +1104,18 @@ e.clientX-startX
 widget.style.height =
 
 startHeight +
-
 (
 e.clientY-startY
 )
++
+"px";
 
-+"px";
 
 
+}
 
-});
+);
+
 
 
 
@@ -879,7 +1131,10 @@ document.addEventListener(
 resizing=false;
 
 
-});
+}
+
+);
+
 
 
 }

@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>
-Fix The Frustration - Student Portal Designer
+Fix The Frustration
 </title>
 
+
 <link rel="stylesheet" href="style.css">
+
 
 </head>
 
@@ -15,9 +21,15 @@ Fix The Frustration - Student Portal Designer
 <body>
 
 
-<!-- START SCREEN -->
+<!-- =================================
+START SCREEN
+================================= -->
 
-<div id="start-screen">
+
+<section id="start-screen">
+
+
+<div class="start-container">
 
 
 <h1>
@@ -31,7 +43,8 @@ Student Portal Designer Challenge
 
 
 
-<div class="instruction-box">
+
+<div class="instructions">
 
 
 <h3>
@@ -40,23 +53,107 @@ Student Portal Designer Challenge
 
 
 <p>
-1. Choose website components from the closet.
+1. Choose your group number.
 </p>
 
 <p>
-2. Drag them into the website sections.
+2. Select website components.
 </p>
 
 <p>
-3. Arrange your design freely.
+3. Drag components into your portal.
 </p>
 
 <p>
-4. Finish your design and submit your screenshot.
+4. Arrange your own website design.
+</p>
+
+<p>
+5. Finish and screenshot your final output.
 </p>
 
 
 </div>
+
+
+
+
+
+
+<div class="group-container">
+
+
+<h3>
+Select Your Group
+</h3>
+
+
+<div class="groups">
+
+
+<button class="group-btn"
+data-group="Group 1">
+
+Group 1
+
+</button>
+
+
+
+<button class="group-btn"
+data-group="Group 2">
+
+Group 2
+
+</button>
+
+
+
+
+<button class="group-btn"
+data-group="Group 3">
+
+Group 3
+
+</button>
+
+
+
+
+<button class="group-btn"
+data-group="Group 4">
+
+Group 4
+
+</button>
+
+
+
+
+<button class="group-btn"
+data-group="Group 5">
+
+Group 5
+
+</button>
+
+
+</div>
+
+
+
+<p id="group-display">
+
+No group selected
+
+</p>
+
+
+
+</div>
+
+
+
 
 
 
@@ -71,14 +168,23 @@ Student Portal Designer Challenge
 </div>
 
 
+</section>
 
 
 
 
 
-<!-- MAIN GAME -->
 
-<div id="game-screen" class="hidden">
+
+
+
+<!-- =================================
+GAME SCREEN
+================================= -->
+
+
+<section id="game-screen"
+class="hidden">
 
 
 
@@ -102,13 +208,17 @@ Create your own Student Portal Website
 
 
 
+
 <main>
 
 
 
-<!-- INVENTORY -->
+<!-- ===============================
+LEFT PANEL
+================================ -->
 
-<section class="inventory">
+
+<aside class="inventory-panel">
 
 
 
@@ -118,10 +228,12 @@ Create your own Student Portal Website
 
 
 
-<div class="categories">
+
+<div class="category-buttons">
 
 
-<button data-category="profile">
+<button 
+data-category="Profile">
 
 👤 Profile
 
@@ -129,7 +241,9 @@ Create your own Student Portal Website
 
 
 
-<button data-category="academic">
+
+<button 
+data-category="Academic">
 
 📚 Academic
 
@@ -137,7 +251,9 @@ Create your own Student Portal Website
 
 
 
-<button data-category="communication">
+
+<button 
+data-category="Communication">
 
 🔔 Communication
 
@@ -145,7 +261,9 @@ Create your own Student Portal Website
 
 
 
-<button data-category="system">
+
+<button 
+data-category="System">
 
 ⚙ System
 
@@ -159,8 +277,9 @@ Create your own Student Portal Website
 
 
 
-<div id="items">
 
+
+<div id="items">
 
 <p>
 Choose a category
@@ -171,7 +290,10 @@ Choose a category
 
 
 
-</section>
+
+
+
+</aside>
 
 
 
@@ -181,17 +303,20 @@ Choose a category
 
 
 
+<!-- ===============================
+WEBSITE BUILDER
+================================ -->
 
-<!-- WEBSITE DESIGN AREA -->
 
-
-<section class="designer">
-
+<section class="designer-panel">
 
 
 <h2>
+
 💻 Website Prototype
+
 </h2>
+
 
 
 
@@ -203,11 +328,10 @@ Choose a category
 
 
 
+
 <!-- NAVBAR -->
 
-
-<div 
-class="website-section navbar"
+<section class="website-section navbar"
 data-section="navbar">
 
 
@@ -216,7 +340,8 @@ Navigation Bar
 </h3>
 
 
-</div>
+
+</section>
 
 
 
@@ -224,18 +349,13 @@ Navigation Bar
 
 
 
+<!-- WEBSITE CONTENT -->
 
-<div class="website-body">
-
-
-
+<div class="website-content">
 
 
-<!-- SIDEBAR -->
 
-
-<div 
-class="website-section sidebar"
+<section class="website-section sidebar"
 data-section="sidebar">
 
 
@@ -244,7 +364,8 @@ Sidebar
 </h3>
 
 
-</div>
+
+</section>
 
 
 
@@ -252,12 +373,8 @@ Sidebar
 
 
 
-<!-- MAIN -->
-
-
-<div 
-class="website-section main-content"
-data-section="main">
+<section class="website-section dashboard"
+data-section="dashboard">
 
 
 <h3>
@@ -265,12 +382,15 @@ Main Dashboard
 </h3>
 
 
-</div>
+
+</section>
+
+
+
 
 
 
 </div>
-
 
 
 
@@ -282,8 +402,7 @@ Main Dashboard
 <!-- FOOTER -->
 
 
-<div 
-class="website-section footer"
+<section class="website-section footer"
 data-section="footer">
 
 
@@ -292,7 +411,10 @@ Footer
 </h3>
 
 
-</div>
+
+</section>
+
+
 
 
 
@@ -315,9 +437,7 @@ Footer
 
 
 
-
 </section>
-
 
 
 
@@ -328,7 +448,7 @@ Footer
 
 
 
-</div>
+</section>
 
 
 
@@ -339,15 +459,26 @@ Footer
 
 
 
-<!-- FINAL SCREEN -->
 
 
-<div id="final-screen" class="hidden">
+
+<!-- =================================
+FINAL SCREEN
+================================= -->
+
+
+<section id="final-screen"
+class="hidden">
+
 
 
 <h1>
-🎉 Your Final Student Portal
+
+🎉 Final Website Design
+
 </h1>
+
+
 
 
 <div id="final-output">
@@ -357,30 +488,33 @@ Footer
 
 
 
-<div class="submit-box">
+
+
+
+<div class="final-submit">
+
 
 
 <h2>
-Ready to Submit?
+
+Ready To Submit?
+
 </h2>
-
-
-<p>
-Enter your group number and take a screenshot.
-</p>
 
 
 
 <input 
 id="group-number"
-placeholder="Group Number"
->
+placeholder="Enter Group Number">
+
+
+
 
 
 
 <button id="save-button">
 
-📸 View Screenshot Version
+📸 Screenshot Mode
 
 </button>
 
@@ -390,18 +524,24 @@ placeholder="Group Number"
 
 
 
-</div>
+
+
+
+</section>
 
 
 
 
 
 
-<script type="module" src="script.js"></script>
+
+<script 
+type="module"
+src="script.js">
+</script>
 
 
 
 </body>
-
 
 </html>
