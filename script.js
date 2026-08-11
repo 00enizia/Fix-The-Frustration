@@ -2,17 +2,35 @@
 
 
 import {
-    loadInventory
+
+loadInventory
+
 }
+
 from "./src/components/inventory.js";
 
 
 
 import {
-    finishDesign,
-    backToEdit
+
+finishDesign,
+
+backToEdit
+
 }
+
 from "./src/components/finish.js";
+
+
+
+import {
+
+updateProfile
+
+}
+
+from "./src/components/renderer.js";
+
 
 
 
@@ -31,13 +49,10 @@ let selectedGroup = "";
 
 
 
-
 const groupButtons =
 document.querySelectorAll(
 ".group-buttons button"
 );
-
-
 
 
 
@@ -55,69 +70,66 @@ document.getElementById(
 groupButtons.forEach(button=>{
 
 
-    button.addEventListener(
-        "click",
-        ()=>{
+button.addEventListener(
+"click",
+()=>{
 
 
 
-            // remove previous selection
+groupButtons.forEach(btn=>{
 
 
-            groupButtons.forEach(btn=>{
-
-
-                btn.classList.remove(
-                    "selected"
-                );
-
-
-            });
-
-
-
-
-
-
-
-
-            // select current group
-
-
-            button.classList.add(
-                "selected"
-            );
-
-
-
-
-
-
-            selectedGroup =
-            button.dataset.group;
-
-
-
-
-
-
-            selectedGroupText.innerHTML =
-
-            `
-            Selected: ${selectedGroup}
-            `;
-
-
-
-
-
-        }
-    );
+btn.classList.remove(
+"selected"
+);
 
 
 });
 
 
+
+
+
+
+
+
+button.classList.add(
+"selected"
+);
+
+
+
+
+
+
+selectedGroup =
+button.dataset.group;
+
+
+
+
+
+
+if(selectedGroupText){
+
+
+selectedGroupText.innerHTML =
+
+`
+Selected: ${selectedGroup}
+`;
+
+}
+
+
+
+}
+
+);
+
+
+
+});
 
 
 
@@ -142,42 +154,31 @@ document.getElementById(
 
 
 
+
+if(startButton){
+
+
+
 startButton.addEventListener(
 "click",
 ()=>{
 
 
 
-    if(
-        selectedGroup === ""
-    ){
+if(selectedGroup===""){
 
 
 
-        alert(
-        "Please choose your group first!"
-        );
+alert(
+"Please select your group first!"
+);
 
 
 
-        return;
+return;
 
 
-    }
-
-
-
-
-
-
-
-    // save group
-
-
-    localStorage.setItem(
-        "group",
-        selectedGroup
-    );
+}
 
 
 
@@ -186,17 +187,10 @@ startButton.addEventListener(
 
 
 
-
-    // switch screen
-
-
-    document
-    .getElementById(
-        "start-screen"
-    )
-    .classList.add(
-        "hidden"
-    );
+localStorage.setItem(
+"group",
+selectedGroup
+);
 
 
 
@@ -205,13 +199,13 @@ startButton.addEventListener(
 
 
 
-    document
-    .getElementById(
-        "designer-screen"
-    )
-    .classList.remove(
-        "hidden"
-    );
+document
+.getElementById(
+"start-screen"
+)
+.classList.add(
+"hidden"
+);
 
 
 
@@ -220,16 +214,128 @@ startButton.addEventListener(
 
 
 
-    // load categories
+document
+.getElementById(
+"designer-screen"
+)
+.classList.remove(
+"hidden"
+);
 
 
-    loadInventory();
 
 
 
-});
 
 
+
+loadInventory();
+
+
+
+}
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+// =====================================
+// PROFILE CUSTOMIZATION
+// =====================================
+
+
+
+const applyProfileButton =
+document.getElementById(
+"apply-profile"
+);
+
+
+
+
+
+
+if(applyProfileButton){
+
+
+
+applyProfileButton.addEventListener(
+"click",
+()=>{
+
+
+
+const name =
+document.getElementById(
+"profile-name"
+)
+.value;
+
+
+
+const course =
+document.getElementById(
+"profile-course"
+)
+.value;
+
+
+
+const year =
+document.getElementById(
+"profile-year"
+)
+.value;
+
+
+
+
+
+
+
+
+updateProfile(
+
+name,
+
+course,
+
+year
+
+);
+
+
+
+
+
+
+
+
+showMessage(
+"✅ Profile updated!"
+);
+
+
+
+}
+
+);
+
+
+
+}
 
 
 
@@ -254,18 +360,28 @@ document.getElementById(
 
 
 
+
+
+if(finishButton){
+
+
+
 finishButton.addEventListener(
 "click",
 ()=>{
 
 
-    finishDesign();
+finishDesign();
 
 
 
-});
+}
+
+);
 
 
+
+}
 
 
 
@@ -290,13 +406,97 @@ document.getElementById(
 
 
 
+
+
+if(backButton){
+
+
+
 backButton.addEventListener(
 "click",
 ()=>{
 
 
-    backToEdit();
+backToEdit();
 
 
 
-});
+}
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================================
+// SMALL MESSAGE POPUP
+// =====================================
+
+
+function showMessage(text){
+
+
+
+const old =
+document.querySelector(
+".system-message"
+);
+
+
+
+if(old){
+
+old.remove();
+
+}
+
+
+
+const message =
+document.createElement(
+"div"
+);
+
+
+
+message.className =
+"system-message";
+
+
+
+message.innerHTML =
+text;
+
+
+
+
+
+document.body.appendChild(
+message
+);
+
+
+
+
+
+
+setTimeout(()=>{
+
+
+message.remove();
+
+
+},2000);
+
+
+
+}

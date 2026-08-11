@@ -4,10 +4,9 @@
 export const components = {
 
 
-
-// =====================================
+// =====================================================
 // PROFILE
-// =====================================
+// =====================================================
 
 
 profile:{
@@ -18,16 +17,15 @@ name:"👤 Profile",
 
 features:[
 
-
 {
 
 key:"profile",
-
 
 name:"Student Profile",
 
 
 styles:[
+
 
 
 {
@@ -46,6 +44,7 @@ description:
 
 
 
+
 {
 id:"profile-modern",
 
@@ -56,9 +55,11 @@ icon:"✨",
 layout:"modern",
 
 description:
-"Clean modern dashboard profile"
+"Clean dashboard profile design"
 
 },
+
+
 
 
 
@@ -78,6 +79,8 @@ description:
 
 
 
+
+
 {
 id:"profile-minimal",
 
@@ -88,7 +91,7 @@ icon:"◻️",
 layout:"minimal",
 
 description:
-"Simple and clean profile"
+"Simple clean profile"
 
 }
 
@@ -98,7 +101,6 @@ description:
 
 
 }
-
 
 ]
 
@@ -110,9 +112,9 @@ description:
 
 
 
-// =====================================
+// =====================================================
 // ACADEMIC
-// =====================================
+// =====================================================
 
 
 academic:{
@@ -123,6 +125,11 @@ name:"📚 Academic",
 
 features:[
 
+
+
+// --------------------
+// CLASS SCHEDULE
+// --------------------
 
 
 {
@@ -146,7 +153,7 @@ icon:"📅",
 layout:"classic",
 
 description:
-"Traditional timetable design"
+"Traditional timetable layout"
 
 },
 
@@ -163,9 +170,10 @@ icon:"✨",
 layout:"modern",
 
 description:
-"Card based schedule design"
+"Modern schedule cards"
 
 },
+
 
 
 
@@ -180,9 +188,10 @@ icon:"◻️",
 layout:"minimal",
 
 description:
-"Simple organized schedule"
+"Clean simple schedule"
 
 },
+
 
 
 
@@ -197,7 +206,7 @@ icon:"🎀",
 layout:"coquette",
 
 description:
-"Cute aesthetic student planner"
+"Aesthetic student planner"
 
 }
 
@@ -205,12 +214,18 @@ description:
 
 ]
 
+
 },
 
 
 
 
 
+
+
+// --------------------
+// GRADES
+// --------------------
 
 
 {
@@ -234,7 +249,7 @@ icon:"📊",
 layout:"progress",
 
 description:
-"Visual grade progress"
+"Visual academic progress"
 
 },
 
@@ -251,7 +266,7 @@ icon:"📈",
 layout:"card",
 
 description:
-"Subject grade cards"
+"Modern subject cards"
 
 },
 
@@ -268,7 +283,7 @@ icon:"📋",
 layout:"table",
 
 description:
-"Classic grade table"
+"Traditional grade table"
 
 }
 
@@ -276,11 +291,18 @@ description:
 
 ]
 
+
 },
 
 
 
 
+
+
+
+// --------------------
+// COURSE LIST
+// --------------------
 
 
 {
@@ -295,13 +317,13 @@ styles:[
 
 
 {
-id:"courses-list",
+id:"courses-classic",
 
 name:"Classic List",
 
 icon:"📚",
 
-layout:"list",
+layout:"classic",
 
 description:
 "Simple course list"
@@ -311,19 +333,21 @@ description:
 
 
 
-{
-id:"courses-card",
 
-name:"Course Cards",
+{
+id:"courses-modern",
+
+name:"Modern Cards",
 
 icon:"✨",
 
 layout:"card",
 
 description:
-"Modern course cards"
+"Course cards design"
 
 },
+
 
 
 
@@ -338,13 +362,32 @@ icon:"🎀",
 layout:"coquette",
 
 description:
-"Aesthetic course planner"
+"Aesthetic subject planner"
+
+},
+
+
+
+
+
+{
+id:"courses-minimal",
+
+name:"Minimal List",
+
+icon:"◻️",
+
+layout:"minimal",
+
+description:
+"Simple clean course list"
 
 }
 
 
 
 ]
+
 
 }
 
@@ -360,9 +403,9 @@ description:
 
 
 
-// =====================================
+// =====================================================
 // COMMUNICATION
-// =====================================
+// =====================================================
 
 
 communication:{
@@ -373,6 +416,15 @@ name:"💬 Communication",
 
 features:[
 
+
+
+
+
+
+
+// --------------------
+// ANNOUNCEMENT
+// --------------------
 
 
 {
@@ -396,7 +448,7 @@ icon:"📢",
 layout:"classic",
 
 description:
-"Traditional announcement board"
+"School bulletin style"
 
 },
 
@@ -420,6 +472,7 @@ description:
 
 
 
+
 {
 id:"announcement-timeline",
 
@@ -430,13 +483,14 @@ icon:"🕒",
 layout:"timeline",
 
 description:
-"News timeline style"
+"News timeline design"
 
 }
 
 
 
 ]
+
 
 },
 
@@ -445,6 +499,10 @@ description:
 
 
 
+
+// --------------------
+// MESSAGE SYSTEM
+// --------------------
 
 
 {
@@ -468,9 +526,10 @@ icon:"💬",
 layout:"bubble",
 
 description:
-"Floating chat bubble like support chat"
+"Floating chat button like support apps"
 
 },
+
 
 
 
@@ -478,16 +537,17 @@ description:
 {
 id:"message-messenger",
 
-name:"Messenger Tab",
+name:"Messenger Window",
 
 icon:"🟦",
 
 layout:"messenger",
 
 description:
-"Facebook-style messenger panel"
+"Facebook-style chat panel"
 
 },
+
 
 
 
@@ -502,9 +562,10 @@ icon:"📥",
 layout:"inbox",
 
 description:
-"Email style message inbox"
+"Email/message inbox design"
 
 },
+
 
 
 
@@ -527,12 +588,18 @@ description:
 
 ]
 
+
 },
 
 
 
 
 
+
+
+// --------------------
+// NOTIFICATIONS
+// --------------------
 
 
 {
@@ -563,6 +630,7 @@ description:
 
 
 
+
 {
 id:"notification-card",
 
@@ -580,14 +648,15 @@ description:
 
 
 
+
 {
-id:"notification-priority",
+id:"notification-alert",
 
 name:"Priority Alerts",
 
 icon:"🚨",
 
-layout:"priority",
+layout:"alert",
 
 description:
 "Important alerts first"
@@ -597,6 +666,7 @@ description:
 
 
 ]
+
 
 }
 
@@ -612,9 +682,9 @@ description:
 
 
 
-// =====================================
+// =====================================================
 // SYSTEM
-// =====================================
+// =====================================================
 
 
 system:{
@@ -625,6 +695,15 @@ name:"⚙️ System",
 
 features:[
 
+
+
+
+
+
+
+// --------------------
+// SEARCH
+// --------------------
 
 
 {
@@ -648,9 +727,10 @@ icon:"🔍",
 layout:"floating",
 
 description:
-"Modern floating search box"
+"Floating search box"
 
 },
+
 
 
 
@@ -665,9 +745,10 @@ icon:"🔎",
 layout:"navbar",
 
 description:
-"Search inside navigation"
+"Search inside navigation bar"
 
 },
+
 
 
 
@@ -682,13 +763,14 @@ icon:"✨",
 layout:"smart",
 
 description:
-"Search suggestions like modern apps"
+"Search with suggestions"
 
 }
 
 
 
 ]
+
 
 },
 
@@ -697,6 +779,10 @@ description:
 
 
 
+
+// --------------------
+// FOOTER
+// --------------------
 
 
 {
@@ -720,9 +806,10 @@ icon:"🌐",
 layout:"simple",
 
 description:
-"Clean minimal footer"
+"Minimal website footer"
 
 },
+
 
 
 
@@ -737,9 +824,10 @@ icon:"🎓",
 layout:"student",
 
 description:
-"Student help and services"
+"Student support links"
 
 },
+
 
 
 
@@ -761,6 +849,7 @@ description:
 
 
 
+
 {
 id:"footer-minimal",
 
@@ -778,6 +867,7 @@ description:
 
 
 ]
+
 
 }
 

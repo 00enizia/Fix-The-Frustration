@@ -16,7 +16,7 @@ from "./renderer.js";
 
 
 
-// stores current selections
+// Stores all selected designs
 
 let selectedDesigns = {};
 
@@ -24,11 +24,9 @@ let selectedDesigns = {};
 
 
 
-let currentCategory = null;
+let currentCategory = "";
 
-let currentFeature = null;
-
-
+let currentFeature = "";
 
 
 
@@ -36,16 +34,18 @@ let currentFeature = null;
 
 
 
-// =====================================
+
+
+// ======================================
 // LOAD CATEGORY BUTTONS
-// =====================================
+// ======================================
 
 
 export function loadInventory(){
 
 
 
-const buttons =
+const categoryButtons =
 document.querySelectorAll(
 ".category-button"
 );
@@ -54,7 +54,7 @@ document.querySelectorAll(
 
 
 
-buttons.forEach(button=>{
+categoryButtons.forEach(button=>{
 
 
 button.addEventListener(
@@ -76,9 +76,7 @@ showFeatures(category);
 );
 
 
-
 });
-
 
 
 }
@@ -91,9 +89,9 @@ showFeatures(category);
 
 
 
-// =====================================
+// ======================================
 // SHOW FEATURES
-// =====================================
+// ======================================
 
 
 function showFeatures(category){
@@ -118,10 +116,8 @@ container.innerHTML = "";
 
 
 
-
 const categoryData =
 components[category];
-
 
 
 
@@ -158,6 +154,7 @@ Choose a feature
 
 
 
+
 categoryData.features.forEach(feature=>{
 
 
@@ -179,16 +176,14 @@ card.className =
 
 card.innerHTML = `
 
-
 <h2>
 ${feature.name}
 </h2>
 
 
 <p>
-Choose style
+Select design style
 </p>
-
 
 `;
 
@@ -198,7 +193,33 @@ Choose style
 
 
 
-card.onclick = ()=>{
+
+
+// if feature already selected
+
+if(
+selectedDesigns[feature.key]
+){
+
+
+card.classList.add(
+"active"
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+card.addEventListener(
+"click",
+()=>{
 
 
 showStyles(
@@ -208,7 +229,8 @@ feature
 
 
 
-};
+});
+
 
 
 
@@ -235,9 +257,9 @@ card
 
 
 
-// =====================================
+// ======================================
 // SHOW STYLES
-// =====================================
+// ======================================
 
 
 function showStyles(
@@ -247,7 +269,8 @@ feature
 
 
 
-currentFeature = feature;
+currentFeature =
+feature.key;
 
 
 
@@ -258,20 +281,16 @@ document.getElementById(
 
 
 
-
-
 container.innerHTML = `
 
 
-
-<button
+<button 
 class="back-button"
-id="back-button-choice">
+id="back-feature">
 
 ← Back
 
 </button>
-
 
 
 <h3>
@@ -280,7 +299,7 @@ ${feature.name}
 
 
 <p>
-Choose your design style
+Choose your style
 </p>
 
 
@@ -314,19 +333,21 @@ card.className =
 
 
 
-// check selected
+// check if selected
 
 
-const saved =
-selectedDesigns[feature.key];
+const current =
+selectedDesigns[
+feature.key
+];
 
 
 
 
 
 if(
-saved &&
-saved.id === style.id
+current &&
+current.style === style.id
 ){
 
 
@@ -343,23 +364,29 @@ card.classList.add(
 
 
 
-
 card.innerHTML = `
 
 
+<div class="style-icon">
 
-<h2>
 ${style.icon}
-</h2>
+
+</div>
+
 
 
 <h3>
+
 ${style.name}
+
 </h3>
 
 
+
 <p>
+
 ${style.description}
+
 </p>
 
 
@@ -373,7 +400,9 @@ ${style.description}
 
 
 
-card.onclick = ()=>{
+card.addEventListener(
+"click",
+()=>{
 
 
 applyDesign(
@@ -384,7 +413,7 @@ style
 
 
 
-};
+});
 
 
 
@@ -409,9 +438,10 @@ card
 
 document
 .getElementById(
-"back-button-choice"
+"back-feature"
 )
-.onclick = ()=>{
+.onclick =
+()=>{
 
 
 showFeatures(
@@ -421,6 +451,7 @@ category
 
 
 };
+
 
 
 
@@ -434,9 +465,9 @@ category
 
 
 
-// =====================================
+// ======================================
 // APPLY DESIGN
-// =====================================
+// ======================================
 
 
 function applyDesign(
@@ -447,11 +478,12 @@ style
 
 
 
+
+
 const design = {
 
 
 category:
-
 
 category,
 
@@ -459,13 +491,11 @@ category,
 
 feature:
 
-
 feature.key,
 
 
 
 featureName:
-
 
 feature.name,
 
@@ -473,13 +503,11 @@ feature.name,
 
 style:
 
-
 style.id,
 
 
 
 layout:
-
 
 style.layout,
 
@@ -487,13 +515,11 @@ style.layout,
 
 icon:
 
-
 style.icon,
 
 
 
 description:
-
 
 style.description
 
@@ -508,8 +534,7 @@ style.description
 
 
 
-
-// replace old design
+// Replace old style automatically
 
 selectedDesigns[
 feature.key
@@ -524,8 +549,7 @@ design;
 
 
 
-
-// send to renderer
+// Send update to renderer
 
 
 renderDesign(
@@ -538,16 +562,12 @@ design
 
 
 
-
-// refresh style selection
-
+// Refresh menu so active style updates
 
 showStyles(
 category,
 feature
 );
-
-
 
 
 
@@ -561,15 +581,36 @@ feature
 
 
 
-// =====================================
+// ======================================
 // GET SELECTED DESIGNS
-// =====================================
+// ======================================
 
 
 export function getSelectedDesigns(){
 
 
 return selectedDesigns;
+
+
+}
+
+
+
+
+
+
+
+
+
+// ======================================
+// RESET DESIGN
+// ======================================
+
+
+export function resetDesigns(){
+
+
+selectedDesigns = {};
 
 
 }

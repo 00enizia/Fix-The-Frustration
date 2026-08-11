@@ -5,13 +5,11 @@ let selectedDesigns = {};
 
 
 
-
-
 let profileData = {
 
-    name:"Student Name",
+    name:"Juan Dela Cruz",
 
-    course:"BS Information Technology",
+    course:"Bachelor of Science in Information Technology",
 
     year:"3rd Year"
 
@@ -21,27 +19,18 @@ let profileData = {
 
 
 
-
-
-
-
-// =====================================
-// MAIN RENDER FUNCTION
-// =====================================
+// ==========================================
+// MAIN RENDER
+// ==========================================
 
 
 export function renderDesign(design){
 
 
-
-    selectedDesigns[
-        design.feature
-    ] = design;
-
+    selectedDesigns[design.feature] = design;
 
 
     updateWebsite();
-
 
 
 }
@@ -57,17 +46,15 @@ export function renderDesign(design){
 function updateWebsite(){
 
 
-
     renderProfile();
-
 
     renderAcademic();
 
-
     renderCommunication();
 
-
     renderSystem();
+
+    renderFooter();
 
 
 }
@@ -80,13 +67,12 @@ function updateWebsite(){
 
 
 
-// =====================================
+// ==========================================
 // PROFILE
-// =====================================
+// ==========================================
 
 
 function renderProfile(){
-
 
 
 const container =
@@ -105,8 +91,8 @@ selectedDesigns.profile;
 
 if(!design){
 
-
 container.innerHTML =
+
 `
 <p>
 Choose profile design
@@ -115,8 +101,8 @@ Choose profile design
 
 return;
 
-
 }
+
 
 
 
@@ -127,10 +113,8 @@ return;
 if(design.layout==="classic"){
 
 
+container.innerHTML = `
 
-container.innerHTML =
-
-`
 
 <div class="portal-card classic-profile">
 
@@ -160,26 +144,15 @@ ${profileData.year}
 
 `;
 
-
-
 }
-
-
-
-
-
-
 
 
 
 if(design.layout==="modern"){
 
 
+container.innerHTML = `
 
-container.innerHTML =
-
-
-`
 
 <div class="portal-card modern-profile">
 
@@ -196,11 +169,9 @@ ${profileData.name}
 
 
 
-<div class="profile-tag">
-
+<span class="profile-tag">
 Student
-
-</div>
+</span>
 
 
 
@@ -209,25 +180,17 @@ ${profileData.course}
 </p>
 
 
-
 <p>
 ${profileData.year}
 </p>
 
 
-
 </div>
+
 
 `;
 
-
-
 }
-
-
-
-
-
 
 
 
@@ -235,11 +198,8 @@ ${profileData.year}
 if(design.layout==="coquette"){
 
 
+container.innerHTML = `
 
-container.innerHTML =
-
-
-`
 
 <div class="portal-card coquette-profile">
 
@@ -247,6 +207,7 @@ container.innerHTML =
 <div class="avatar">
 🎀
 </div>
+
 
 
 <h2>
@@ -264,18 +225,13 @@ container.innerHTML =
 </p>
 
 
+
 </div>
 
 
 `;
 
-
-
 }
-
-
-
-
 
 
 
@@ -284,11 +240,8 @@ container.innerHTML =
 if(design.layout==="minimal"){
 
 
+container.innerHTML = `
 
-container.innerHTML =
-
-
-`
 
 <div class="minimal-profile">
 
@@ -313,6 +266,7 @@ ${profileData.year}
 
 `;
 
+}
 
 
 }
@@ -320,23 +274,17 @@ ${profileData.year}
 
 
 
-}
 
 
 
 
 
-
-
-
-
-// =====================================
+// ==========================================
 // ACADEMIC
-// =====================================
+// ==========================================
 
 
 function renderAcademic(){
-
 
 
 const container =
@@ -346,35 +294,25 @@ document.getElementById(
 
 
 
-container.innerHTML="";
+container.innerHTML = "";
 
 
 
 
 
-Object.values(
-selectedDesigns
-)
+Object.values(selectedDesigns)
 .forEach(design=>{
 
 
-
 if(
-design.feature==="schedule"
-||
-design.feature==="grades"
-||
+design.feature==="schedule" ||
+design.feature==="grades" ||
 design.feature==="courses"
 ){
 
 
-
 container.innerHTML +=
-
-createAcademic(
-design
-);
-
+createAcademic(design);
 
 
 }
@@ -382,6 +320,7 @@ design
 
 
 });
+
 
 
 
@@ -401,6 +340,7 @@ Choose academic design
 }
 
 
+
 }
 
 
@@ -415,21 +355,19 @@ function createAcademic(design){
 
 
 
-// --------------------
+// --------------------------
 // SCHEDULE
-// --------------------
+// --------------------------
 
 
-if(
-design.feature==="schedule"
-){
-
+if(design.feature==="schedule"){
 
 
 if(design.layout==="classic"){
 
 
 return `
+
 
 <div class="portal-card">
 
@@ -454,7 +392,6 @@ Programming
 </tr>
 
 
-
 <tr>
 <td>
 Wednesday
@@ -467,6 +404,17 @@ Database
 </tr>
 
 
+<tr>
+<td>
+Friday
+</td>
+
+<td>
+Networking
+</td>
+
+</tr>
+
 
 </table>
 
@@ -476,13 +424,7 @@ Database
 
 `;
 
-
-
 }
-
-
-
-
 
 
 
@@ -492,11 +434,12 @@ if(design.layout==="modern"){
 
 return `
 
+
 <div class="portal-card modern-card">
 
 
 <h2>
-✨ Today's Classes
+✨ Today's Schedule
 </h2>
 
 
@@ -513,7 +456,6 @@ Programming
 
 
 
-
 <div class="schedule-box">
 
 10:00 AM
@@ -527,17 +469,20 @@ Database
 
 </div>
 
+
 `;
 
 }
 
 
 
+
+
 if(design.layout==="minimal"){
 
 
-
 return `
+
 
 <div class="portal-card">
 
@@ -557,7 +502,13 @@ Schedule
 </p>
 
 
+<p>
+01:00 Networking
+</p>
+
+
 </div>
+
 
 `;
 
@@ -566,12 +517,11 @@ Schedule
 
 
 
-
 if(design.layout==="coquette"){
 
 
-
 return `
+
 
 <div class="portal-card coquette-card">
 
@@ -591,7 +541,13 @@ return `
 </p>
 
 
+<p>
+♡ Networking
+</p>
+
+
 </div>
+
 
 `;
 
@@ -608,22 +564,20 @@ return `
 
 
 
-// --------------------
+// --------------------------
 // GRADES
-// --------------------
+// --------------------------
 
 
-if(
-design.feature==="grades"
-){
+if(design.feature==="grades"){
 
 
 
 if(design.layout==="progress"){
 
 
-
 return `
+
 
 <div class="portal-card">
 
@@ -634,42 +588,40 @@ return `
 
 
 <p>
-Programming 90%
+Programming - 90%
 </p>
 
 
 <div class="progress">
-</div>
 
+</div>
 
 
 <p>
-Database 85%
+Database - 85%
 </p>
 
 
 <div class="progress">
-</div>
-
-
 
 </div>
+
+
+
+</div>
+
 
 `;
 
-
-
 }
-
-
 
 
 
 if(design.layout==="card"){
 
 
-
 return `
+
 
 <div class="portal-card">
 
@@ -679,6 +631,7 @@ return `
 </h2>
 
 
+
 <div class="grade-item">
 
 Programming
@@ -686,7 +639,6 @@ Programming
 <b>
 95
 </b>
-
 
 </div>
 
@@ -700,7 +652,6 @@ Database
 90
 </b>
 
-
 </div>
 
 
@@ -710,10 +661,7 @@ Database
 
 `;
 
-
-
 }
-
 
 
 
@@ -722,8 +670,8 @@ Database
 if(design.layout==="table"){
 
 
-
 return `
+
 
 <div class="portal-card">
 
@@ -737,6 +685,7 @@ return `
 
 
 <tr>
+
 <td>
 Programming
 </td>
@@ -745,11 +694,13 @@ Programming
 95
 </td>
 
+
 </tr>
 
 
 
 <tr>
+
 <td>
 Database
 </td>
@@ -758,17 +709,19 @@ Database
 90
 </td>
 
+
 </tr>
 
 
 </table>
 
 
-
 </div>
+
 
 `;
 
+}
 
 
 }
@@ -776,27 +729,25 @@ Database
 
 
 
-}
 
 
 
 
 
-
-
-
-
-// --------------------
+// --------------------------
 // COURSES
-// --------------------
+// --------------------------
 
 
-if(
-design.feature==="courses"
-){
+if(design.feature==="courses"){
+
+
+
+if(design.layout==="classic"){
 
 
 return `
+
 
 <div class="portal-card">
 
@@ -806,19 +757,67 @@ return `
 </h2>
 
 
-<p>
+<ul>
+
+
+<li>
 Application Development
-</p>
+</li>
 
 
-<p>
+<li>
 Database Systems
-</p>
+</li>
 
 
-<p>
+<li>
 Networking
-</p>
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+`;
+
+}
+
+
+
+
+if(design.layout==="card"){
+
+
+return `
+
+
+<div class="portal-card">
+
+
+<h2>
+✨ My Courses
+</h2>
+
+
+
+<div class="course-item">
+💻 Application Development
+</div>
+
+
+
+<div class="course-item">
+🗄 Database Systems
+</div>
+
+
+
+<div class="course-item">
+🌐 Networking
+</div>
 
 
 
@@ -827,7 +826,83 @@ Networking
 
 `;
 
+}
 
+
+
+
+if(design.layout==="coquette"){
+
+
+return `
+
+
+<div class="portal-card coquette-card">
+
+
+<h2>
+🎀 My Subjects
+</h2>
+
+
+
+<p>
+♡ Application Development
+</p>
+
+
+<p>
+♡ Database Systems
+</p>
+
+
+<p>
+♡ Networking
+</p>
+
+
+</div>
+
+
+`;
+
+}
+
+
+
+
+
+if(design.layout==="minimal"){
+
+
+return `
+
+
+<div class="portal-card">
+
+
+<h2>
+Courses
+</h2>
+
+
+<p>
+Application Development</p>
+
+
+<p>
+Database Systems</p>
+
+
+<p>
+Networking</p>
+
+
+
+</div>
+
+
+`;
 
 }
 
@@ -836,6 +911,7 @@ Networking
 }
 
 
+}
 
 
 
@@ -843,50 +919,42 @@ Networking
 
 
 
-// =====================================
+
+
+// ==========================================
 // COMMUNICATION
-// =====================================
+// ==========================================
 
 
 function renderCommunication(){
 
 
-
-const footer =
+const container =
 document.getElementById(
 "footer-content"
 );
 
 
 
-footer.innerHTML="";
+container.innerHTML="";
 
 
 
 
 
-
-
-Object.values(
-selectedDesigns
-)
+Object.values(selectedDesigns)
 .forEach(design=>{
 
 
 if(
-design.feature==="announcement"
-||
-design.feature==="messages"
-||
+design.feature==="announcement" ||
+design.feature==="messages" ||
 design.feature==="notifications"
 ){
 
 
-footer.innerHTML +=
-
-createCommunication(
-design
-);
+container.innerHTML +=
+createCommunication(design);
 
 
 }
@@ -898,15 +966,10 @@ design
 
 
 
+if(container.innerHTML===""){
 
 
-if(
-footer.innerHTML===""
-
-){
-
-
-footer.innerHTML=
+container.innerHTML=
 `
 <p>
 Choose communication design
@@ -931,14 +994,9 @@ function createCommunication(design){
 
 
 
-
-
 // ANNOUNCEMENT
 
-
-if(
-design.feature==="announcement"
-){
+if(design.feature==="announcement"){
 
 
 
@@ -949,13 +1007,19 @@ return `
 
 <div class="portal-card">
 
+
 <h2>
 📢 Announcement Board
 </h2>
 
 
 <p>
-Enrollment schedule posted.
+Enrollment starts August 15
+</p>
+
+
+<p>
+School orientation schedule
 </p>
 
 
@@ -964,35 +1028,39 @@ Enrollment schedule posted.
 `;
 
 }
+
 
 
 
 if(design.layout==="card"){
 
 
-
 return `
+
 
 <div class="portal-card">
 
 
 <h2>
-✨ Announcements
+✨ Latest Announcements
 </h2>
 
 
-<div class="grade-item">
 
-New Event
+<div class="announcement-card">
+
+📌 Enrollment Reminder
+
+</div>
+
+
+
+<div class="announcement-card">
+
+📌 School Event
 
 </div>
 
-
-<div class="grade-item">
-
-School Update
-
-</div>
 
 
 </div>
@@ -1001,30 +1069,37 @@ School Update
 `;
 
 }
+
+
 
 
 
 if(design.layout==="timeline"){
 
 
-
 return `
+
 
 <div class="portal-card">
 
 
 <h2>
-🕒 Updates
+🕒 Updates Timeline
 </h2>
 
 
 <p>
-Today - Enrollment notice
+Today - Enrollment Update
 </p>
 
 
 <p>
-Yesterday - New schedule
+Yesterday - New Schedule
+</p>
+
+
+<p>
+Last Week - Reminder
 </p>
 
 
@@ -1034,7 +1109,6 @@ Yesterday - New schedule
 `;
 
 }
-
 
 
 }
@@ -1050,36 +1124,26 @@ Yesterday - New schedule
 // MESSAGES
 
 
-if(
-design.feature==="messages"
-){
+if(design.feature==="messages"){
 
 
 
 if(design.layout==="bubble"){
 
 
-
 return `
 
-<div class="floating-message">
 
+<div class="floating-chat">
 
 💬
-
 
 </div>
 
 
 `;
 
-
-
 }
-
-
-
-
 
 
 
@@ -1087,14 +1151,36 @@ return `
 if(design.layout==="messenger"){
 
 
-
 return `
 
 
-<div class="messenger-tab">
+<div class="messenger-window">
 
+
+<div class="messenger-header">
 
 💬 Messages
+
+</div>
+
+
+
+<div class="message">
+
+Teacher:
+Good morning!
+
+</div>
+
+
+
+<div class="message">
+
+Adviser:
+Reminder today.
+
+</div>
+
 
 
 </div>
@@ -1102,19 +1188,13 @@ return `
 
 `;
 
-
-
 }
 
 
 
 
 
-
-
-
 if(design.layout==="inbox"){
-
 
 
 return `
@@ -1129,11 +1209,15 @@ return `
 
 
 <p>
-Teacher message</p>
+Teacher Message</p>
 
 
 <p>
-Adviser message</p>
+Adviser Message</p>
+
+
+<p>
+Registrar Update</p>
 
 
 </div>
@@ -1141,19 +1225,13 @@ Adviser message</p>
 
 `;
 
-
-
 }
 
 
 
 
 
-
-
-
 if(design.layout==="minimal"){
-
 
 
 return `
@@ -1168,15 +1246,14 @@ return `
 
 
 <p>
-No new messages</p>
+No new messages
+</p>
 
 
 </div>
 
 
 `;
-
-
 
 }
 
@@ -1195,10 +1272,7 @@ No new messages</p>
 // NOTIFICATIONS
 
 
-if(
-design.feature==="notifications"
-){
-
+if(design.feature==="notifications"){
 
 
 return `
@@ -1213,7 +1287,7 @@ return `
 
 
 <p>
-New announcement</p>
+New announcement posted</p>
 
 
 <p>
@@ -1225,6 +1299,7 @@ Schedule updated</p>
 
 `;
 
+}
 
 
 }
@@ -1232,23 +1307,17 @@ Schedule updated</p>
 
 
 
-}
 
 
 
 
 
-
-
-
-
-// =====================================
-// SYSTEM
-// =====================================
+// ==========================================
+// SEARCH
+// ==========================================
 
 
 function renderSystem(){
-
 
 
 const container =
@@ -1264,26 +1333,27 @@ container.innerHTML="";
 
 
 
-
-Object.values(
-selectedDesigns
-)
-.forEach(design=>{
+const design =
+selectedDesigns.search;
 
 
-if(
-design.feature==="search"
-){
+
+
+
+if(!design)
+return;
+
+
+
+
 
 
 
 if(design.layout==="floating"){
 
 
+container.innerHTML = `
 
-container.innerHTML +=
-
-`
 
 <div class="floating-search">
 
@@ -1291,11 +1361,11 @@ container.innerHTML +=
 
 </div>
 
+
 `;
 
-
-
 }
+
 
 
 
@@ -1303,23 +1373,19 @@ container.innerHTML +=
 if(design.layout==="navbar"){
 
 
+container.innerHTML = `
 
-container.innerHTML +=
-
-`
 
 <div class="navbar-search">
 
-🔎 Search
+🔎 Search...
 
 </div>
 
+
 `;
 
-
-
 }
-
 
 
 
@@ -1327,11 +1393,8 @@ container.innerHTML +=
 if(design.layout==="smart"){
 
 
+container.innerHTML = `
 
-container.innerHTML +=
-
-
-`
 
 <div class="smart-search">
 
@@ -1340,26 +1403,19 @@ container.innerHTML +=
 
 
 
-<div>
-
+<p>
 📅 Schedule
+</p>
 
-</div>
 
-
-<div>
-
+<p>
 📊 Grades
+</p>
 
-</div>
 
-
-<div>
-
+<p>
 📚 Courses
-
-</div>
-
+</p>
 
 
 </div>
@@ -1367,19 +1423,7 @@ container.innerHTML +=
 
 `;
 
-
-
 }
-
-
-
-
-
-}
-
-
-
-});
 
 
 
@@ -1393,9 +1437,37 @@ container.innerHTML +=
 
 
 
-// =====================================
-// PROFILE CUSTOMIZATION
-// =====================================
+// ==========================================
+// FOOTER
+// ==========================================
+
+
+function renderFooter(){
+
+
+const footer =
+document.getElementById(
+"footer-content"
+);
+
+
+if(!footer)
+return;
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================================
+// PROFILE UPDATE
+// ==========================================
 
 
 export function updateProfile(
@@ -1406,15 +1478,15 @@ year
 
 
 profileData.name =
-name;
+name || "Juan Dela Cruz";
 
 
 profileData.course =
-course;
+course || "Bachelor of Science in Information Technology";
 
 
 profileData.year =
-year;
+year || "3rd Year";
 
 
 
@@ -1430,8 +1502,7 @@ renderProfile();
 
 
 
-
-export function getCurrentDesign(){
+export function getCurrentDesigns(){
 
 
 return selectedDesigns;
