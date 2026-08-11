@@ -1,26 +1,34 @@
-import { loadCategory } from "./src/components/category.js";
-import { enableDrop } from "./src/components/slots.js";
+import {loadCategory} from "./src/components/category.js";
+import {enableDrop} from "./src/components/drop.js";
+import {testDesign} from "./src/components/tester.js";
+
 
 
 document.querySelectorAll(".category button")
 .forEach(button=>{
 
 
-button.addEventListener("click",()=>{
+button.onclick=()=>{
 
 
-let category = button.innerText
-.replace(/[^\w\s]/gi,"")
-.trim();
+let category=
+button.dataset.category;
 
 
 loadCategory(category);
 
 
-});
+};
 
 
 });
+
+
+
+document
+.getElementById("test")
+.onclick=testDesign;
+
 
 
 enableDrop();

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
 
 <title>
@@ -28,13 +30,10 @@ Student Portal Design Challenge
 
 
 
-
 <main>
 
 
-<!-- LEFT SIDE -->
-
-<section class="inventory-panel">
+<section class="closet">
 
 <h2>
 Component Closet
@@ -43,32 +42,34 @@ Component Closet
 
 <div class="category">
 
-<button>
+
+<button data-category="profile">
 👤 Profile
 </button>
 
 
-<button>
+<button data-category="academic">
 📚 Academic
 </button>
 
 
-<button>
+<button data-category="communication">
 🔔 Communication
 </button>
 
 
-<button>
+<button data-category="system">
 ⚙ System
 </button>
 
 
-<button>
+<button data-category="appearance">
 🎨 Appearance
 </button>
 
 
 </div>
+
 
 
 <div id="items">
@@ -80,12 +81,7 @@ Component Closet
 
 
 
-
-
-<!-- WEBSITE AREA -->
-
-
-<section class="canvas-panel">
+<section class="game">
 
 
 <h2>
@@ -93,34 +89,27 @@ Your Student Portal
 </h2>
 
 
+<div id="website">
 
-<div id="portal">
 
+<div class="portal-title">
 
-<div class="portal-header">
-
-<h2>
 🎓 Student Portal
-</h2>
-
 
 </div>
 
 
-
-<div class="drop-area">
-
-
 <p>
-Drag components here
+Drag items here
 </p>
 
 
 </div>
 
 
-
-</div>
+<button id="test">
+🧪 Test Design
+</button>
 
 
 </section>
@@ -130,18 +119,9 @@ Drag components here
 
 
 
-
-<button class="test-btn">
-
-🧪 Test Design
-
-</button>
-
-
-
-
 <script type="module" src="script.js"></script>
 
 
 </body>
+
 </html>

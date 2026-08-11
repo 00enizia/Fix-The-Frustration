@@ -1,30 +1,45 @@
-import { components } from "./items.js";
-import { createDraggableItem } from "./draggable.js";
+import {components} from "../../data/components.js";
+import {createDrag} from "./drag.js";
 
 
 export function loadCategory(category){
 
-    const container = document.getElementById("items");
 
-    container.innerHTML="";
+let box=document.getElementById("items");
 
-
-    components[category].forEach(item=>{
-
-        const element=document.createElement("div");
-
-        element.className="drag-item";
-
-        element.innerHTML=item;
-
-        element.draggable=true;
+box.innerHTML="";
 
 
-        createDraggableItem(element);
+components[category].forEach(item=>{
 
 
-        container.appendChild(element);
+let card=document.createElement("div");
 
-    });
+card.className="item";
+
+
+card.draggable=true;
+
+
+card.innerHTML=`
+
+<img src="${item.image || ''}">
+
+<p>${item.name}</p>
+
+`;
+
+
+card.dataset.type=item.type;
+
+
+createDrag(card);
+
+
+box.appendChild(card);
+
+
+});
+
 
 }
