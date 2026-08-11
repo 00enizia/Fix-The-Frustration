@@ -1,1 +1,18 @@
-console.log("Drag and drop feature ready");
+export function createDraggableItem(element){
+
+
+element.addEventListener(
+"dragstart",
+(e)=>{
+
+
+e.dataTransfer.setData(
+"text",
+element.innerHTML
+);
+
+
+});
+
+
+}

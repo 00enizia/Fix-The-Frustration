@@ -1,73 +1,33 @@
-export const items = {
+export const components = {
 
+    Profile: [
+        "👤 Student Profile Card",
+        "📷 Student Photo",
+        "📝 Student Information"
+    ],
 
-profile:[
+    Academic: [
+        "📚 Course List",
+        "📅 Class Schedule",
+        "📊 Grades"
+    ],
 
-"👤 Student Photo",
+    Communication: [
+        "🔔 Notifications",
+        "📢 Announcements",
+        "💬 Messages"
+    ],
 
-"📛 Student Name",
+    System: [
+        "🔍 Search Bar",
+        "⚙ Settings",
+        "🚪 Logout"
+    ],
 
-"🎓 Year Level",
-
-"⚙ Profile Settings"
-
-],
-
-
-
-academic:[
-
-"📚 Course List",
-
-"📅 Class Schedule",
-
-"📊 Grades",
-
-"📝 Assignments",
-
-"✅ Attendance"
-
-],
-
-
-
-communication:[
-
-"🔔 Notifications",
-
-"💬 Messages",
-
-"📢 Announcements",
-
-"👨‍🏫 Teacher Contact"
-
-],
-
-
-
-system:[
-
-"🔍 Search Bar",
-
-"📅 Calendar",
-
-"🌙 Dark Mode",
-
-"❓ Help Center"
-
-],
-
-
-
-appearance:[
-
-"💜 Purple Theme",
-
-"💙 Blue Theme",
-
-"💚 Green Theme"
-
-]
-
+    Appearance: [
+        "💜 Purple Theme",
+        "💙 Blue Theme",
+        "🌙 Dark Theme"
+    ]
 
 };

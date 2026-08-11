@@ -1,22 +1,38 @@
-import {showCategory} from "./src/components/category.js";
+import { loadCategory } 
+from "./src/components/category.js";
 
 
-window.showCategory=showCategory;
-
-
-
-window.testPortal=function(){
-
-
-document.querySelector(".game")
-.classList.add("hidden");
+import { enableDrop }
+from "./src/components/slots.js";
 
 
 
-document
-.getElementById("testing")
-.classList.remove("hidden");
+document.querySelectorAll(
+".category button"
+)
+.forEach(button=>{
+
+
+button.addEventListener(
+"click",
+()=>{
+
+
+let category =
+button.innerText
+.replace(/[^\w\s]/gi,"")
+.trim();
 
 
 
-}
+loadCategory(category);
+
+
+});
+
+
+});
+
+
+
+enableDrop();

@@ -1,59 +1,36 @@
-import {items} from "./items.js";
-
-import {addFeature,changeTheme} from "./portal.js";
-
+import { components } from "./items.js";
+import { createDraggableItem } from "./draggable.js";
 
 
-export function showCategory(category){
+export function loadCategory(category){
 
 
-let choices=document.getElementById("choices");
+const container = document.getElementById("items");
 
 
-choices.innerHTML="";
+container.innerHTML="";
 
 
-
-items[category].forEach(item=>{
-
-
-let button=document.createElement("div");
+components[category].forEach(item=>{
 
 
-button.className="choice";
+const element=document.createElement("div");
 
 
-button.innerHTML=item;
+element.className="drag-item";
+
+element.innerHTML=item;
 
 
-
-button.onclick=function(){
-
-
-if(item.includes("Theme")){
-
-
-changeTheme(item);
-
-
-}
-
-else{
-
-
-addFeature(item);
-
-
-}
+element.draggable=true;
 
 
 
-}
+createDraggableItem(element);
 
 
 
-choices.appendChild(button);
-
+container.appendChild(element);
 
 
 });
