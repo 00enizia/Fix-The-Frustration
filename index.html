@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Fix The Frustration</title>
+<title>
+Fix The Frustration
+</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 
@@ -16,52 +16,62 @@
 
 <header>
 
-    <h1>🎨 Fix The Frustration</h1>
-    <p>Student Portal Design Challenge</p>
+<h1>
+🎨 Fix The Frustration
+</h1>
+
+<p>
+Student Portal Design Challenge
+</p>
 
 </header>
 
 
 
-<main class="game">
+
+<main>
 
 
-<!-- LEFT PANEL -->
+<!-- LEFT SIDE -->
 
-<section class="panel">
+<section class="inventory-panel">
 
-<h2>Customize Portal</h2>
+<h2>
+Component Closet
+</h2>
 
 
-<button onclick="showCategory('profile')">
+<div class="category">
+
+<button>
 👤 Profile
 </button>
 
 
-<button onclick="showCategory('academic')">
+<button>
 📚 Academic
 </button>
 
 
-<button onclick="showCategory('communication')">
+<button>
 🔔 Communication
 </button>
 
 
-<button onclick="showCategory('system')">
+<button>
 ⚙ System
 </button>
 
 
-<button onclick="showCategory('appearance')">
+<button>
 🎨 Appearance
 </button>
 
 
+</div>
 
-<div id="choices">
 
-<p>Select a category</p>
+<div id="items">
 
 </div>
 
@@ -72,45 +82,48 @@
 
 
 
-<!-- WEBSITE PREVIEW -->
+<!-- WEBSITE AREA -->
 
 
-<section class="portal-section">
+<section class="canvas-panel">
 
 
-<h2>Your Student Portal</h2>
+<h2>
+Your Student Portal
+</h2>
+
 
 
 <div id="portal">
 
 
-<h1>
+<div class="portal-header">
+
+<h2>
 🎓 Student Portal
-</h1>
+</h2>
+
+
+</div>
+
+
+
+<div class="drop-area">
 
 
 <p>
-Welcome back, Student!
+Drag components here
 </p>
 
 
-
-<div id="features">
-
-
 </div>
 
 
+
 </div>
-
-
-<button onclick="testPortal()">
-🧪 Test Design
-</button>
 
 
 </section>
-
 
 
 </main>
@@ -118,47 +131,17 @@ Welcome back, Student!
 
 
 
+<button class="test-btn">
 
-<section id="testing" class="testing hidden">
+🧪 Test Design
 
-
-<h1>
-🧪 User Testing
-</h1>
-
-
-<h3>
-Evaluate the design:
-</h3>
-
-
-<p>
-✔ Is information easy to find?
-</p>
-
-
-<p>
-✔ Are important features included?
-</p>
-
-
-<p>
-✔ Is the portal easy to understand?
-</p>
+</button>
 
 
 
-<textarea placeholder="Give feedback here..."></textarea>
 
-
-</section>
-
-
-
-<script type="module" src="script.js"></script>
+<script src="script.js"></script>
 
 
 </body>
-
-
 </html>
