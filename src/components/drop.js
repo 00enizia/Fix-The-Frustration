@@ -1,14 +1,10 @@
 import {
     renderComponent
-}
-from "./renderer.js";
-
-
+} from "./renderer.js";
 
 
 
 export function enableDrop(){
-
 
 
     const sections =
@@ -18,30 +14,21 @@ export function enableDrop(){
 
 
 
-
-
-
     sections.forEach(section=>{
-
 
 
         section.addEventListener(
             "dragover",
             (event)=>{
 
-
                 event.preventDefault();
-
 
                 section.classList.add(
                     "drag-active"
                 );
 
-
             }
         );
-
-
 
 
 
@@ -50,11 +37,9 @@ export function enableDrop(){
             "dragleave",
             ()=>{
 
-
                 section.classList.remove(
                     "drag-active"
                 );
-
 
             }
         );
@@ -73,13 +58,9 @@ export function enableDrop(){
                 event.preventDefault();
 
 
-
                 section.classList.remove(
                     "drag-active"
                 );
-
-
-
 
 
 
@@ -90,10 +71,9 @@ export function enableDrop(){
 
 
 
-                if(!data)
-                return;
-
-
+                if(!data){
+                    return;
+                }
 
 
 
@@ -104,10 +84,29 @@ export function enableDrop(){
 
 
 
-
+                /*
+                GET SECTION NAME
+                */
 
                 const sectionType =
-                section.dataset.section;
+                section.getAttribute(
+                    "data-section"
+                );
+
+
+
+
+
+                console.log(
+                    "Component:",
+                    component.name,
+                    "Allowed:",
+                    component.allowedSection,
+                    "Dropped:",
+                    sectionType
+                );
+
+
 
 
 
@@ -115,20 +114,17 @@ export function enableDrop(){
 
 
                 /*
-                    CHECK WRONG LOCATION
+                CHECK LOCATION
                 */
 
 
-
                 if(
-                    component.allowedSection
-                    !==
-                    sectionType
+                    sectionType !== component.allowedSection
                 ){
 
 
                     showWarning(
-                        `${component.name} belongs to ${component.allowedSection}`
+                    `${component.name} can only be placed in ${component.allowedSection}`
                     );
 
 
@@ -143,15 +139,13 @@ export function enableDrop(){
 
 
 
-
                 /*
-                    CHECK DUPLICATES
+                CHECK SAME CATEGORY ONLY
                 */
 
-
-
                 const existing =
-                document.querySelector(
+                section.parentElement
+                .querySelector(
                     `[data-type="${component.type}"]`
                 );
 
@@ -163,7 +157,7 @@ export function enableDrop(){
 
 
                     showWarning(
-                        `${capitalize(component.type)} already added`
+                    `${capitalize(component.type)} is already added`
                     );
 
 
@@ -178,6 +172,10 @@ export function enableDrop(){
 
 
 
+                /*
+                ADD COMPONENT
+                */
+
 
                 renderComponent(
                     component,
@@ -187,6 +185,7 @@ export function enableDrop(){
 
 
             }
+
         );
 
 
@@ -194,9 +193,7 @@ export function enableDrop(){
     });
 
 
-
 }
-
 
 
 
@@ -209,11 +206,24 @@ function showWarning(message){
 
 
 
+    const old =
+    document.querySelector(
+        ".warning-popup"
+    );
+
+
+    if(old){
+        old.remove();
+    }
+
+
+
+
+
     const popup =
     document.createElement(
         "div"
     );
-
 
 
     popup.className =
@@ -235,15 +245,13 @@ function showWarning(message){
 
 
 
+    setTimeout(()=>{
 
-    setTimeout(
-        ()=>{
 
-            popup.remove();
+        popup.remove();
 
-        },
-        2000
-    );
+
+    },2000);
 
 
 
@@ -258,12 +266,11 @@ function showWarning(message){
 function capitalize(text){
 
 
-    return text
-    .charAt(0)
-    .toUpperCase()
-    +
-    text.slice(1);
-
+    return (
+        text.charAt(0).toUpperCase()
+        +
+        text.slice(1)
+    );
 
 
 }
