@@ -1,197 +1,53 @@
-export const components = {
-
-
-/* =========================
-PROFILE COMPONENTS
-========================= */
+export const components={
 
 
 Profile:[
 
-
 {
-id:"profile-card",
-
-name:"Student Profile Card",
-
+id:"profile1",
+name:"Classic Profile",
 icon:"👤",
-
-type:"profile-card",
-
-allowedSections:[
-
-"sidebar",
-"dashboard"
-
-]
-
+type:"profile"
 },
 
 
-
-
 {
-id:"profile-mini",
-
-name:"Mini Profile",
-
+id:"profile2",
+name:"Modern Profile",
 icon:"🧑",
-
-type:"profile-mini",
-
-allowedSections:[
-
-"navbar",
-"sidebar"
-
-]
-
-},
-
-
-
-
-{
-id:"student-info",
-
-name:"Student Information",
-
-icon:"📝",
-
-type:"student-info",
-
-allowedSections:[
-
-"sidebar",
-"dashboard"
-
-]
-
+type:"profile"
 }
-
-
 
 
 ],
 
 
-
-
-
-
-
-/* =========================
-ACADEMIC COMPONENTS
-========================= */
 
 
 Academic:[
 
 
 {
-
-id:"schedule",
-
-name:"Class Schedule",
-
+id:"schedule1",
+name:"Schedule Card",
 icon:"📅",
-
-type:"schedule",
-
-allowedSections:[
-
-"dashboard"
-
-]
-
+type:"schedule"
 },
 
 
-
-
 {
-
-id:"calendar",
-
-name:"Calendar View",
-
-icon:"🗓️",
-
-type:"calendar",
-
-allowedSections:[
-
-"dashboard"
-
-]
-
-},
-
-
-
-
-
-{
-
-id:"grades",
-
-name:"Grades Overview",
-
+id:"grades1",
+name:"Grade Card",
 icon:"📊",
-
-type:"grades",
-
-allowedSections:[
-
-"dashboard"
-
-]
-
+type:"grades"
 },
 
 
-
-
-
 {
-
-id:"courses",
-
-name:"Course List",
-
+id:"courses1",
+name:"Course Card",
 icon:"📚",
-
-type:"courses",
-
-allowedSections:[
-
-"dashboard",
-"sidebar"
-
-]
-
-},
-
-
-
-
-
-{
-
-id:"assignment",
-
-name:"Assignments",
-
-icon:"📒",
-
-type:"assignment",
-
-allowedSections:[
-
-"dashboard"
-
-]
-
+type:"courses"
 }
 
 
@@ -200,85 +56,26 @@ allowedSections:[
 
 
 
-
-
-
-
-/* =========================
-COMMUNICATION COMPONENTS
-========================= */
 
 
 Communication:[
 
 
-
-
 {
-
-id:"notification",
-
-name:"Notification Center",
-
+id:"notification1",
+name:"Notification Box",
 icon:"🔔",
-
-type:"notification",
-
-allowedSections:[
-
-"navbar",
-"dashboard"
-
-]
-
+type:"notification"
 },
 
 
 
-
-
 {
-
-id:"announcement",
-
+id:"announcement1",
 name:"Announcement Board",
-
 icon:"📢",
-
-type:"announcement",
-
-allowedSections:[
-
-"dashboard"
-
-]
-
-},
-
-
-
-
-
-{
-
-id:"message",
-
-name:"Message Center",
-
-icon:"💬",
-
-type:"message",
-
-allowedSections:[
-
-"sidebar",
-"dashboard"
-
-]
-
+type:"announcement"
 }
-
-
 
 
 
@@ -288,113 +85,27 @@ allowedSections:[
 
 
 
-
-
-/* =========================
-SYSTEM COMPONENTS
-========================= */
-
-
 System:[
 
 
-
-
-
 {
-
-id:"search",
-
+id:"search1",
 name:"Search Bar",
-
 icon:"🔍",
-
-type:"search",
-
-allowedSections:[
-
-"navbar",
-"dashboard"
-
-]
-
+type:"search"
 },
 
 
 
-
-
 {
-
-id:"navigation",
-
-name:"Navigation Menu",
-
-icon:"☰",
-
-type:"navigation",
-
-allowedSections:[
-
-"navbar",
-"sidebar"
-
-]
-
-},
-
-
-
-
-
-{
-
-id:"settings",
-
+id:"settings1",
 name:"Settings",
-
-icon:"⚙️",
-
-type:"settings",
-
-allowedSections:[
-
-"sidebar",
-"footer"
-
-]
-
-},
-
-
-
-
-
-{
-
-id:"logout",
-
-name:"Logout Button",
-
-icon:"🚪",
-
-type:"logout",
-
-allowedSections:[
-
-"sidebar",
-"footer"
-
-]
-
+icon:"⚙",
+type:"settings"
 }
 
 
-
-
-
 ]
-
 
 
 };

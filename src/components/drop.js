@@ -6,9 +6,7 @@ from "./renderer.js";
 
 
 
-
 export function enableDrop(){
-
 
 
 const sections =
@@ -19,23 +17,16 @@ document.querySelectorAll(
 
 
 
-
-
 sections.forEach(section=>{
 
 
-
-
-
-
 section.addEventListener(
-
 "dragover",
 
-(event)=>{
+(e)=>{
 
 
-event.preventDefault();
+e.preventDefault();
 
 
 section.classList.add(
@@ -45,20 +36,13 @@ section.classList.add(
 
 }
 
-
-
 );
 
 
 
 
 
-
-
-
-
 section.addEventListener(
-
 "dragleave",
 
 ()=>{
@@ -69,7 +53,6 @@ section.classList.remove(
 );
 
 
-
 }
 
 );
@@ -79,17 +62,13 @@ section.classList.remove(
 
 
 
-
-
-
 section.addEventListener(
-
 "drop",
 
-(event)=>{
+(e)=>{
 
 
-event.preventDefault();
+e.preventDefault();
 
 
 
@@ -99,12 +78,8 @@ section.classList.remove(
 
 
 
-
-
-
 const data =
-
-event.dataTransfer.getData(
+e.dataTransfer.getData(
 "component"
 );
 
@@ -112,60 +87,13 @@ event.dataTransfer.getData(
 
 
 
-if(!data){
-
-return;
-
-}
-
-
+if(!data)return;
 
 
 
 
 const component =
-
 JSON.parse(data);
-
-
-
-
-
-
-const target =
-
-section.dataset.section;
-
-
-
-
-
-
-// CHECK IF ALLOWED
-
-
-if(
-
-!component.allowedSections.includes(
-target
-)
-
-){
-
-
-
-showWarning(
-component,
-target
-);
-
-
-return;
-
-
-}
-
-
 
 
 
@@ -181,85 +109,14 @@ section
 
 
 
-
-
-
 }
+
 
 );
 
 
 
 });
-
-
-
-}
-
-
-
-
-
-
-
-
-
-function showWarning(
-component,
-section
-){
-
-
-
-const popup =
-document.createElement(
-"div"
-);
-
-
-
-popup.className =
-"warning-popup";
-
-
-
-popup.innerHTML =
-
-`
-
-⚠️ Wrong Placement!
-
-
-${component.name}
-
-cannot be placed here.
-
-
-Try:
-
-${component.allowedSections.join(", ")}
-
-`;
-
-
-
-
-document.body.appendChild(
-popup
-);
-
-
-
-
-
-
-setTimeout(()=>{
-
-
-popup.remove();
-
-
-},3000);
 
 
 

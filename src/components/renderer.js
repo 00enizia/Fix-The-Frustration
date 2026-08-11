@@ -1,174 +1,78 @@
-let placedComponents = [];
-
-let counter = 0;
-
-
+let usedComponents = [];
 
 
 export function renderComponent(component, section){
 
 
+    // prevent duplicate component
 
-// ==========================
-// PREVENT DUPLICATE ITEMS
-// ==========================
+    const alreadyAdded =
+    document.querySelector(
+        `[data-type="${component.type}"]`
+    );
 
 
-if(
-placedComponents.includes(component.id)
-){
+    if(alreadyAdded){
 
+        showMessage(
+        `${component.name} is already added`
+        );
 
-alert(
-`${component.name} is already added!`
-);
+        return;
 
+    }
 
-return;
 
 
-}
+    const card =
+    document.createElement("div");
 
 
 
+    card.className =
+    "website-widget";
 
 
-placedComponents.push(
-component.id
-);
+    card.dataset.type =
+    component.type;
 
 
 
 
+    card.innerHTML =
+    generateComponent(component);
 
-counter++;
 
 
 
+    // delete button
 
+    const remove =
+    document.createElement("button");
 
-const widget =
-document.createElement(
-"div"
-);
 
+    remove.className =
+    "delete-button";
 
 
-widget.className =
-"website-widget";
+    remove.innerHTML =
+    "×";
 
 
 
-widget.id =
-"component-" + counter;
+    remove.onclick=()=>{
 
+        card.remove();
 
+    };
 
 
 
-widget.dataset.type =
-component.type;
+    card.appendChild(remove);
 
 
 
-
-
-widget.innerHTML =
-createDesign(component);
-
-
-
-
-
-
-
-// DELETE BUTTON
-
-
-const deleteButton =
-document.createElement(
-"button"
-);
-
-
-
-deleteButton.className =
-"delete-button";
-
-
-deleteButton.innerHTML =
-"✖";
-
-
-
-
-
-deleteButton.onclick=()=>{
-
-
-widget.remove();
-
-
-
-placedComponents =
-placedComponents.filter(
-item=>item !== component.id
-);
-
-
-
-};
-
-
-
-
-
-widget.appendChild(
-deleteButton
-);
-
-
-
-
-
-
-
-section.appendChild(
-widget
-);
-
-
-
-
-
-
-// POSITION
-
-
-widget.style.left =
-"30px";
-
-
-widget.style.top =
-"30px";
-
-
-
-
-
-
-
-enableMove(
-widget,
-section
-);
-
-
-
-enableResize(
-widget
-);
-
+    section.appendChild(card);
 
 
 }
@@ -179,137 +83,35 @@ widget
 
 
 
-
-
-// ==================================
-// COMPONENT DESIGNS
-// ==================================
-
-
-function createDesign(component){
-
+function generateComponent(component){
 
 
 switch(component.type){
 
 
-
-case "profile-card":
+case "profile":
 
 
 return `
 
+<h3>👤 Student Profile</h3>
 
-<div class="component-header">
-
-👤 Student Profile
-
-</div>
-
-
+<div class="profile-box">
 
 <div class="avatar">
-
 👤
-
 </div>
 
 
-
-<input 
-class="edit-field"
-value="Student Name"
->
+<input value="Student Name">
 
 
-
-<input 
-class="edit-field"
-value="BSIT Student"
->
+<input value="BSIT Student">
 
 
+</div>
 
 `;
-
-
-
-
-
-
-
-
-
-case "profile-mini":
-
-
-
-return `
-
-
-<h3>
-
-🧑 Profile
-
-</h3>
-
-
-
-<p>
-Student Name
-</p>
-
-
-<p>
-BSIT - 3A
-</p>
-
-
-`;
-
-
-
-
-
-
-
-
-
-case "student-info":
-
-
-
-return `
-
-
-<h3>
-
-📝 Student Information
-
-</h3>
-
-
-
-<p>
-Name: Student Name
-</p>
-
-
-<p>
-Course: BSIT
-</p>
-
-
-<p>
-Year Level: 3rd Year
-</p>
-
-
-`;
-
-
-
-
 
 
 
@@ -318,118 +120,27 @@ Year Level: 3rd Year
 case "schedule":
 
 
-
 return `
 
-
-<h3>
-
-📅 Class Schedule
-
-</h3>
-
-
+<h3>📅 Class Schedule</h3>
 
 <table>
 
-
 <tr>
-
-<td>
-Monday
-</td>
-
-
-<td>
-Programming
-</td>
-
-
+<td>8:00 AM</td>
+<td>Programming</td>
 </tr>
 
 
-
-
 <tr>
-
-<td>
-Tuesday
-</td>
-
-
-<td>
-Database
-</td>
-
-
-</tr>
-
-
-
-
-<tr>
-
-<td>
-Wednesday
-</td>
-
-
-<td>
-Networking
-</td>
-
-
+<td>10:00 AM</td>
+<td>Database</td>
 </tr>
 
 
 </table>
 
-
 `;
-
-
-
-
-
-
-
-
-
-case "calendar":
-
-
-
-return `
-
-
-<h3>
-🗓 Calendar
-</h3>
-
-
-<div class="calendar">
-
-
-1 2 3 4 5
-
-<br>
-
-6 7 8 9 10
-
-
-<br>
-
-11 12 13 14 15
-
-
-</div>
-
-
-`;
-
-
-
-
 
 
 
@@ -438,27 +149,17 @@ return `
 case "grades":
 
 
-
 return `
 
-
-<h3>
-📊 Grades
-</h3>
-
+<h3>📊 Grades</h3>
 
 <p>
-Programming - 95
+Programming - 95%
 </p>
 
 
 <p>
-Database - 90
-</p>
-
-
-<p>
-Networking - 92
+Database - 90%
 </p>
 
 
@@ -468,22 +169,12 @@ Networking - 92
 
 
 
-
-
-
-
 case "courses":
-
 
 
 return `
 
-
-<h3>
-
-📚 Course List
-
-</h3>
+<h3>📚 Course List</h3>
 
 
 <ul>
@@ -494,45 +185,10 @@ return `
 
 <li>Networking</li>
 
+
 </ul>
 
-
 `;
-
-
-
-
-
-
-
-
-
-case "assignment":
-
-
-
-return `
-
-
-<h3>
-
-📒 Assignments
-
-</h3>
-
-
-<p>
-
-No pending assignments
-
-</p>
-
-
-`;
-
-
-
-
 
 
 
@@ -541,98 +197,15 @@ No pending assignments
 case "notification":
 
 
-
 return `
 
-
-<h3>
-
-🔔 Notifications
-
-</h3>
-
+<h3>🔔 Notifications</h3>
 
 <p>
-
-3 New Notifications
-
+No new announcements
 </p>
-
-
-<p>
-
-Enrollment reminder
-
-</p>
-
 
 `;
-
-
-
-
-
-
-
-
-
-case "announcement":
-
-
-
-return `
-
-
-<h3>
-
-📢 Announcement
-
-</h3>
-
-
-<p>
-
-School announcement here
-
-</p>
-
-
-`;
-
-
-
-
-
-
-
-
-
-case "message":
-
-
-
-return `
-
-
-<h3>
-
-💬 Messages
-
-</h3>
-
-
-<p>
-
-No new messages
-
-</p>
-
-
-`;
-
-
-
-
 
 
 
@@ -641,24 +214,13 @@ No new messages
 case "search":
 
 
-
 return `
 
-
-<h3>
-
-🔍 Search
-
-</h3>
+<h3>🔍 Search</h3>
 
 
-
-<input
-
-class="search-box"
-
+<input 
 placeholder="Search student portal..."
-
 >
 
 
@@ -668,50 +230,20 @@ placeholder="Search student portal..."
 
 
 
-
-
-
-
-case "navigation":
-
+case "announcement":
 
 
 return `
 
-
-<h3>
-
-☰ Navigation
-
-</h3>
+<h3>📢 Announcement</h3>
 
 
 <p>
-
-Home
-
-</p>
-
-
-<p>
-
-Profile
-
-</p>
-
-
-<p>
-
-Schedule
-
+Latest school updates
 </p>
 
 
 `;
-
-
-
-
 
 
 
@@ -720,58 +252,17 @@ Schedule
 case "settings":
 
 
-
 return `
 
-
-<h3>
-
-⚙ Settings
-
-</h3>
+<h3>⚙ Settings</h3>
 
 
 <p>
-
-Account
-
-</p>
-
-
-<p>
-
-Preferences
-
+Account Settings
 </p>
 
 
 `;
-
-
-
-
-
-
-
-
-
-case "logout":
-
-
-
-return `
-
-
-<button class="logout-btn">
-
-🚪 Logout
-
-</button>
-
-
-`;
-
-
 
 
 
@@ -782,7 +273,6 @@ default:
 
 return `
 
-
 <h3>
 
 ${component.icon}
@@ -790,7 +280,6 @@ ${component.icon}
 ${component.name}
 
 </h3>
-
 
 `;
 
@@ -809,331 +298,30 @@ ${component.name}
 
 
 
+function showMessage(text){
 
-// ==================================
-// MOVE COMPONENT
-// ==================================
 
+const popup =
+document.createElement("div");
 
-function enableMove(widget, section){
 
+popup.className =
+"warning-popup";
 
 
-let moving=false;
+popup.innerHTML=text;
 
 
-let startX;
 
+document.body.appendChild(popup);
 
-let startY;
 
 
+setTimeout(()=>{
 
+popup.remove();
 
-
-
-widget.addEventListener(
-"mousedown",
-
-(e)=>{
-
-
-
-if(
-e.target.tagName==="INPUT" ||
-e.target.tagName==="BUTTON"
-){
-
-return;
-
-}
-
-
-
-
-moving=true;
-
-
-
-
-startX =
-e.clientX -
-widget.offsetLeft;
-
-
-
-startY =
-e.clientY -
-widget.offsetTop;
-
-
-
-widget.style.zIndex=999;
-
-
-
-}
-
-);
-
-
-
-
-
-
-
-document.addEventListener(
-"mousemove",
-
-(e)=>{
-
-
-if(!moving)
-return;
-
-
-
-
-
-let x =
-e.clientX -
-section.getBoundingClientRect().left -
-startX;
-
-
-
-
-let y =
-e.clientY -
-section.getBoundingClientRect().top -
-startY;
-
-
-
-
-
-// keep inside section
-
-
-x=Math.max(
-0,
-Math.min(
-x,
-section.clientWidth -
-widget.offsetWidth
-)
-);
-
-
-
-
-y=Math.max(
-0,
-Math.min(
-y,
-section.clientHeight -
-widget.offsetHeight
-)
-);
-
-
-
-
-
-widget.style.left =
-x+"px";
-
-
-
-widget.style.top =
-y+"px";
-
-
-
-}
-
-);
-
-
-
-
-
-
-
-document.addEventListener(
-"mouseup",
-
-()=>{
-
-
-moving=false;
-
-
-}
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ==================================
-// RESIZE COMPONENT
-// ==================================
-
-
-function enableResize(widget){
-
-
-
-const resize =
-document.createElement(
-"div"
-);
-
-
-
-resize.className =
-"resize-handle";
-
-
-
-widget.appendChild(
-resize
-);
-
-
-
-
-
-let resizing=false;
-
-
-let startX;
-
-
-let startY;
-
-
-let startWidth;
-
-
-let startHeight;
-
-
-
-
-
-
-resize.addEventListener(
-"mousedown",
-
-(e)=>{
-
-
-e.stopPropagation();
-
-
-
-resizing=true;
-
-
-
-startX=e.clientX;
-
-startY=e.clientY;
-
-
-
-startWidth =
-widget.offsetWidth;
-
-
-
-startHeight =
-widget.offsetHeight;
-
-
-
-}
-
-);
-
-
-
-
-
-
-
-document.addEventListener(
-"mousemove",
-
-(e)=>{
-
-
-
-if(!resizing)
-return;
-
-
-
-
-
-widget.style.width =
-
-startWidth +
-(
-e.clientX-startX
-)
-+
-"px";
-
-
-
-
-
-
-widget.style.height =
-
-startHeight +
-(
-e.clientY-startY
-)
-+
-"px";
-
-
-
-}
-
-);
-
-
-
-
-
-
-
-document.addEventListener(
-"mouseup",
-
-()=>{
-
-
-resizing=false;
-
-
-}
-
-);
+},2000);
 
 
 

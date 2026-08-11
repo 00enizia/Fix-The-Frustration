@@ -3,17 +3,12 @@ export function makeDraggable(element){
 
 
 element.addEventListener(
-
 "dragstart",
 
-(event)=>{
+(e)=>{
 
 
-
-
-
-const component = {
-
+const data = {
 
 
 id:
@@ -24,35 +19,23 @@ name:
 element.dataset.name,
 
 
-icon:
-element.dataset.icon,
-
-
 type:
 element.dataset.type,
 
 
-
-allowedSections:
-
-JSON.parse(
-element.dataset.allowed
-)
-
+icon:
+element.dataset.icon
 
 
 };
 
 
 
-
-
-
-event.dataTransfer.setData(
+e.dataTransfer.setData(
 
 "component",
 
-JSON.stringify(component)
+JSON.stringify(data)
 
 );
 
