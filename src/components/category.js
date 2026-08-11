@@ -4,36 +4,27 @@ import { createDraggableItem } from "./draggable.js";
 
 export function loadCategory(category){
 
+    const container = document.getElementById("items");
 
-const container = document.getElementById("items");
-
-
-container.innerHTML="";
+    container.innerHTML="";
 
 
-components[category].forEach(item=>{
+    components[category].forEach(item=>{
+
+        const element=document.createElement("div");
+
+        element.className="drag-item";
+
+        element.innerHTML=item;
+
+        element.draggable=true;
 
 
-const element=document.createElement("div");
+        createDraggableItem(element);
 
 
-element.className="drag-item";
+        container.appendChild(element);
 
-element.innerHTML=item;
-
-
-element.draggable=true;
-
-
-
-createDraggableItem(element);
-
-
-
-container.appendChild(element);
-
-
-});
-
+    });
 
 }

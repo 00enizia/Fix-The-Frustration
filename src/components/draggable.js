@@ -1,13 +1,14 @@
 export function createDraggableItem(element){
 
 
-element.addEventListener(
-"dragstart",
-(e)=>{
+element.addEventListener("dragstart",(e)=>{
+
+
+e.dataTransfer.effectAllowed="move";
 
 
 e.dataTransfer.setData(
-"text",
+"text/plain",
 element.innerHTML
 );
 

@@ -1,28 +1,17 @@
-import { loadCategory } 
-from "./src/components/category.js";
+import { loadCategory } from "./src/components/category.js";
+import { enableDrop } from "./src/components/slots.js";
 
 
-import { enableDrop }
-from "./src/components/slots.js";
-
-
-
-document.querySelectorAll(
-".category button"
-)
+document.querySelectorAll(".category button")
 .forEach(button=>{
 
 
-button.addEventListener(
-"click",
-()=>{
+button.addEventListener("click",()=>{
 
 
-let category =
-button.innerText
+let category = button.innerText
 .replace(/[^\w\s]/gi,"")
 .trim();
-
 
 
 loadCategory(category);
@@ -32,7 +21,6 @@ loadCategory(category);
 
 
 });
-
 
 
 enableDrop();
