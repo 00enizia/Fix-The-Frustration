@@ -1,3 +1,6 @@
+// script.js
+
+
 import {
     loadInventory
 }
@@ -5,15 +8,13 @@ from "./src/components/inventory.js";
 
 
 import {
-    enableDrop
-}
-from "./src/components/drop.js";
-
-
-import {
-    finishDesign
+    finishDesign,
+    backToEdit
 }
 from "./src/components/finish.js";
+
+
+
 
 
 
@@ -26,21 +27,24 @@ let selectedGroup = "";
 
 
 
+
+
 // ==========================
 // GROUP SELECTION
 // ==========================
 
 
+
 const groupButtons =
 document.querySelectorAll(
-".group-btn"
+".group-buttons button"
 );
 
 
 
-const groupDisplay =
+const selectedGroupText =
 document.getElementById(
-"group-display"
+"selected-group"
 );
 
 
@@ -55,13 +59,19 @@ button.addEventListener(
 ()=>{
 
 
+
 groupButtons.forEach(btn=>{
+
 
 btn.classList.remove(
 "selected"
 );
 
+
 });
+
+
+
 
 
 
@@ -71,19 +81,26 @@ button.classList.add(
 
 
 
+
+
+
 selectedGroup =
 button.dataset.group;
 
 
 
-groupDisplay.innerHTML =
-"Selected: "
-+
-selectedGroup;
+
+
+
+selectedGroupText.innerHTML =
+`
+Selected: ${selectedGroup}
+`;
 
 
 
 }
+
 
 );
 
@@ -101,26 +118,37 @@ selectedGroup;
 
 
 
+
 // ==========================
-// START GAME
+// START DESIGN
 // ==========================
 
 
-document
-.getElementById(
+
+const startButton =
+document.getElementById(
 "start-button"
-)
-.addEventListener(
+);
+
+
+
+
+
+
+startButton.addEventListener(
 "click",
 ()=>{
+
 
 
 if(selectedGroup===""){
 
 
+
 alert(
 "Please select your group first!"
 );
+
 
 
 return;
@@ -132,10 +160,14 @@ return;
 
 
 
+
+
 localStorage.setItem(
 "group",
 selectedGroup
 );
+
+
 
 
 
@@ -154,9 +186,10 @@ document
 
 
 
+
 document
 .getElementById(
-"game-screen"
+"designer-screen"
 )
 .classList.remove(
 "hidden"
@@ -166,10 +199,9 @@ document
 
 
 
+
+
 loadInventory();
-
-
-enableDrop();
 
 
 
@@ -187,11 +219,9 @@ enableDrop();
 
 
 
-
 // ==========================
-// FINISH DESIGN
+// FINISH BUTTON
 // ==========================
-
 
 
 document
@@ -206,4 +236,36 @@ document
 finishDesign();
 
 
-});
+}
+
+);
+
+
+
+
+
+
+
+
+
+// ==========================
+// BACK TO EDIT
+// ==========================
+
+
+
+document
+.getElementById(
+"back-button"
+)
+.addEventListener(
+"click",
+()=>{
+
+
+backToEdit();
+
+
+}
+
+);

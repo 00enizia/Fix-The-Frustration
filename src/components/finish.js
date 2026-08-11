@@ -1,10 +1,13 @@
+// src/components/finish.js
+
+
 export function finishDesign(){
 
 
 
-const gameScreen =
+const designerScreen =
 document.getElementById(
-"game-screen"
+"designer-screen"
 );
 
 
@@ -16,9 +19,16 @@ document.getElementById(
 
 
 
-const website =
+const preview =
 document.getElementById(
-"website"
+"website-preview"
+);
+
+
+
+const finalPreview =
+document.getElementById(
+"final-preview"
 );
 
 
@@ -26,12 +36,44 @@ document.getElementById(
 
 
 
-// ==========================
-// GET GROUP NUMBER
-// ==========================
+// copy final website
 
 
-const savedGroup =
+finalPreview.innerHTML = "";
+
+
+
+const clone =
+preview.cloneNode(true);
+
+
+
+clone.removeAttribute(
+"id"
+);
+
+
+
+clone.classList.add(
+"final-portal"
+);
+
+
+
+
+finalPreview.appendChild(
+clone
+);
+
+
+
+
+
+
+// show group
+
+
+const group =
 localStorage.getItem(
 "group"
 );
@@ -39,21 +81,50 @@ localStorage.getItem(
 
 
 
-
-// ==========================
-// HIDE DESIGNER
-// ==========================
-
-
-gameScreen.classList.add(
-"hidden"
+const groupText =
+document.getElementById(
+"final-group-name"
 );
 
 
 
 
+if(group){
 
-// SHOW FINAL PAGE
+
+groupText.innerHTML =
+`
+🎨 Designed by ${group}
+`;
+
+
+
+}else{
+
+
+groupText.innerHTML =
+`
+🎨 Student Portal Design Team
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+// switch screens
+
+
+designerScreen.classList.add(
+"hidden"
+);
+
 
 
 finalScreen.classList.remove(
@@ -62,179 +133,6 @@ finalScreen.classList.remove(
 
 
 
-
-
-
-const output =
-document.getElementById(
-"final-output"
-);
-
-
-
-
-
-output.innerHTML="";
-
-
-
-
-
-
-
-// COPY WEBSITE
-
-
-const finalWebsite =
-website.cloneNode(
-true
-);
-
-
-
-
-
-finalWebsite.id =
-"final-website";
-
-
-
-
-
-
-// REMOVE EDITING FEATURES
-
-
-finalWebsite
-.querySelectorAll(
-".delete-button"
-)
-.forEach(button=>{
-
-
-button.remove();
-
-
-});
-
-
-
-
-
-
-
-finalWebsite
-.querySelectorAll(
-".resize-handle"
-)
-.forEach(handle=>{
-
-
-handle.remove();
-
-
-});
-
-
-
-
-
-
-
-// Remove dashed borders
-
-
-finalWebsite
-.querySelectorAll(
-".website-section"
-)
-.forEach(section=>{
-
-
-section.style.border =
-"none";
-
-
-section.style.background =
-"white";
-
-
-});
-
-
-
-
-
-
-
-
-output.appendChild(
-finalWebsite
-);
-
-
-
-
-
-
-
-
-// ADD GROUP LABEL
-
-
-const groupTitle =
-document.createElement(
-"div"
-);
-
-
-
-groupTitle.className =
-"final-group";
-
-
-
-groupTitle.innerHTML =
-
-`
-
-<h2>
-
-🎓 Student Portal Design
-
-</h2>
-
-
-<p>
-
-Created by:
-
-<strong>
-${savedGroup || "Group"}
-</strong>
-
-</p>
-
-
-`;
-
-
-
-
-
-output.prepend(
-groupTitle
-);
-
-
-
-
-
-
-addCompleteMessage();
-
-
-
 }
 
 
@@ -245,11 +143,18 @@ addCompleteMessage();
 
 
 
-function addCompleteMessage(){
+export function backToEdit(){
 
 
 
-const container =
+const designerScreen =
+document.getElementById(
+"designer-screen"
+);
+
+
+
+const finalScreen =
 document.getElementById(
 "final-screen"
 );
@@ -258,78 +163,14 @@ document.getElementById(
 
 
 
-const old =
-document.querySelector(
-".completion-message"
+finalScreen.classList.add(
+"hidden"
 );
 
 
 
-
-
-if(old){
-
-old.remove();
-
-}
-
-
-
-
-
-const message =
-document.createElement(
-"div"
-);
-
-
-
-message.className =
-"completion-message";
-
-
-
-message.innerHTML =
-
-`
-
-<h2>
-
-🎉 Congratulations Designers!
-
-</h2>
-
-
-
-<p>
-
-Your Student Portal prototype is complete.
-
-</p>
-
-
-<p>
-
-📸 Take a screenshot of your final website.
-
-</p>
-
-
-<p>
-
-Submit it to your class GC.
-
-</p>
-
-
-`;
-
-
-
-
-
-container.appendChild(
-message
+designerScreen.classList.remove(
+"hidden"
 );
 
 

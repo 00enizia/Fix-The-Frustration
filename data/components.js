@@ -1,201 +1,534 @@
+// data/components.js
+
+
 export const components = {
 
 
-    Profile: [
-
-        {
-            id: "profile-classic",
-            name: "Classic Profile",
-            icon: "👤",
-            type: "profile",
-            style: "classic",
-            allowedSection: "sidebar"
-        },
 
 
-        {
-            id: "profile-modern",
-            name: "Modern Profile",
-            icon: "✨",
-            type: "profile",
-            style: "modern",
-            allowedSection: "sidebar"
-        },
+
+/* =========================
+PROFILE DESIGNS
+========================= */
 
 
-        {
-            id: "profile-minimal",
-            name: "Minimal Profile",
-            icon: "◻️",
-            type: "profile",
-            style: "minimal",
-            allowedSection: "sidebar"
-        },
+profile:{
 
 
-        {
-            id: "profile-playful",
-            name: "Playful Profile",
-            icon: "🌸",
-            type: "profile",
-            style: "playful",
-            allowedSection: "sidebar"
-        },
+title:"Student Profile",
 
 
-        {
-            id: "profile-professional",
-            name: "Professional Profile",
-            icon: "💼",
-            type: "profile",
-            style: "professional",
-            allowedSection: "sidebar"
-        }
+section:"sidebar",
 
-    ],
+
+choices:[
+
+
+{
+
+id:"profile-classic",
+
+name:"Classic Profile",
+
+type:"profile",
+
+style:"classic",
+
+icon:"👤",
+
+
+description:
+"Traditional student information card"
+
+
+},
 
 
 
 
 
+{
 
-    Academic: [
+id:"profile-modern",
 
-        {
-            id: "schedule-classic",
-            name: "Classic Schedule",
-            icon: "📅",
-            type: "schedule",
-            style: "classic",
-            allowedSection: "dashboard"
-        },
+name:"Modern Profile",
 
+type:"profile",
 
-        {
-            id: "schedule-calendar",
-            name: "Calendar Schedule",
-            icon: "🗓️",
-            type: "schedule",
-            style: "calendar",
-            allowedSection: "dashboard"
-        },
+style:"modern",
+
+icon:"✨",
 
 
-        {
-            id: "schedule-timeline",
-            name: "Timeline Schedule",
-            icon: "⏱️",
-            type: "schedule",
-            style: "timeline",
-            allowedSection: "dashboard"
-        },
+description:
+"Clean modern student profile"
 
 
-        {
-            id: "grades-card",
-            name: "Modern Grade Card",
-            icon: "📊",
-            type: "grades",
-            style: "card",
-            allowedSection: "dashboard"
-        },
-
-
-        {
-            id: "grades-progress",
-            name: "Grade Progress",
-            icon: "📈",
-            type: "grades",
-            style: "progress",
-            allowedSection: "dashboard"
-        },
-
-
-        {
-            id: "course-list",
-            name: "Course List",
-            icon: "📚",
-            type: "courses",
-            style: "default",
-            allowedSection: "dashboard"
-        }
-
-    ],
+},
 
 
 
 
 
 
-    Communication: [
+{
 
-        {
-            id: "notification-card",
-            name: "Notification Card",
-            icon: "🔔",
-            type: "notification",
-            style: "card",
-            allowedSection: "footer"
-        },
+id:"profile-avatar",
 
+name:"Avatar Profile",
 
-        {
-            id: "announcement-board",
-            name: "Announcement Board",
-            icon: "📢",
-            type: "announcement",
-            style: "board",
-            allowedSection: "footer"
-        },
+type:"profile",
+
+style:"avatar",
+
+icon:"😊",
 
 
-        {
-            id: "message-box",
-            name: "Message Box",
-            icon: "💬",
-            type: "message",
-            style: "default",
-            allowedSection: "footer"
-        }
+description:
+"Friendly profile with avatar"
 
-    ],
+
+},
 
 
 
 
 
+{
 
-    System: [
+id:"profile-minimal",
 
-        {
-            id: "search-bar",
-            name: "Smart Search",
-            icon: "🔍",
-            type: "search",
-            style: "modern",
-            allowedSection: "navbar"
-        },
+name:"Minimal Profile",
 
+type:"profile",
 
-        {
-            id: "settings-card",
-            name: "Settings",
-            icon: "⚙️",
-            type: "settings",
-            style: "default",
-            allowedSection: "footer"
-        },
+style:"minimal",
+
+icon:"◻️",
 
 
-        {
-            id: "logout-button",
-            name: "Logout Button",
-            icon: "🚪",
-            type: "logout",
-            style: "default",
-            allowedSection: "footer"
-        }
+description:
+"Simple and clean design"
 
-    ]
+
+}
+
+
+
+
+
+]
+
+
+},
+
+
+
+
+
+
+
+/* =========================
+ACADEMIC
+========================= */
+
+
+academic:{
+
+
+title:"Academic Components",
+
+
+section:"dashboard",
+
+
+choices:[
+
+
+
+{
+
+id:"schedule-calendar",
+
+name:"Calendar Schedule",
+
+type:"schedule",
+
+style:"calendar",
+
+icon:"📅",
+
+
+description:
+"Schedule displayed as calendar"
+
+
+},
+
+
+
+
+
+{
+
+id:"schedule-card",
+
+name:"Schedule Cards",
+
+type:"schedule",
+
+style:"card",
+
+icon:"🗓️",
+
+
+description:
+"Modern schedule card layout"
+
+
+},
+
+
+
+
+
+
+{
+
+id:"schedule-timeline",
+
+name:"Timeline Schedule",
+
+type:"schedule",
+
+style:"timeline",
+
+icon:"⏰",
+
+
+description:
+"Timeline based class schedule"
+
+
+},
+
+
+
+
+
+
+
+{
+
+id:"grades-progress",
+
+name:"Grade Progress",
+
+type:"grades",
+
+style:"progress",
+
+icon:"📊",
+
+
+description:
+"Visual progress bar grades"
+
+
+},
+
+
+
+
+
+{
+
+id:"grades-card",
+
+name:"Grade Cards",
+
+type:"grades",
+
+style:"card",
+
+icon:"📈",
+
+
+description:
+"Individual grade cards"
+
+
+},
+
+
+
+
+
+
+{
+
+id:"course-list",
+
+name:"Course List",
+
+type:"courses",
+
+style:"list",
+
+icon:"📚",
+
+
+description:
+"List of enrolled courses"
+
+
+}
+
+
+
+]
+
+
+},
+
+
+
+
+
+
+
+/* =========================
+COMMUNICATION
+========================= */
+
+
+communication:{
+
+
+title:"Communication",
+
+
+section:"footer",
+
+
+choices:[
+
+
+
+{
+
+id:"notification-card",
+
+name:"Notification Cards",
+
+type:"notification",
+
+style:"card",
+
+icon:"🔔",
+
+
+description:
+"Card based announcements"
+
+
+},
+
+
+
+
+{
+
+id:"notification-list",
+
+name:"Notification List",
+
+type:"notification",
+
+style:"list",
+
+icon:"📢",
+
+
+description:
+"Simple announcement list"
+
+
+},
+
+
+
+
+
+{
+
+id:"message-box",
+
+name:"Message Box",
+
+type:"message",
+
+style:"chat",
+
+icon:"💬",
+
+
+description:
+"Student message panel"
+
+
+},
+
+
+
+
+
+{
+
+id:"announcement-board",
+
+name:"Announcement Board",
+
+type:"announcement",
+
+style:"board",
+
+icon:"📣",
+
+
+description:
+"School announcement section"
+
+
+}
+
+
+
+]
+
+
+},
+
+
+
+
+
+
+
+/* =========================
+SYSTEM
+========================= */
+
+
+system:{
+
+
+title:"System Features",
+
+
+section:"navbar",
+
+
+choices:[
+
+
+
+{
+
+id:"search-bar",
+
+name:"Search Bar",
+
+type:"search",
+
+style:"bar",
+
+icon:"🔍",
+
+
+description:
+"Full search navigation"
+
+
+},
+
+
+
+
+
+{
+
+id:"search-icon",
+
+name:"Search Icon",
+
+type:"search",
+
+style:"icon",
+
+icon:"🔎",
+
+
+description:
+"Compact search button"
+
+
+},
+
+
+
+
+
+
+{
+
+id:"settings",
+
+name:"Settings",
+
+type:"settings",
+
+style:"card",
+
+icon:"⚙️",
+
+
+description:
+"User settings panel"
+
+
+},
+
+
+
+
+
+{
+
+id:"logout",
+
+name:"Logout Button",
+
+type:"logout",
+
+style:"button",
+
+icon:"🚪",
+
+
+description:
+"Account logout option"
+
+
+}
+
+
+
+]
+
+
+}
+
+
 
 };

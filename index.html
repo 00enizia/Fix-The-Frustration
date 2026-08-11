@@ -8,30 +8,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
-Fix The Frustration
+Fix The Frustration - Student Portal Designer
 </title>
-
 
 <link rel="stylesheet" href="style.css">
 
-
 </head>
-
 
 
 <body>
 
 
-
-<!-- =========================
+<!-- ==========================
 START SCREEN
-========================= -->
+========================== -->
 
 
 <section id="start-screen">
 
 
-<div class="start-container">
+<div class="start-card">
 
 
 <h1>
@@ -45,39 +41,22 @@ Student Portal Designer Challenge
 
 
 
-
-<div class="instructions">
+<div class="mission-box">
 
 
 <h3>
-How To Play
+Mission
 </h3>
 
 
 <p>
-1. Choose your group number.
+Students are having difficulty finding their schedules, grades, announcements, and important information.
 </p>
 
 
 <p>
-2. Design your own Student Portal.
+Your task is to design a student portal that is organized, attractive, and easy to use.
 </p>
-
-
-<p>
-3. Drag components from the closet.
-</p>
-
-
-<p>
-4. Create the best website design.
-</p>
-
-
-<p>
-5. Click finish and submit your screenshot.
-</p>
-
 
 
 </div>
@@ -86,66 +65,40 @@ How To Play
 
 
 
-
-
-<div class="group-container">
+<div class="group-box">
 
 
 <h3>
-Select Group
+Choose Your Group
 </h3>
 
 
 
-<div class="group-selection">
+<div class="group-buttons">
 
 
-<button 
-class="group-btn"
-data-group="Group 1">
-
+<button data-group="Group 1">
 Group 1
-
 </button>
 
 
-
-<button 
-class="group-btn"
-data-group="Group 2">
-
+<button data-group="Group 2">
 Group 2
-
 </button>
 
 
-
-<button 
-class="group-btn"
-data-group="Group 3">
-
+<button data-group="Group 3">
 Group 3
-
 </button>
 
 
-
-<button 
-class="group-btn"
-data-group="Group 4">
-
+<button data-group="Group 4">
 Group 4
-
 </button>
 
 
-
-<button 
-class="group-btn"
-data-group="Group 5">
-
+<button data-group="Group 5">
 Group 5
-
 </button>
 
 
@@ -153,10 +106,8 @@ Group 5
 
 
 
-<p id="group-display">
-
+<p id="selected-group">
 No group selected
-
 </p>
 
 
@@ -168,10 +119,9 @@ No group selected
 
 <button id="start-button">
 
-Start Designing 🚀
+🚀 Start Designing
 
 </button>
-
 
 
 
@@ -188,16 +138,14 @@ Start Designing 🚀
 
 
 
-<!-- =========================
-GAME SCREEN
-========================= -->
-
+<!-- ==========================
+DESIGNER SCREEN
+========================== -->
 
 
 <section 
-id="game-screen"
+id="designer-screen"
 class="hidden">
-
 
 
 
@@ -207,17 +155,16 @@ class="hidden">
 
 
 <h1>
-🎨 Fix The Frustration
+🎨 Student Portal Designer
 </h1>
 
 
 <p>
-Create your own Student Portal Website
+Create your own website design
 </p>
 
 
 </header>
-
 
 
 
@@ -229,27 +176,34 @@ Create your own Student Portal Website
 
 
 
-
-
-<!-- =========================
+<!-- ==========================
 COMPONENT CLOSET
-========================= -->
+========================== -->
 
 
-<section class="inventory-panel">
+<section class="closet">
+
 
 
 <h2>
-🎒 Component Closet
+🧰 Component Closet
 </h2>
 
 
 
 
-<div class="category-buttons">
+<p>
+Choose a category
+</p>
 
 
-<button data-category="Profile">
+
+
+
+<div class="category-list">
+
+
+<button data-category="profile">
 
 👤 Profile
 
@@ -257,7 +211,7 @@ COMPONENT CLOSET
 
 
 
-<button data-category="Academic">
+<button data-category="academic">
 
 📚 Academic
 
@@ -265,15 +219,15 @@ COMPONENT CLOSET
 
 
 
-<button data-category="Communication">
+<button data-category="communication">
 
-🔔 Communication
+💬 Communication
 
 </button>
 
 
 
-<button data-category="System">
+<button data-category="system">
 
 ⚙ System
 
@@ -287,16 +241,10 @@ COMPONENT CLOSET
 
 
 
-<div id="items">
-
-
-<p>
-Choose a category
-</p>
+<div id="design-options">
 
 
 </div>
-
 
 
 
@@ -310,41 +258,40 @@ Choose a category
 
 
 
-<!-- =========================
-DESIGN AREA
-========================= -->
+<!-- ==========================
+WEBSITE PREVIEW
+========================== -->
 
 
-<section class="designer-panel">
+<section class="preview-area">
 
 
 
 <h2>
-💻 Website Prototype
+💻 Website Preview
 </h2>
 
 
 
 
 
-
-<div id="website">
-
+<div id="website-preview">
 
 
 
 
-<!-- NAVBAR -->
+
+<div class="portal-header">
 
 
-<div 
-class="website-section navbar"
-data-section="navbar">
+<h1>
+Student Portal
+</h1>
 
 
-<h3>
-Navigation Bar
-</h3>
+<p>
+Your personalized academic dashboard
+</p>
 
 
 </div>
@@ -355,21 +302,15 @@ Navigation Bar
 
 
 
-<!-- BODY -->
 
-
-<div class="website-content">
+<div class="portal-layout">
 
 
 
 
 
-<!-- SIDEBAR -->
+<div class="portal-sidebar">
 
-
-<div 
-class="website-section sidebar"
-data-section="sidebar">
 
 
 <h3>
@@ -377,6 +318,19 @@ Sidebar
 </h3>
 
 
+
+<div id="sidebar-content">
+
+
+<p>
+Choose profile design
+</p>
+
+
+</div>
+
+
+
 </div>
 
 
@@ -385,20 +339,35 @@ Sidebar
 
 
 
-<!-- DASHBOARD -->
 
+<div class="portal-main">
 
-<div 
-class="website-section dashboard"
-data-section="dashboard">
 
 
 <h3>
-Main Dashboard
+Dashboard
 </h3>
 
 
 
+<div id="dashboard-content">
+
+
+<p>
+Choose academic components
+</p>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
 </div>
 
 
@@ -406,21 +375,11 @@ Main Dashboard
 
 
 
-</div>
 
 
 
+<div class="portal-footer">
 
-
-
-
-
-<!-- FOOTER -->
-
-
-<div 
-class="website-section footer"
-data-section="footer">
 
 
 <h3>
@@ -428,21 +387,29 @@ Footer
 </h3>
 
 
+
+<div id="footer-content">
+
+
+<p>
+Choose communication/system components
+</p>
+
+
+</div>
+
+
+
 </div>
 
 
 
 
 
-
 </div>
 
 
 
-
-
-
-<br>
 
 
 
@@ -451,6 +418,7 @@ Footer
 🎉 Finish Design
 
 </button>
+
 
 
 
@@ -477,14 +445,17 @@ Footer
 
 
 
-<!-- =========================
+<!-- ==========================
 FINAL SCREEN
-========================= -->
+========================== -->
 
 
 <section 
 id="final-screen"
 class="hidden">
+
+
+
 
 
 <h1>
@@ -494,7 +465,8 @@ class="hidden">
 
 
 
-<div id="final-output">
+<div id="final-preview">
+
 
 </div>
 
@@ -503,30 +475,26 @@ class="hidden">
 
 
 
-<div class="submit-box">
+<div class="finish-message">
 
 
 <h2>
-Great Job!
+Congratulations Designers! 🎨
 </h2>
 
 
 <p>
-
-Take a screenshot of your final design.
-
+Your student portal prototype is complete.
 </p>
 
 
 <p>
-
-Send it to your group chat for judging.
-
+Take a screenshot and submit it to your class group chat.
 </p>
 
 
 
-<h3 id="final-group">
+<h3 id="final-group-name">
 
 </h3>
 
@@ -534,6 +502,15 @@ Send it to your group chat for judging.
 
 </div>
 
+
+
+
+
+<button id="back-button">
+
+⬅ Edit Again
+
+</button>
 
 
 
@@ -546,10 +523,11 @@ Send it to your group chat for judging.
 
 
 
+
+
 <script type="module" src="script.js"></script>
 
 
 </body>
-
 
 </html>

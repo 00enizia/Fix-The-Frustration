@@ -1,3 +1,6 @@
+// src/components/inventory.js
+
+
 import {
     components
 }
@@ -5,9 +8,15 @@ from "../../data/components.js";
 
 
 import {
-    makeDraggable
+    renderDesign
 }
-from "./drag.js";
+from "./renderer.js";
+
+
+
+
+
+let selectedComponents = {};
 
 
 
@@ -19,17 +28,17 @@ export function loadInventory(){
 
 
 
-const buttons =
+const categoryButtons =
 document.querySelectorAll(
-".category-buttons button"
+".category-list button"
 );
 
 
 
 
 
+categoryButtons.forEach(button=>{
 
-buttons.forEach(button=>{
 
 
 button.addEventListener(
@@ -42,7 +51,7 @@ button.dataset.category;
 
 
 
-showComponents(
+showChoices(
 category
 );
 
@@ -68,13 +77,13 @@ category
 
 
 
-function showComponents(category){
+function showChoices(category){
 
 
 
 const container =
 document.getElementById(
-"items"
+"design-options"
 );
 
 
@@ -88,7 +97,7 @@ container.innerHTML="";
 
 
 
-const list =
+const data =
 components[category];
 
 
@@ -96,10 +105,7 @@ components[category];
 
 
 
-if(!list){
-
-container.innerHTML=
-"<p>No choices available</p>";
+if(!data){
 
 return;
 
@@ -111,11 +117,34 @@ return;
 
 
 
-list.forEach(component=>{
+const title =
+document.createElement(
+"h3"
+);
 
 
 
-const item =
+title.innerHTML =
+data.title;
+
+
+
+container.appendChild(
+title
+);
+
+
+
+
+
+
+
+
+data.choices.forEach(choice=>{
+
+
+
+const card =
 document.createElement(
 "div"
 );
@@ -124,36 +153,43 @@ document.createElement(
 
 
 
-item.className =
-"component-item";
+card.className =
+"design-choice";
 
 
 
 
 
-item.innerHTML =
+card.dataset.id =
+choice.id;
+
+
+
+
+
+card.innerHTML =
 
 `
 
 <h3>
 
-${component.icon}
+${choice.icon}
 
 </h3>
 
 
+<h4>
+
+${choice.name}
+
+</h4>
+
+
 <p>
 
-${component.name}
+${choice.description}
 
 </p>
-
-
-<small>
-
-Drag to use
-
-</small>
 
 
 `;
@@ -164,48 +200,20 @@ Drag to use
 
 
 
-
-// send information to drag.js
-
-
-item.dataset.id =
-component.id;
+card.addEventListener(
+"click",
+()=>{
 
 
-
-item.dataset.name =
-component.name;
-
-
-
-item.dataset.type =
-component.type;
-
-
-
-item.dataset.style =
-component.style;
-
-
-
-item.dataset.icon =
-component.icon;
-
-
-
-item.dataset.section =
-component.allowedSection;
-
-
-
-
-
-
-
-makeDraggable(
-item,
-component
+selectChoice(
+category,
+choice,
+card
 );
+
+
+});
+
 
 
 
@@ -213,13 +221,101 @@ component
 
 
 container.appendChild(
-item
+card
 );
 
 
 
 });
 
+
+
+}
+
+
+
+
+
+
+
+
+
+function selectChoice(
+category,
+choice,
+card
+){
+
+
+
+// remove active style
+
+document
+.querySelectorAll(
+".design-choice"
+)
+.forEach(item=>{
+
+
+item.classList.remove(
+"active"
+);
+
+
+});
+
+
+
+
+
+card.classList.add(
+"active"
+);
+
+
+
+
+
+
+
+
+// save selected design
+
+
+selectedComponents[category]
+=
+choice;
+
+
+
+
+
+
+
+
+// send to renderer
+
+
+renderDesign(
+choice
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+export function getSelectedComponents(){
+
+
+return selectedComponents;
 
 
 }

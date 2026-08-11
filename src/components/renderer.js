@@ -1,26 +1,24 @@
-export function renderComponent(component, section){
+// src/components/renderer.js
 
 
-
-const widget =
-document.createElement("div");
-
-
-
-widget.className =
-"website-widget";
-
-
-
-widget.dataset.type =
-component.type;
+const currentDesigns = {};
 
 
 
 
 
-widget.innerHTML =
-createComponentDesign(component);
+export function renderDesign(component){
+
+
+    currentDesigns[component.type] = component;
+
+
+
+    updatePreview();
+
+
+
+}
 
 
 
@@ -28,44 +26,18 @@ createComponentDesign(component);
 
 
 
-const deleteButton =
-document.createElement("button");
+
+function updatePreview(){
 
 
 
-deleteButton.className =
-"delete-button";
+    renderSidebar();
 
+    renderDashboard();
 
-deleteButton.innerHTML =
-"×";
+    renderFooter();
 
-
-
-
-deleteButton.onclick = ()=>{
-
-
-widget.remove();
-
-
-};
-
-
-
-
-
-widget.appendChild(
-deleteButton
-);
-
-
-
-
-
-section.appendChild(
-widget
-);
+    renderNavbar();
 
 
 
@@ -79,257 +51,50 @@ widget
 
 
 
-function createComponentDesign(component){
+// ===============================
+// NAVBAR
+// ===============================
+
+
+function renderNavbar(){
 
 
 
-switch(component.type){
-
-
-
-
-
-// =======================
-// PROFILE
-// =======================
-
-
-case "profile":
-
-
-return createProfile(
-component.style
+const navbar =
+document.querySelector(
+".portal-header"
 );
 
 
 
+const search =
+currentDesigns.search;
 
 
 
-
-// =======================
-// SCHEDULE
-// =======================
+if(!search){
 
 
-case "schedule":
+navbar.innerHTML =
 
+`
 
-return createSchedule(
-component.style
-);
-
-
-
-
-
-
-
-// =======================
-// GRADES
-// =======================
-
-
-case "grades":
-
-
-return createGrades(
-component.style
-);
-
-
-
-
-
-
-
-// =======================
-// COURSES
-// =======================
-
-
-case "courses":
-
-
-return `
-
-
-<div class="component-title">
-
-📚 Subjects
-
-</div>
-
-
-
-<div class="course-list">
-
-<p>💻 Programming</p>
-
-<p>🗄 Database</p>
-
-<p>🌐 Networking</p>
-
-
-</div>
-
-
-`;
-
-
-
-
-
-
-
-// =======================
-// NOTIFICATION
-// =======================
-
-
-case "notification":
-
-
-return `
-
-
-<div class="component-title">
-
-🔔 Notifications
-
-</div>
-
-
-<div class="notification-card">
-
-<p>
-📢 New announcement posted
-</p>
+<h1>
+Student Portal
+</h1>
 
 
 <p>
-📅 Schedule updated
-</p>
-
-
-</div>
-
-
-`;
-
-
-
-
-
-
-
-// =======================
-// ANNOUNCEMENT
-// =======================
-
-
-case "announcement":
-
-
-return `
-
-
-<div class="component-title">
-
-📢 Announcement Board
-
-</div>
-
-
-
-<div class="announcement-card">
-
-
-<h4>
-Enrollment Period
-</h4>
-
-
-<p>
-Registration starts August 15.
-</p>
-
-
-</div>
-
-
-`;
-
-
-
-
-
-
-
-// =======================
-// SEARCH
-// =======================
-
-
-case "search":
-
-
-return `
-
-
-<div class="search-container">
-
-
-<input 
-
-class="portal-search"
-
-placeholder="🔍 Search portal..."
-
->
-
-
-</div>
-
-
-`;
-
-
-
-
-
-
-
-// =======================
-// SETTINGS
-// =======================
-
-
-case "settings":
-
-
-return `
-
-
-<div class="component-title">
-
-⚙ Settings
-
-</div>
-
-
-<p>
-Account Settings
-</p>
-
-
-<p>
-Theme Preferences
+Your personalized academic dashboard
 </p>
 
 
 `;
 
+return;
+
+
+}
 
 
 
@@ -337,19 +102,23 @@ Theme Preferences
 
 
 
-default:
+if(search.style==="bar"){
 
 
-return `
+navbar.innerHTML =
+
+`
+
+<h1>
+Student Portal
+</h1>
 
 
-<h3>
+<div class="search-box">
 
-${component.icon}
+🔍 Search student portal...
 
-${component.name}
-
-</h3>
+</div>
 
 
 `;
@@ -357,6 +126,36 @@ ${component.name}
 
 
 }
+
+
+
+
+
+
+
+if(search.style==="icon"){
+
+
+navbar.innerHTML =
+
+`
+
+<h1>
+Student Portal
+</h1>
+
+
+<div class="search-icon">
+
+🔎
+
+</div>
+
+
+`;
+
+}
+
 
 }
 
@@ -368,46 +167,95 @@ ${component.name}
 
 
 
-// =================================
-// PROFILE DESIGNS
-// =================================
+// ===============================
+// SIDEBAR
+// ===============================
 
 
-function createProfile(style){
+function renderSidebar(){
+
+
+const sidebar =
+document.getElementById(
+"sidebar-content"
+);
 
 
 
-if(style==="classic"){
+const profile =
+currentDesigns.profile;
 
+
+
+if(!profile){
+
+
+sidebar.innerHTML =
+
+`
+
+<p>
+Choose profile design
+</p>
+
+`;
+
+return;
+
+
+}
+
+
+
+
+
+
+
+sidebar.innerHTML =
+createProfile(profile);
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function createProfile(profile){
+
+
+
+switch(profile.style){
+
+
+
+case "classic":
 
 
 return `
 
-
-<div class="profile classic">
-
-
-<h3>
-👤 STUDENT PROFILE
-</h3>
-
+<div class="portal-card profile-classic">
 
 
 <div class="profile-icon">
-
 👤
-
 </div>
 
+
+
+<h3>
+Student Profile
+</h3>
 
 
 <p>
 Name: Jennylyn Dionecio
-</p>
-
-
-<p>
-Student ID: 2026-001
 </p>
 
 
@@ -417,7 +265,7 @@ Course: BSIT
 
 
 <p>
-Year: 3rd Year
+Year Level: 3rd Year
 </p>
 
 
@@ -426,48 +274,41 @@ Year: 3rd Year
 
 `;
 
-}
 
 
 
-if(style==="modern"){
 
+
+
+case "modern":
 
 
 return `
 
 
-<div class="profile modern">
+<div class="portal-card profile-modern">
 
 
 <div class="profile-icon">
 
-👤
+✨
 
 </div>
 
 
-
 <h2>
-
 Jennylyn Dionecio
-
 </h2>
 
 
 <p>
-
 BS Information Technology
-
 </p>
 
 
-
-<div class="profile-tag">
-
-Student ID • 2026-001
-
-</div>
+<span>
+Student ID: 2026
+</span>
 
 
 </div>
@@ -475,44 +316,35 @@ Student ID • 2026-001
 
 `;
 
-}
 
 
 
 
 
 
-
-if(style==="minimal"){
-
+case "avatar":
 
 
 return `
 
 
-<div class="profile minimal">
+<div class="portal-card profile-avatar">
 
 
 <div class="profile-icon">
 
-👤
+😊
 
 </div>
 
 
-
-<h2>
-
+<h3>
 Jennylyn
-
-</h2>
-
+</h3>
 
 
 <p>
-
 BSIT Student
-
 </p>
 
 
@@ -521,106 +353,28 @@ BSIT Student
 
 `;
 
-}
 
 
 
 
 
 
-
-if(style==="playful"){
-
+case "minimal":
 
 
 return `
 
 
-<div class="profile playful">
+<div class="portal-card">
 
 
 <h3>
-
-🌸 MY PROFILE
-
+Jennylyn Dionecio
 </h3>
 
 
-<div class="profile-icon">
-
-👩
-
-</div>
-
-
-
-<h2>
-
-Jennylyn
-
-</h2>
-
-
-
 <p>
-
-⭐ Academic Journey
-
-</p>
-
-
-
-</div>
-
-
-`;
-
-}
-
-
-
-
-
-
-
-if(style==="professional"){
-
-
-
-return `
-
-
-<div class="profile professional">
-
-
-<h3>
-
-💼 DIGITAL STUDENT ID
-
-</h3>
-
-
-
-<p>
-
-👤 Jennylyn Dionecio
-
-</p>
-
-
-
-<p>
-
-BS Information Technology
-
-</p>
-
-
-
-<p>
-
-Status: Regular
-
+BSIT 3A
 </p>
 
 
@@ -629,6 +383,8 @@ Status: Regular
 
 `;
 
+
+
 }
 
 
@@ -643,63 +399,105 @@ Status: Regular
 
 
 
-// =================================
-// SCHEDULE DESIGNS
-// =================================
+// ===============================
+// DASHBOARD
+// ===============================
 
 
-function createSchedule(style){
-
-
-
-if(style==="classic"){
+function renderDashboard(){
 
 
 
-return `
-
-
-<h3>
-
-📅 Class Schedule
-
-</h3>
+const dashboard =
+document.getElementById(
+"dashboard-content"
+);
 
 
 
-<table>
+dashboard.innerHTML="";
 
 
-<tr>
-
-<td>
-8:00 AM
-</td>
-
-<td>
-Programming
-</td>
 
 
-</tr>
+
+const schedule =
+currentDesigns.schedule;
 
 
-<tr>
 
-<td>
-10:00 AM
-</td>
-
-<td>
-Database
-</td>
+const grades =
+currentDesigns.grades;
 
 
-</tr>
+
+const courses =
+currentDesigns.courses;
 
 
-</table>
 
+
+
+
+
+if(schedule){
+
+
+dashboard.innerHTML +=
+
+createSchedule(schedule);
+
+
+}
+
+
+
+
+
+
+
+if(grades){
+
+
+dashboard.innerHTML +=
+
+createGrades(grades);
+
+
+}
+
+
+
+
+
+
+
+if(courses){
+
+
+dashboard.innerHTML +=
+
+createCourses(courses);
+
+
+}
+
+
+
+
+if(
+dashboard.innerHTML===""
+
+){
+
+
+dashboard.innerHTML=
+
+`
+
+<p>
+Choose academic design
+</p>
 
 `;
 
@@ -707,38 +505,55 @@ Database
 
 
 
-if(style==="calendar"){
+}
 
+
+
+
+
+
+
+
+
+function createSchedule(schedule){
+
+
+
+if(schedule.style==="calendar"){
 
 
 return `
 
 
+<div class="portal-card">
+
+
 <h3>
-
-🗓 Calendar Schedule
-
+📅 Calendar Schedule
 </h3>
 
 
-<div class="calendar">
+<div class="calendar-box">
 
 
 MON
-
-<br>
-
-8:00 Programming
+&nbsp;
+TUE
+&nbsp;
+WED
 
 
 <br><br>
 
 
-TUE
+IT301
+&nbsp;
+DB
+&nbsp;
+MATH
 
-<br>
 
-10:00 Database
+</div>
 
 
 </div>
@@ -750,46 +565,37 @@ TUE
 
 
 
-
-
-if(style==="timeline"){
+if(schedule.style==="card"){
 
 
 
 return `
 
 
+<div class="portal-card">
+
+
 <h3>
-
-⏱ Timeline Schedule
-
+🗓 Class Schedule
 </h3>
 
 
+<div class="schedule-item">
 
-<div class="timeline">
-
-
-08:00
-
-● Programming
-
-
+8:00 AM
 <br>
+💻 Programming
+
+</div>
 
 
-10:00
+<div class="schedule-item">
 
-● Database
-
-
+10:00 AM
 <br>
+🗄 Database
 
-
-13:00
-
-● Networking
-
+</div>
 
 
 </div>
@@ -801,120 +607,79 @@ return `
 
 
 
-}
-
-
-
-
-
-
-
-
-
-// =================================
-// GRADE DESIGNS
-// =================================
-
-
-function createGrades(style){
-
-
-
-if(style==="card"){
-
+if(schedule.style==="timeline"){
 
 
 return `
 
 
-<h3>
-
-📊 Grade Card
-
-</h3>
-
-
-
-<div class="grade-card">
-
-
-Programming
-
-<strong>
-
-95%
-
-</strong>
-
-
-</div>
-
-
-
-<div class="grade-card">
-
-
-Database
-
-<strong>
-
-90%
-
-</strong>
-
-
-</div>
-
-
-`;
-
-}
-
-
-
-
-
-if(style==="progress"){
-
-
-
-return `
+<div class="portal-card">
 
 
 <h3>
-
-📈 Grade Progress
-
+⏰ Timeline Schedule
 </h3>
 
 
 
 <p>
-
-Programming
-
+08:00 ● Programming
 </p>
 
 
-<div class="progress">
+<p>
+10:00 ● Database
+</p>
 
-<span style="width:95%">
 
-</span>
+<p>
+13:00 ● Networking
+</p>
+
 
 </div>
 
 
+`;
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+function createGrades(grades){
+
+
+
+if(grades.style==="progress"){
+
+
+return `
+
+
+<div class="portal-card">
+
+
+<h3>
+📊 Grade Progress
+</h3>
+
 
 
 <p>
-
-Database
-
+Programming
 </p>
 
 
-<div class="progress">
+<div class="grade-bar">
 
 <span style="width:90%">
 
@@ -924,10 +689,324 @@ Database
 
 
 
+
+
+<p>
+Database
+</p>
+
+
+<div class="grade-bar">
+
+<span style="width:85%">
+
+</span>
+
+</div>
+
+
+
+</div>
+
+
 `;
 
 }
 
+
+
+
+
+
+
+if(grades.style==="card"){
+
+
+return `
+
+
+<div class="portal-card">
+
+
+<h3>
+📈 Grade Cards
+</h3>
+
+
+
+<div class="grade-card">
+
+Programming
+
+<strong>
+95
+</strong>
+
+
+</div>
+
+
+
+<div class="grade-card">
+
+Database
+
+<strong>
+90
+</strong>
+
+
+</div>
+
+
+
+</div>
+
+
+`;
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function createCourses(){
+
+
+return `
+
+
+<div class="portal-card">
+
+
+<h3>
+📚 Course List
+</h3>
+
+
+
+<p>
+💻 Application Development
+</p>
+
+
+<p>
+🗄 Database Systems
+</p>
+
+
+<p>
+🌐 Networking
+</p>
+
+
+</div>
+
+
+`;
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// FOOTER
+// ===============================
+
+
+function renderFooter(){
+
+
+
+const footer =
+document.getElementById(
+"footer-content"
+);
+
+
+
+footer.innerHTML="";
+
+
+
+
+
+const notification =
+currentDesigns.notification;
+
+
+
+const message =
+currentDesigns.message;
+
+
+
+const announcement =
+currentDesigns.announcement;
+
+
+
+
+
+
+
+if(notification){
+
+
+footer.innerHTML +=
+
+`
+
+<div class="portal-card">
+
+
+<h3>
+🔔 Notifications
+</h3>
+
+
+<p>
+New announcement posted
+</p>
+
+
+<p>
+Schedule updated
+</p>
+
+
+</div>
+
+`;
+
+}
+
+
+
+
+
+if(message){
+
+
+footer.innerHTML +=
+
+`
+
+<div class="portal-card">
+
+
+<h3>
+💬 Messages
+</h3>
+
+
+<p>
+Adviser: Good morning!</p>
+
+
+</div>
+
+
+`;
+
+}
+
+
+
+
+
+
+
+if(announcement){
+
+
+footer.innerHTML +=
+
+`
+
+<div class="portal-card">
+
+
+<h3>
+📢 Announcement
+</h3>
+
+
+<p>
+Enrollment starts August 15
+</p>
+
+
+</div>
+
+
+`;
+
+}
+
+
+
+
+
+
+
+if(
+footer.innerHTML===""
+
+){
+
+
+footer.innerHTML=
+
+`
+
+<p>
+Choose communication design
+</p>
+
+`;
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// FINAL COPY
+// ===============================
+
+
+export function getFinalDesign(){
+
+
+return document
+.getElementById(
+"website-preview"
+)
+.cloneNode(true);
 
 
 }
