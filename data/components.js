@@ -1,71 +1,304 @@
 export const components = {
 
 
-Profile:[
+profile: [
 
 {
-id:"profile",
-name:"Student Profile",
-icon:"👤"
+id:"profile-card",
+
+name:"Student Profile Card",
+
+icon:"👤",
+
+type:"profile",
+
+allowedSections:[
+
+"sidebar",
+"main"
+
+]
+
+},
+
+
+
+{
+id:"profile-mini",
+
+name:"Mini Profile",
+
+icon:"🧑",
+
+type:"profile-mini",
+
+allowedSections:[
+
+"navbar",
+"sidebar"
+
+]
+
+},
+
+
+
+{
+id:"student-id",
+
+name:"Student ID Profile",
+
+icon:"🪪",
+
+type:"profile-id",
+
+allowedSections:[
+
+"main"
+
+]
+
 }
+
 
 ],
 
 
-Academic:[
+
+
+
+
+academic:[
+
+
 
 {
-id:"schedule",
+
+id:"schedule-card",
+
 name:"Class Schedule",
-icon:"📅"
+
+icon:"📅",
+
+type:"schedule",
+
+allowedSections:[
+
+"main"
+
+]
+
 },
 
 
+
 {
-id:"grades",
-name:"Grades",
-icon:"📊"
+
+id:"calendar",
+
+name:"Calendar View",
+
+icon:"🗓️",
+
+type:"calendar",
+
+allowedSections:[
+
+"main"
+
+]
+
 },
 
 
+
 {
-id:"courses",
+
+id:"course-list",
+
 name:"Course List",
-icon:"📚"
-}
 
+icon:"📚",
 
-],
+type:"courses",
 
+allowedSections:[
 
-Communication:[
+"main",
+"sidebar"
 
-{
-id:"notifications",
-name:"Notifications",
-icon:"🔔"
-}
+]
 
-
-],
-
-
-System:[
-
-{
-id:"search",
-name:"Search Bar",
-icon:"🔍"
 },
 
 
+
 {
+
+id:"grades",
+
+name:"Grades Overview",
+
+icon:"📊",
+
+type:"grades",
+
+allowedSections:[
+
+"main"
+
+]
+
+}
+
+
+],
+
+
+
+
+
+
+communication:[
+
+
+
+{
+
+id:"notifications",
+
+name:"Notifications",
+
+icon:"🔔",
+
+type:"notifications",
+
+allowedSections:[
+
+"main",
+"navbar"
+
+]
+
+},
+
+
+
+{
+
+id:"announcement",
+
+name:"Announcement Board",
+
+icon:"📢",
+
+type:"announcement",
+
+allowedSections:[
+
+"main"
+
+]
+
+},
+
+
+
+{
+
+id:"messages",
+
+name:"Message Center",
+
+icon:"💬",
+
+type:"messages",
+
+allowedSections:[
+
+"sidebar",
+"main"
+
+]
+
+}
+
+
+],
+
+
+
+
+
+
+system:[
+
+
+
+{
+
+id:"search",
+
+name:"Search Bar",
+
+icon:"🔍",
+
+type:"search",
+
+allowedSections:[
+
+"navbar",
+"main"
+
+]
+
+},
+
+
+
+{
+
 id:"settings",
+
 name:"Settings",
-icon:"⚙"
+
+icon:"⚙️",
+
+type:"settings",
+
+allowedSections:[
+
+"sidebar",
+"footer"
+
+]
+
+},
+
+
+
+{
+
+id:"logout",
+
+name:"Logout Button",
+
+icon:"🚪",
+
+type:"logout",
+
+allowedSections:[
+
+"sidebar",
+"footer"
+
+]
+
 }
 
 
 ]
+
+
 
 };

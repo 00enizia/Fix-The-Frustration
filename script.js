@@ -1,36 +1,95 @@
-import {
-startGame
-}
+import { startGame } 
 from "./src/components/game.js";
 
 
-import {
-finishDesign
-}
+import { finishDesign } 
 from "./src/components/finish.js";
 
 
 
 
-window.onload=()=>{
+
+const startButton =
+document.getElementById(
+"start-button"
+);
+
+
+
+const gameScreen =
+document.getElementById(
+"game-screen"
+);
+
+
+
+const startScreen =
+document.getElementById(
+"start-screen"
+);
+
+
+
+
+
+
+
+// START GAME
+
+startButton.addEventListener(
+"click",
+
+()=>{
+
+
+startScreen.classList.add(
+"hidden"
+);
+
+
+
+gameScreen.classList.remove(
+"hidden"
+);
+
 
 
 startGame();
 
 
 
-document
-.getElementById(
+}
+
+);
+
+
+
+
+
+
+
+
+
+// FINISH DESIGN
+
+
+const finishButton =
+document.getElementById(
 "finish-button"
-)
-.onclick=()=>{
+);
+
+
+
+finishButton.addEventListener(
+
+"click",
+
+()=>{
 
 
 finishDesign();
 
 
-};
+}
 
-
-
-};
+);

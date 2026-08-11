@@ -1,109 +1,99 @@
-let placedComponents = [];
+let componentCounter = 0;
 
 
 
-export function renderComponent(component){
-
-
-const canvas = document.getElementById(
-"website-canvas"
-);
+export function renderComponent(component, section){
 
 
 
-/*
-Prevent duplicate components
-Example:
-Only one Schedule allowed
-Only one Profile allowed
-*/
-
-if(
-placedComponents.includes(component.id)
-){
-
-alert(
-`${component.name} is already added!`
-);
-
-return;
-
-}
+const widget = document.createElement("div");
 
 
 
-placedComponents.push(component.id);
+componentCounter++;
 
 
 
-
-
-const card = document.createElement("div");
-
-
-card.className="website-widget";
-
-card.dataset.type = component.id;
+widget.className =
+"website-widget";
 
 
 
-card.style.left = "40px";
+widget.id =
+"widget-" + componentCounter;
 
-card.style.top = 
-(placedComponents.length * 30) + "px";
+
+
+widget.dataset.type =
+component.type;
+
+
+
+widget.innerHTML =
+createComponentDesign(component);
 
 
 
 
 
-card.innerHTML = createWidgetHTML(component);
+// position inside section
+
+widget.style.left =
+"30px";
+
+
+widget.style.top =
+"30px";
 
 
 
 
 
+// Add delete button
 
-// REMOVE BUTTON
-
-const remove = document.createElement("button");
-
-
-remove.className="remove";
-
-remove.innerHTML="×";
+const deleteButton =
+document.createElement("button");
 
 
 
-remove.onclick=()=>{
+deleteButton.className =
+"delete-button";
 
 
-card.remove();
+deleteButton.innerHTML =
+"✖";
 
 
-placedComponents =
-placedComponents.filter(
-item=>item !== component.id
-);
 
+deleteButton.onclick = ()=>{
+
+widget.remove();
 
 };
 
 
 
-card.appendChild(remove);
+
+widget.appendChild(
+deleteButton
+);
 
 
 
 
 
-canvas.appendChild(card);
+section.appendChild(
+widget
+);
 
 
 
 
 
-enableMove(card);
+makeMovable(widget, section);
 
+
+makeResizable(widget);
 
 
 
@@ -113,39 +103,125 @@ enableMove(card);
 
 
 
-function createWidgetHTML(component){
 
 
 
-switch(component.id){
+
+function createComponentDesign(component){
 
 
+
+switch(component.type){
+
+
+
+// PROFILE
 
 case "profile":
 
 
 return `
 
-<h3>👤 Student Profile</h3>
+<div class="component-header">
+
+${component.icon}
+
+Student Profile
+
+</div>
+
+
+<div class="profile-content">
+
+
+<div class="avatar">
+
+👤
+
+</div>
+
 
 <input 
-class="editable"
-placeholder="Student Name"
+class="edit-field"
 value="Student Name"
 >
 
 
 <input 
-class="editable"
-placeholder="Course"
-value="Course"
+class="edit-field"
+value="BSIT Student"
 >
+
+
+</div>
+
+`;
+
+
+
+
+
+
+// MINI PROFILE
+
+case "profile-mini":
+
+
+return `
+
+<h3>
+🧑 Profile
+</h3>
+
+
+<p>
+Student Name
+</p>
 
 
 `;
 
 
 
+
+
+
+
+// STUDENT ID
+
+
+case "profile-id":
+
+
+return `
+
+
+<h3>
+🪪 Student ID
+</h3>
+
+
+<p>
+Name: __________
+</p>
+
+
+<p>
+Course: __________
+</p>
+
+
+`;
+
+
+
+
+
+
+
+
+
+// SCHEDULE
 
 
 case "schedule":
@@ -159,14 +235,27 @@ return `
 </h3>
 
 
-<p>
-8:00 AM - Programming
-</p>
+<table>
+
+<tr>
+<td>Mon</td>
+<td>Programming</td>
+</tr>
 
 
-<p>
-10:00 AM - Database
-</p>
+<tr>
+<td>Tue</td>
+<td>Database</td>
+</tr>
+
+
+<tr>
+<td>Wed</td>
+<td>Networking</td>
+</tr>
+
+
+</table>
 
 
 `;
@@ -176,25 +265,40 @@ return `
 
 
 
-case "grades":
+
+// CALENDAR
+
+
+case "calendar":
 
 
 return `
 
 
 <h3>
-📊 Grades
+🗓 Calendar
 </h3>
 
 
-<p>
-Programming : 95%
-</p>
+<div class="calendar-box">
 
 
-<p>
-Database : 90%
-</p>
+1 2 3 4 5
+
+
+<br>
+
+
+6 7 8 9 10
+
+
+<br>
+
+
+11 12 13 14 15
+
+
+</div>
 
 
 `;
@@ -202,6 +306,11 @@ Database : 90%
 
 
 
+
+
+
+
+// COURSES
 
 
 case "courses":
@@ -211,7 +320,7 @@ return `
 
 
 <h3>
-📚 Course List
+📚 Courses
 </h3>
 
 
@@ -234,6 +343,42 @@ return `
 
 
 
+
+// GRADES
+
+
+case "grades":
+
+
+return `
+
+
+<h3>
+📊 Grades
+</h3>
+
+
+<p>
+Programming - 95
+</p>
+
+
+<p>
+Database - 90
+</p>
+
+
+`;
+
+
+
+
+
+
+
+// NOTIFICATIONS
+
+
 case "notifications":
 
 
@@ -246,7 +391,7 @@ return `
 
 
 <p>
-No new announcements
+3 New Announcements
 </p>
 
 
@@ -256,6 +401,64 @@ No new announcements
 
 
 
+
+
+// ANNOUNCEMENT
+
+
+case "announcement":
+
+
+return `
+
+
+<h3>
+📢 Announcement Board
+</h3>
+
+
+<p>
+Enrollment starts next week.
+</p>
+
+
+`;
+
+
+
+
+
+
+
+
+// MESSAGE
+
+
+case "messages":
+
+
+return `
+
+
+<h3>
+💬 Messages
+</h3>
+
+
+<p>
+No new messages.
+</p>
+
+
+`;
+
+
+
+
+
+
+
+// SEARCH
 
 
 case "search":
@@ -269,10 +472,13 @@ return `
 </h3>
 
 
-<input 
-placeholder="
-Search schedules, courses...
-">
+<input
+
+class="search-field"
+
+placeholder="Search here..."
+
+>
 
 
 `;
@@ -280,6 +486,10 @@ Search schedules, courses...
 
 
 
+
+
+
+// SETTINGS
 
 
 case "settings":
@@ -294,16 +504,42 @@ return `
 
 
 <p>
-Account Settings
+Account
 </p>
 
 
 <p>
-Privacy
+Preferences
 </p>
 
 
 `;
+
+
+
+
+
+
+
+// LOGOUT
+
+
+case "logout":
+
+
+return `
+
+
+<button class="logout-btn">
+
+🚪 Logout
+
+</button>
+
+
+`;
+
+
 
 
 
@@ -315,13 +551,19 @@ default:
 return `
 
 <h3>
+
 ${component.icon}
+
 ${component.name}
+
 </h3>
 
 `;
 
 
+}
+
+
 
 }
 
@@ -329,37 +571,42 @@ ${component.name}
 
 
 
-}
+
+
+
+
+// =============================
+// MOVE COMPONENT
+// =============================
+
+
+function makeMovable(widget, section){
+
+
+
+let moving=false;
+
+
+let offsetX=0;
+
+
+let offsetY=0;
 
 
 
 
 
 
-
-function enableMove(element){
-
-
-
-let offsetX;
-
-let offsetY;
-
-let dragging=false;
-
-
-
-
-
-element.addEventListener(
+widget.addEventListener(
 "mousedown",
+
 (e)=>{
 
 
+
 if(
-e.target.classList.contains("remove")
-||
-e.target.tagName==="INPUT"
+e.target.tagName==="INPUT" ||
+e.target.tagName==="BUTTON"
 ){
 
 return;
@@ -368,26 +615,30 @@ return;
 
 
 
-dragging=true;
+moving=true;
 
 
 
 offsetX =
 e.clientX -
-element.offsetLeft;
+widget.offsetLeft;
+
 
 
 offsetY =
 e.clientY -
-element.offsetTop;
+widget.offsetTop;
 
 
 
-element.style.zIndex=999;
+widget.style.zIndex=100;
 
 
-}
-);
+
+});
+
+
+
 
 
 
@@ -396,45 +647,44 @@ element.style.zIndex=999;
 
 document.addEventListener(
 "mousemove",
+
 (e)=>{
 
 
-if(!dragging)
+
+if(!moving)
 return;
 
 
-
-const canvas =
-document.getElementById(
-"website-canvas"
-);
 
 
 
 let x =
 e.clientX -
-canvas.getBoundingClientRect().left -
+section.getBoundingClientRect().left -
 offsetX;
+
 
 
 
 let y =
 e.clientY -
-canvas.getBoundingClientRect().top -
+section.getBoundingClientRect().top -
 offsetY;
 
 
 
 
 
-// KEEP INSIDE CANVAS
+// keep inside section
 
 
 x=Math.max(
 0,
 Math.min(
 x,
-canvas.clientWidth-element.offsetWidth
+section.clientWidth -
+widget.offsetWidth
 )
 );
 
@@ -444,7 +694,8 @@ y=Math.max(
 0,
 Math.min(
 y,
-canvas.clientHeight-element.offsetHeight
+section.clientHeight -
+widget.offsetHeight
 )
 );
 
@@ -452,17 +703,19 @@ canvas.clientHeight-element.offsetHeight
 
 
 
-element.style.left =
+widget.style.left =
 x+"px";
 
 
-element.style.top =
+
+widget.style.top =
 y+"px";
 
 
 
-}
-);
+});
+
+
 
 
 
@@ -471,43 +724,162 @@ y+"px";
 
 document.addEventListener(
 "mouseup",
+
 ()=>{
 
 
-dragging=false;
+moving=false;
+
+
+});
 
 
 }
+
+
+
+
+
+
+
+
+
+// =============================
+// RESIZE COMPONENT
+// =============================
+
+
+function makeResizable(widget){
+
+
+
+const handle =
+document.createElement(
+"div"
 );
 
 
 
-}
+handle.className =
+"resize-handle";
 
 
-
-
-
-
-export function clearDesign(){
-
-
-placedComponents=[];
-
-
-const canvas =
-document.getElementById(
-"website-canvas"
+widget.appendChild(
+handle
 );
 
 
-canvas.innerHTML=
-`
-<p class="instruction">
-Drag components here
-</p>
-`;
 
+
+
+let resizing=false;
+
+
+let startX;
+
+
+let startY;
+
+
+let startWidth;
+
+
+let startHeight;
+
+
+
+
+
+handle.addEventListener(
+"mousedown",
+
+(e)=>{
+
+
+e.stopPropagation();
+
+
+
+resizing=true;
+
+
+
+startX=e.clientX;
+
+
+startY=e.clientY;
+
+
+startWidth=
+widget.offsetWidth;
+
+
+startHeight=
+widget.offsetHeight;
+
+
+});
+
+
+
+
+
+
+
+document.addEventListener(
+"mousemove",
+
+(e)=>{
+
+
+if(!resizing)
+return;
+
+
+
+widget.style.width =
+
+startWidth +
+
+(
+e.clientX-startX
+)
+
++"px";
+
+
+
+
+
+widget.style.height =
+
+startHeight +
+
+(
+e.clientY-startY
+)
+
++"px";
+
+
+
+});
+
+
+
+
+
+
+document.addEventListener(
+"mouseup",
+
+()=>{
+
+
+resizing=false;
+
+
+});
 
 
 }
