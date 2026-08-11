@@ -1,54 +1,47 @@
-function startChallenge(){
+import {showOptions} from "./src/components/category.js";
 
-document.getElementById("home").classList.add("hidden");
-
-document.getElementById("scenario").classList.remove("hidden");
-
-}
+import {addWebsiteItem,changeWebsiteTheme} 
+from "./src/components/website.js";
 
 
-
-function chooseScenario(name){
-
-document.getElementById("scenario").classList.add("hidden");
-
-document.getElementById("design").classList.remove("hidden");
+import "./src/components/draggable.js";
 
 
-document.getElementById("title").innerHTML=name;
+
+window.openCategory=function(category){
+
+    showOptions(category);
 
 }
 
 
 
-function changeTheme(color){
+window.addItem=function(item){
 
-document.getElementById("website").style.background=color;
-
-}
-
-
-
-function addFeature(feature){
-
-let box=document.getElementById("features");
-
-
-let item=document.createElement("p");
-
-item.innerHTML=feature;
-
-
-box.appendChild(item);
+    addWebsiteItem(item);
 
 }
 
 
 
-function goTest(){
+window.changeTheme=function(color){
 
-document.getElementById("design").classList.add("hidden");
+    changeWebsiteTheme(color);
 
-document.getElementById("test").classList.remove("hidden");
+}
+
+
+
+window.testDesign=function(){
+
+document
+.querySelector(".game-container")
+.classList.add("hidden");
+
+
+document
+.getElementById("testing")
+.classList.remove("hidden");
+
 
 }

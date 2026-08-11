@@ -1,160 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fix The Frustration</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-<!-- LANDING PAGE -->
-<section id="home" class="page">
+
+<header>
 
     <h1>✨ Fix The Frustration ✨</h1>
-
-    <h2>
-        A Human-Centered Design Challenge
-    </h2>
-
     <p>
-        Become a UX Designer and redesign a digital product
-        based on the user's needs.
+        Human-Centered Design Website Dress-Up Challenge
     </p>
 
-    <button onclick="startChallenge()">
-        Start Designing
-    </button>
-
-</section>
-
-
-<!-- SCENARIO PAGE -->
-
-<section id="scenario" class="page hidden">
-
-<h1>Select Your User Problem</h1>
-
-
-<div class="cards">
-
-<div class="card" onclick="chooseScenario('Student Planner')">
-
-<h3>📚 Student Planner App</h3>
-
-<p>
-Students forget deadlines because information is scattered.
-</p>
-
-</div>
+</header>
 
 
 
-<div class="card" onclick="chooseScenario('Food Ordering')">
-
-<h3>🍔 Food Ordering System</h3>
-
-<p>
-Students spend too much time waiting for food.
-</p>
-
-</div>
+<section class="game-container">
 
 
+<!-- LEFT SIDE MENU -->
 
-<div class="card" onclick="chooseScenario('Campus Navigation')">
+<div class="menu">
 
-<h3>🏫 Campus Navigation</h3>
 
-<p>
-Students struggle to find rooms and locations.
-</p>
+<h2>Design Categories</h2>
+
+
+<button onclick="openCategory('components')">
+🧩 Components
+</button>
+
+
+<button onclick="openCategory('layout')">
+🖥 Layout
+</button>
+
+
+<button onclick="openCategory('theme')">
+🎨 Theme
+</button>
+
+
+<button onclick="openCategory('navigation')">
+🧭 Navigation
+</button>
+
+
+
+<div id="options">
+
+<h3>
+Choose an option
+</h3>
+
 
 </div>
 
 
 </div>
 
-</section>
 
 
 
-<!-- DESIGN PAGE -->
 
-<section id="design" class="page hidden">
-
-<h1>🎨 Website Dressing Room</h1>
+<!-- WEBSITE CANVAS -->
 
 
-<div class="workspace">
+<div class="website-area">
 
 
-<!-- TOOLBOX -->
-
-<div class="tools">
-
-<h2>Design Tools</h2>
-
-
-<button onclick="changeTheme('#d8f3dc')">
-Green Theme
-</button>
-
-
-<button onclick="changeTheme('#dbeafe')">
-Blue Theme
-</button>
-
-
-<button onclick="changeTheme('#ede9fe')">
-Purple Theme
-</button>
-
-
-<h3>Add Features</h3>
-
-
-<button onclick="addFeature('📅 Calendar')">
-+ Calendar
-</button>
-
-
-<button onclick="addFeature('🔔 Notifications')">
-+ Notifications
-</button>
-
-
-<button onclick="addFeature('✅ Task List')">
-+ Task List
-</button>
-
-
-<button onclick="addFeature('🔍 Search Bar')">
-+ Search Bar
-</button>
-
-
-</div>
-
-
-
-<!-- WEBSITE PREVIEW -->
-
-<div class="website" id="website">
-
-
-<h2 id="title">
-My Website
+<h2>
+Your Website
 </h2>
 
 
+<div id="website">
+
+
+<h1 id="site-title">
+Student Portal
+</h1>
+
+
 <p>
-Design your website here.
+Design your website based on the user's needs.
 </p>
 
 
-<div id="features">
+
+<div id="dropped-items">
 
 </div>
 
@@ -162,13 +105,12 @@ Design your website here.
 </div>
 
 
-</div>
-
-
-
-<button onclick="goTest()">
-Submit Design
+<button class="test-btn" onclick="testDesign()">
+🧪 Test Design
 </button>
+
+
+</div>
 
 
 </section>
@@ -176,43 +118,41 @@ Submit Design
 
 
 
-<!-- TEST PAGE -->
 
-<section id="test" class="page hidden">
+<!-- TESTING AREA -->
 
 
-<h1>🧪 User Testing</h1>
+<section id="testing" class="testing hidden">
+
+
+<h1>
+🧪 User Testing
+</h1>
 
 
 <p>
-Another user will review your design.
+Another user will evaluate your design.
 </p>
 
 
-<div class="feedback">
+
+<div class="questions">
 
 
-<label>
-Is the website easy to understand?
-</label>
-
-<br>
-
-<input type="radio" name="a">
-Yes
-
-<input type="radio" name="a">
-Needs Improvement
+<p>
+⭐ Is the website easy to understand?
+</p>
 
 
-<br><br>
+<p>
+⭐ Are the features easy to find?
+</p>
 
 
-<label>
-What should be improved?
-</label>
+<p>
+⭐ What should be improved?
+</p>
 
-<br>
 
 <textarea></textarea>
 
@@ -220,16 +160,14 @@ What should be improved?
 </div>
 
 
-<h2>
-Thank you for participating!
-</h2>
-
-
 </section>
 
 
 
-<script src="script.js"></script>
+
+<script type="module" src="script.js"></script>
+
 
 </body>
+
 </html>
