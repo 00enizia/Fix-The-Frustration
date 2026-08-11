@@ -1,0 +1,150 @@
+*{
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+
+body{
+
+    margin:0;
+    background:#f8fafc;
+    color:#222;
+
+}
+
+
+.page{
+
+    min-height:100vh;
+    padding:50px;
+    text-align:center;
+
+}
+
+
+.hidden{
+
+    display:none;
+
+}
+
+
+h1{
+
+    font-size:45px;
+
+}
+
+
+button{
+
+    padding:15px 30px;
+    border:none;
+    border-radius:12px;
+    background:#7c3aed;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    margin:10px;
+
+}
+
+
+button:hover{
+
+    transform:scale(1.05);
+
+}
+
+
+
+.cards{
+
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+
+}
+
+
+.card{
+
+    width:280px;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 20px #ddd;
+    cursor:pointer;
+
+}
+
+
+.card:hover{
+
+    background:#ede9fe;
+
+}
+
+
+
+.workspace{
+
+    display:flex;
+    gap:30px;
+    justify-content:center;
+
+}
+
+
+
+.tools{
+
+    width:250px;
+    background:white;
+    padding:20px;
+    border-radius:20px;
+
+}
+
+
+
+.website{
+
+    width:500px;
+    min-height:400px;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 20px #ddd;
+
+}
+
+
+#features p{
+
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    margin:10px;
+
+}
+
+
+
+textarea{
+
+    width:400px;
+    height:100px;
+
+}
+
+
+.feedback{
+
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    display:inline-block;
+
+}
