@@ -1,52 +1,89 @@
-export const components = {
+export const components={
+
 
 profile:[
-    {
-        name:"Student Profile",
-        image:"assets/images/profile.png",
-        type:"profile"
-    }
+
+{
+name:"Student Profile",
+image:"assets/images/profile.png",
+type:"profile",
+slot:"dashboard"
+}
+
 ],
+
 
 
 academic:[
-    {
-        name:"Class Schedule",
-        image:"assets/images/calendar.png",
-        type:"calendar"
-    },
 
-    {
-        name:"Grades",
-        image:"assets/images/grades.png",
-        type:"grades"
-    }
+{
+name:"Class Schedule",
+image:"assets/images/calendar.png",
+type:"calendar",
+slot:"dashboard"
+},
+
+
+{
+name:"Grades",
+image:"assets/images/grades.png",
+type:"grades",
+slot:"dashboard"
+}
+
+
 ],
+
+
 
 
 communication:[
-    {
-        name:"Notifications",
-        image:"assets/images/notifications.png",
-        type:"notifications"
-    }
+
+{
+name:"Notifications",
+image:"assets/images/notifications.png",
+type:"notifications",
+slot:"footer"
+
+}
+
 ],
+
+
 
 
 system:[
-    {
-        name:"Search Bar",
-        image:"assets/images/search.png",
-        type:"search"
-    }
+
+{
+name:"Search Bar",
+image:"assets/images/search.png",
+type:"search",
+slot:"header"
+
+}
+
 ],
 
 
-appearance:[
-    {
-        name:"Purple Theme",
-        type:"theme"
-    }
+
+
+theme:[
+
+{
+name:"Purple Theme",
+type:"purple"
+
+},
+
+
+{
+name:"Blue Theme",
+type:"blue"
+
+}
+
+
 ]
+
 
 };

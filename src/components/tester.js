@@ -1,30 +1,31 @@
-import {problems} from "../../data/problems.js";
+import {currentProblem}
+from "./game.js";
+
+
+import {saveScore}
+from "./score.js";
+
 
 
 export function testDesign(){
 
 
-let placed=[
-
-...document.querySelectorAll(".widget")
-
-];
+let cards=document.querySelectorAll(".card");
 
 
 let score=0;
 
 
-problems.required.forEach(req=>{
+
+currentProblem.required.forEach(req=>{
 
 
-placed.forEach(item=>{
+cards.forEach(card=>{
 
 
-if(item.innerHTML.includes(req) ||
-item.className.includes(req)){
+if(card.dataset.type===req){
 
-
-score++;
+score+=30;
 
 }
 
@@ -35,11 +36,8 @@ score++;
 });
 
 
-alert(
 
-"Design Test Complete!\nScore: "+score+"/3"
-
-);
+saveScore(score);
 
 
 }

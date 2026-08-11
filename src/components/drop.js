@@ -1,31 +1,50 @@
-import {renderWebsite} from "./renderer.js";
+import {renderComponent}
+from "./renderer.js";
+
 
 
 export function enableDrop(){
 
 
-let area=document.getElementById("website");
+document.querySelectorAll(".drop-slot")
+.forEach(slot=>{
 
 
-area.addEventListener(
+slot.addEventListener(
 "dragover",
-(e)=>{
-e.preventDefault();
-});
+e=>e.preventDefault()
+);
 
 
-area.addEventListener(
+
+slot.addEventListener(
 "drop",
-(e)=>{
+e=>{
 
 
 e.preventDefault();
 
 
-let type=e.dataTransfer.getData("type");
+let data=
+e.dataTransfer.getData(
+"component"
+);
 
 
-renderWebsite(type);
+
+let item=
+JSON.parse(data);
+
+
+
+renderComponent(
+item,
+slot
+);
+
+
+
+});
 
 
 });

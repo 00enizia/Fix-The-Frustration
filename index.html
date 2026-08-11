@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
@@ -16,27 +15,89 @@ Fix The Frustration
 <body>
 
 
-<header>
+<!-- TEAM SCREEN -->
+
+<div id="team-screen">
+
 
 <h1>
 🎨 Fix The Frustration
 </h1>
 
-<p>
+
+<h2>
 Student Portal Design Challenge
+</h2>
+
+
+<input 
+id="team-name"
+placeholder="Enter Group Name"
+>
+
+
+<button id="join">
+Start Game
+</button>
+
+
+</div>
+
+
+
+
+
+<header>
+
+<h1>
+🎮 Fix The Frustration
+</h1>
+
+<p>
+Human-Centered Design Challenge
 </p>
 
 </header>
 
 
 
+
+
+<div class="game-info">
+
+
+<h2>
+Mission
+</h2>
+
+
+<div id="scenario">
+
+</div>
+
+
+<div id="timer">
+⏳ Time: 0
+</div>
+
+
+</div>
+
+
+
+
+
+
 <main>
 
 
+<!-- COMPONENT AREA -->
+
 <section class="closet">
 
+
 <h2>
-Component Closet
+🎒 Component Closet
 </h2>
 
 
@@ -63,8 +124,8 @@ Component Closet
 </button>
 
 
-<button data-category="appearance">
-🎨 Appearance
+<button data-category="theme">
+🎨 Theme
 </button>
 
 
@@ -81,30 +142,92 @@ Component Closet
 
 
 
-<section class="game">
+
+
+
+
+<!-- WEBSITE -->
+
+<section class="prototype">
 
 
 <h2>
-Your Student Portal
+Website Prototype
 </h2>
+
 
 
 <div id="website">
 
 
-<div class="portal-title">
+<div 
+class="drop-slot header-slot"
+data-slot="header">
 
-🎓 Student Portal
+Header
 
 </div>
 
 
+
+
+<div class="website-body">
+
+
+
+<div 
+class="drop-slot sidebar-slot"
+data-slot="sidebar">
+
+Sidebar
+
+
+</div>
+
+
+
+
+
+<div 
+class="drop-slot dashboard-slot"
+data-slot="dashboard">
+
+
+<h2 contenteditable="true">
+
+Welcome Student!
+
+</h2>
+
+
 <p>
-Drag items here
+Drag components here
 </p>
 
 
 </div>
+
+
+
+</div>
+
+
+
+
+
+<div 
+class="drop-slot footer-slot"
+data-slot="footer">
+
+Footer
+
+</div>
+
+
+
+</div>
+
+
 
 
 <button id="test">
@@ -115,7 +238,32 @@ Drag items here
 </section>
 
 
+
+
+
+
+<!-- LEADERBOARD -->
+
+
+<section class="leaderboard">
+
+
+<h2>
+🏆 Leaderboard
+</h2>
+
+
+<div id="leaderboard">
+
+</div>
+
+
+</section>
+
+
+
 </main>
+
 
 
 
@@ -123,5 +271,6 @@ Drag items here
 
 
 </body>
+
 
 </html>

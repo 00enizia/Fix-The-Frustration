@@ -1,33 +1,40 @@
-export function renderWebsite(type){
+export function renderComponent(item,slot){
 
 
-let website=document.getElementById("website");
+let card=document.createElement("div");
 
 
-let element=document.createElement("div");
+card.className="card";
 
 
-element.className="widget";
+card.dataset.type=item.type;
 
 
-if(type==="profile"){
+
+card.innerHTML=`
+
+<button class="delete">
+❌
+</button>
+
+`;
 
 
-element.innerHTML=`
 
-<div class="profile-card">
+if(item.type==="profile"){
 
-<img src="assets/images/profile.png">
 
-<div>
+card.innerHTML+=`
 
-<h3>John Doe</h3>
+<img src="${item.image}">
 
-<p>BS Information Technology</p>
+<h3 contenteditable>
+Student Name
+</h3>
 
-</div>
-
-</div>
+<p contenteditable>
+BSIT Student
+</p>
 
 `;
 
@@ -35,32 +42,22 @@ element.innerHTML=`
 
 
 
-if(type==="calendar"){
+if(item.type==="calendar"){
 
 
-element.innerHTML=`
+card.innerHTML+=`
 
-<h3>📅 Class Schedule</h3>
+<h3>
+📅 Schedule
+</h3>
 
-<p>8:00 AM - Programming</p>
+<p>
+8:00 Programming
+</p>
 
-<p>10:00 AM - Database</p>
-
-`;
-
-}
-
-
-
-
-if(type==="notifications"){
-
-
-element.innerHTML=`
-
-<h3>🔔 Notifications</h3>
-
-<p>Assignment deadline tomorrow</p>
+<p>
+10:00 Database
+</p>
 
 `;
 
@@ -68,28 +65,18 @@ element.innerHTML=`
 
 
 
-
-if(type==="grades"){
-
-
-element.innerHTML=`
-
-<h3>📊 Grades</h3>
-
-<p>Programming: 95%</p>
-
-`;
-
-}
+if(item.type==="grades"){
 
 
+card.innerHTML+=`
 
-if(type==="search"){
+<h3>
+📊 Grades
+</h3>
 
-
-element.innerHTML=`
-
-<input placeholder="Search student portal...">
+<p>
+Programming - 95%
+</p>
 
 `;
 
@@ -97,7 +84,45 @@ element.innerHTML=`
 
 
 
-website.appendChild(element);
+if(item.type==="notifications"){
+
+
+card.innerHTML+=`
+
+<h3>
+🔔 Notifications
+</h3>
+
+<p>
+New announcement posted
+</p>
+
+`;
+
+}
+
+
+
+if(item.type==="search"){
+
+
+card.innerHTML+=`
+
+<input placeholder="Search">
+
+`;
+
+}
+
+
+
+card.querySelector(".delete")
+.onclick=()=>card.remove();
+
+
+
+slot.appendChild(card);
+
 
 
 }

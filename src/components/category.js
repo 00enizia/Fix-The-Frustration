@@ -33,7 +33,7 @@ card.innerHTML=`
 card.dataset.type=item.type;
 
 
-createDrag(card);
+createDrag(element,item);
 
 
 box.appendChild(card);

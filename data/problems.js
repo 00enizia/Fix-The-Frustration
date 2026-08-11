@@ -1,15 +1,45 @@
-export const problems = {
+export const problems=[
 
-title:"Student Portal",
+
+{
+
+title:"Students cannot find schedules",
 
 description:
-"Students are having difficulty finding their schedule and important announcements.",
+"Students need an easier way to view their class schedules and announcements.",
 
 
 required:[
+"profile",
 "calendar",
-"notifications",
-"profile"
-]
+"notifications"
+],
 
-};
+
+time:120
+
+},
+
+
+
+{
+
+title:"Students cannot monitor grades",
+
+description:
+"Students need a portal where they can check academic performance easily.",
+
+
+required:[
+"profile",
+"grades"
+],
+
+
+time:100
+
+}
+
+
+
+];

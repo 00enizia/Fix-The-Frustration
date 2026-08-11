@@ -1,4 +1,7 @@
-export function createDrag(element){
+export function makeDraggable(element,item){
+
+
+element.draggable=true;
 
 
 element.addEventListener(
@@ -7,8 +10,8 @@ element.addEventListener(
 
 
 e.dataTransfer.setData(
-"type",
-element.dataset.type
+"component",
+JSON.stringify(item)
 );
 
 
