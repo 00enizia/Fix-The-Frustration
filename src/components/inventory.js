@@ -16,49 +16,69 @@ from "./renderer.js";
 
 
 
-let selectedCategory = null;
+// stores current selections
 
-let selectedFeature = null;
-
-
+let selectedDesigns = {};
 
 
 
+
+
+let currentCategory = null;
+
+let currentFeature = null;
+
+
+
+
+
+
+
+
+
+// =====================================
+// LOAD CATEGORY BUTTONS
+// =====================================
 
 
 export function loadInventory(){
 
 
-    const categoryButtons =
-    document.querySelectorAll(
-        ".category-button"
-    );
+
+const buttons =
+document.querySelectorAll(
+".category-button"
+);
 
 
 
 
-    categoryButtons.forEach(button=>{
+
+buttons.forEach(button=>{
 
 
-        button.addEventListener(
-            "click",
-            ()=>{
+button.addEventListener(
+"click",
+()=>{
 
 
-                const category =
-                button.dataset.category;
-
-
-
-                showFeatures(category);
+const category =
+button.dataset.category;
 
 
 
-            }
-        );
+showFeatures(category);
 
 
-    });
+
+}
+
+);
+
+
+
+});
+
 
 
 }
@@ -80,119 +100,128 @@ function showFeatures(category){
 
 
 
-    selectedCategory = category;
+currentCategory = category;
 
 
 
-    const container =
-    document.getElementById(
-        "design-options"
-    );
+const container =
+document.getElementById(
+"design-options"
+);
 
 
 
-    container.innerHTML = "";
 
+container.innerHTML = "";
 
 
 
 
-    const data =
-    components[category];
 
 
+const categoryData =
+components[category];
 
 
-    if(!data) return;
 
 
 
 
+if(!categoryData)
+return;
 
 
 
-    container.innerHTML = `
 
-        <h3>
-        ${data.name}
-        </h3>
 
-        <p>
-        Choose Feature
-        </p>
 
-    `;
 
+container.innerHTML = `
 
 
+<h3>
+${categoryData.name}
+</h3>
 
 
+<p>
+Choose a feature
+</p>
 
 
+`;
 
 
-    data.features.forEach(feature=>{
 
 
 
-        const card =
-        document.createElement(
-            "div"
-        );
 
 
 
-        card.className =
-        "design-choice";
+categoryData.features.forEach(feature=>{
 
 
 
-        card.innerHTML = `
+const card =
+document.createElement(
+"div"
+);
 
-            <h2>
-            ${feature.name}
-            </h2>
 
-            <p>
-            Choose a design
-            </p>
 
-        `;
+card.className =
+"design-choice";
 
 
 
 
 
 
+card.innerHTML = `
 
-        card.addEventListener(
-            "click",
-            ()=>{
 
+<h2>
+${feature.name}
+</h2>
 
-                showStyles(
-                    category,
-                    feature
-                );
 
+<p>
+Choose style
+</p>
 
 
-            }
-        );
+`;
 
 
 
 
 
-        container.appendChild(
-            card
-        );
 
 
+card.onclick = ()=>{
 
-    });
 
+showStyles(
+category,
+feature
+);
 
+
+
+};
+
+
+
+
+
+
+container.appendChild(
+card
+);
+
+
+
+});
 
 
 
@@ -212,156 +241,186 @@ function showFeatures(category){
 
 
 function showStyles(
-    category,
-    feature
+category,
+feature
 ){
 
 
 
-    selectedFeature = feature;
+currentFeature = feature;
 
 
 
-    const container =
-    document.getElementById(
-        "design-options"
-    );
+const container =
+document.getElementById(
+"design-options"
+);
 
 
 
 
 
-    container.innerHTML = `
+container.innerHTML = `
 
-        <button 
-        class="back-button"
-        id="back-feature">
 
-        ← Back
 
-        </button>
+<button
+class="back-button"
+id="back-button-choice">
 
+← Back
 
-        <h3>
-        ${feature.name}
-        </h3>
+</button>
 
 
-        <p>
-        Choose Style
-        </p>
 
-    `;
+<h3>
+${feature.name}
+</h3>
 
 
+<p>
+Choose your design style
+</p>
 
 
+`;
 
 
 
 
-    feature.styles.forEach(style=>{
 
 
 
-        const card =
-        document.createElement(
-            "div"
-        );
 
 
+feature.styles.forEach(style=>{
 
-        card.className =
-        "design-choice";
 
 
+const card =
+document.createElement(
+"div"
+);
 
 
 
-        card.innerHTML = `
+card.className =
+"design-choice";
 
 
-            <h2>
-            ${style.icon}
-            </h2>
 
 
-            <h3>
-            ${style.name}
-            </h3>
 
 
-            <p>
-            ${style.description}
-            </p>
 
+// check selected
 
-        `;
 
+const saved =
+selectedDesigns[feature.key];
 
 
 
 
 
+if(
+saved &&
+saved.id === style.id
+){
 
 
+card.classList.add(
+"active"
+);
 
-        card.addEventListener(
-            "click",
-            ()=>{
 
+}
 
-                applyStyle(
-                    category,
-                    feature,
-                    style
-                );
 
 
 
-            }
-        );
 
 
 
 
+card.innerHTML = `
 
-        container.appendChild(
-            card
-        );
 
 
+<h2>
+${style.icon}
+</h2>
 
 
-    });
+<h3>
+${style.name}
+</h3>
 
 
+<p>
+${style.description}
+</p>
 
 
+`;
 
 
 
 
 
 
-    document
-    .getElementById(
-        "back-feature"
-    )
-    .addEventListener(
-        "click",
-        ()=>{
 
 
-            showFeatures(
-                category
-            );
 
+card.onclick = ()=>{
 
-        }
-    );
 
+applyDesign(
+category,
+feature,
+style
+);
 
+
+
+};
+
+
+
+
+
+
+
+container.appendChild(
+card
+);
+
+
+
+});
+
+
+
+
+
+
+
+
+document
+.getElementById(
+"back-button-choice"
+)
+.onclick = ()=>{
+
+
+showFeatures(
+category
+);
+
+
+
+};
 
 
 
@@ -380,72 +439,67 @@ function showStyles(
 // =====================================
 
 
-
-function applyStyle(
-    category,
-    feature,
-    style
+function applyDesign(
+category,
+feature,
+style
 ){
 
 
 
-    const design = {
+const design = {
 
 
-        category:
+category:
 
 
-        category,
-
-
-
-        feature:
-
-
-        feature.id,
+category,
 
 
 
-        name:
+feature:
 
 
-        feature.name,
-
-
-
-        style:
-
-
-        style.id,
+feature.key,
 
 
 
-        layout:
+featureName:
 
 
-        style.data.layout,
-
-
-
-        icon:
-
-
-        style.icon
+feature.name,
 
 
 
-    };
+style:
+
+
+style.id,
 
 
 
+layout:
+
+
+style.layout,
 
 
 
+icon:
 
 
-    renderDesign(
-        design
-    );
+style.icon,
+
+
+
+description:
+
+
+style.description
+
+
+
+};
 
 
 
@@ -453,9 +507,47 @@ function applyStyle(
 
 
 
-    showAppliedMessage(
-        style.name
-    );
+
+
+// replace old design
+
+selectedDesigns[
+feature.key
+]
+=
+design;
+
+
+
+
+
+
+
+
+
+// send to renderer
+
+
+renderDesign(
+design
+);
+
+
+
+
+
+
+
+
+// refresh style selection
+
+
+showStyles(
+category,
+feature
+);
+
+
 
 
 
@@ -470,76 +562,14 @@ function applyStyle(
 
 
 // =====================================
-// MESSAGE
+// GET SELECTED DESIGNS
 // =====================================
 
 
-function showAppliedMessage(
-    name
-){
+export function getSelectedDesigns(){
 
 
-
-    const old =
-    document.querySelector(
-        ".design-message"
-    );
-
-
-
-    if(old)
-    old.remove();
-
-
-
-
-
-
-    const message =
-    document.createElement(
-        "div"
-    );
-
-
-
-    message.className =
-    "design-message";
-
-
-
-    message.innerHTML =
-
-    `
-    ✅ ${name} applied
-    `;
-
-
-
-
-
-
-
-    document.body.appendChild(
-        message
-    );
-
-
-
-
-
-
-    setTimeout(
-        ()=>{
-
-
-            message.remove();
-
-
-
-        },
-        2000
-    );
-
+return selectedDesigns;
 
 
 }

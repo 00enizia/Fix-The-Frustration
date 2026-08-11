@@ -1,17 +1,42 @@
 // src/components/renderer.js
 
 
-const activeDesigns = {};
+let selectedDesigns = {};
 
 
 
+
+
+let profileData = {
+
+    name:"Student Name",
+
+    course:"BS Information Technology",
+
+    year:"3rd Year"
+
+};
+
+
+
+
+
+
+
+
+
+// =====================================
+// MAIN RENDER FUNCTION
+// =====================================
 
 
 export function renderDesign(design){
 
 
 
-    activeDesigns[design.category + "-" + design.feature] = design;
+    selectedDesigns[
+        design.feature
+    ] = design;
 
 
 
@@ -45,7 +70,6 @@ function updateWebsite(){
     renderSystem();
 
 
-
 }
 
 
@@ -56,12 +80,13 @@ function updateWebsite(){
 
 
 
-// ========================================
+// =====================================
 // PROFILE
-// ========================================
+// =====================================
 
 
 function renderProfile(){
+
 
 
 const container =
@@ -71,23 +96,21 @@ document.getElementById(
 
 
 
-const profile =
-findDesign(
-"profile",
-"profile"
-);
+const design =
+selectedDesigns.profile;
 
 
 
-if(!profile){
 
 
-container.innerHTML = `
+if(!design){
 
+
+container.innerHTML =
+`
 <p>
 Choose profile design
 </p>
-
 `;
 
 return;
@@ -101,57 +124,45 @@ return;
 
 
 
-switch(profile.layout){
+if(design.layout==="classic"){
 
 
 
-case "classic":
+container.innerHTML =
 
-
-
-container.innerHTML = `
+`
 
 <div class="portal-card classic-profile">
 
 
 <div class="avatar">
-
 👤
-
 </div>
 
 
 <h2>
-Student Profile
+${profileData.name}
 </h2>
 
 
 <p>
-Name:
-<span id="student-name">
-Jennylyn Dionecio
-</span>
+${profileData.course}
 </p>
 
 
 <p>
-Course:
-BSIT
+${profileData.year}
 </p>
-
-
-<p>
-Year Level:
-3rd Year
-</p>
-
 
 
 </div>
 
+
 `;
 
-break;
+
+
+}
 
 
 
@@ -159,30 +170,30 @@ break;
 
 
 
-case "modern":
+
+
+if(design.layout==="modern"){
 
 
 
-container.innerHTML = `
+container.innerHTML =
+
+
+`
 
 <div class="portal-card modern-profile">
 
 
 <div class="avatar">
-
 ✨
-
 </div>
 
 
+
 <h2>
-Jennylyn Dionecio
+${profileData.name}
 </h2>
 
-
-<p>
-Bachelor of Science in Information Technology
-</p>
 
 
 <div class="profile-tag">
@@ -192,11 +203,26 @@ Student
 </div>
 
 
+
+<p>
+${profileData.course}
+</p>
+
+
+
+<p>
+${profileData.year}
+</p>
+
+
+
 </div>
 
 `;
 
-break;
+
+
+}
 
 
 
@@ -205,87 +231,43 @@ break;
 
 
 
-case "coquette":
+
+if(design.layout==="coquette"){
 
 
 
-container.innerHTML = `
+container.innerHTML =
+
+
+`
 
 <div class="portal-card coquette-profile">
 
 
 <div class="avatar">
-
 🎀
-
 </div>
 
 
 <h2>
-My Profile
+♡ ${profileData.name}
 </h2>
 
 
 <p>
-♡ Jennylyn Dionecio
+♡ ${profileData.course}
 </p>
 
 
 <p>
-♡ BSIT Student
+♡ ${profileData.year}
 </p>
-
-
-<p>
-♡ 3rd Year
-</p>
-
 
 
 </div>
 
 
 `;
-
-break;
-
-
-
-
-
-
-
-
-case "minimal":
-
-
-
-container.innerHTML = `
-
-<div class="portal-card minimal-profile">
-
-
-<h2>
-Jennylyn Dionecio
-</h2>
-
-
-<p>
-BSIT 3A
-</p>
-
-
-</div>
-
-`;
-
-break;
-
-
-
-}
-
-
 
 
 
@@ -299,55 +281,103 @@ break;
 
 
 
-// ========================================
+if(design.layout==="minimal"){
+
+
+
+container.innerHTML =
+
+
+`
+
+<div class="minimal-profile">
+
+
+<h2>
+${profileData.name}
+</h2>
+
+
+<p>
+${profileData.course}
+</p>
+
+
+<p>
+${profileData.year}
+</p>
+
+
+</div>
+
+
+`;
+
+
+
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================================
 // ACADEMIC
-// ========================================
+// =====================================
 
 
 function renderAcademic(){
 
 
 
-const dashboard =
+const container =
 document.getElementById(
 "dashboard-content"
 );
 
 
 
-dashboard.innerHTML="";
+container.innerHTML="";
 
 
 
 
 
-const designs =
-Object.values(activeDesigns);
-
-
-
-
-
-
-designs.forEach(design=>{
+Object.values(
+selectedDesigns
+)
+.forEach(design=>{
 
 
 
 if(
-design.category !== "academic"
-)
-return;
+design.feature==="schedule"
+||
+design.feature==="grades"
+||
+design.feature==="courses"
+){
 
 
 
+container.innerHTML +=
 
-
-
-dashboard.innerHTML +=
-
-createAcademicCard(
+createAcademic(
 design
 );
+
+
+
+}
 
 
 
@@ -357,12 +387,11 @@ design
 
 
 
-if(
-dashboard.innerHTML === ""
-){
+
+if(container.innerHTML===""){
 
 
-dashboard.innerHTML =
+container.innerHTML =
 `
 <p>
 Choose academic design
@@ -382,80 +411,22 @@ Choose academic design
 
 
 
-function createAcademicCard(
-design
+function createAcademic(design){
+
+
+
+// --------------------
+// SCHEDULE
+// --------------------
+
+
+if(
+design.feature==="schedule"
 ){
 
 
 
-switch(design.feature){
-
-
-
-case "schedule":
-
-
-
-return createSchedule(
-design
-);
-
-
-
-case "grades":
-
-
-
-return createGrades(
-design
-);
-
-
-
-case "course-list":
-
-
-
-return createCourses(
-design
-);
-
-
-
-default:
-
-return "";
-
-
-
-}
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-function createSchedule(
-design
-){
-
-
-
-switch(design.layout){
-
-
-
-case "classic":
-
+if(design.layout==="classic"){
 
 
 return `
@@ -468,35 +439,55 @@ return `
 </h2>
 
 
-<p>
+<table>
+
+
+<tr>
+<td>
 Monday
-</p>
+</td>
+
+<td>
+Programming
+</td>
+
+</tr>
 
 
-<p>
-8:00 AM - Programming
-</p>
+
+<tr>
+<td>
+Wednesday
+</td>
+
+<td>
+Database
+</td>
+
+</tr>
 
 
-<p>
-10:00 AM - Database
-</p>
+
+</table>
 
 
 </div>
+
 
 `;
 
 
 
+}
 
 
 
 
 
 
-case "modern":
 
+
+if(design.layout==="modern"){
 
 
 return `
@@ -505,13 +496,14 @@ return `
 
 
 <h2>
-✨ Today's Schedule
+✨ Today's Classes
 </h2>
+
 
 
 <div class="schedule-box">
 
-08:00
+08:00 AM
 
 <br>
 
@@ -521,9 +513,10 @@ Programming
 
 
 
+
 <div class="schedule-box">
 
-10:00
+10:00 AM
 
 <br>
 
@@ -532,21 +525,15 @@ Database
 </div>
 
 
-
 </div>
-
 
 `;
 
+}
 
 
 
-
-
-
-
-
-case "minimal":
+if(design.layout==="minimal"){
 
 
 
@@ -560,34 +547,27 @@ Schedule
 </h2>
 
 
-<ul>
-
-<li>
-Programming - 8:00
-</li>
+<p>
+08:00 Programming
+</p>
 
 
-<li>
-Database - 10:00
-</li>
-
-
-</ul>
+<p>
+10:00 Database
+</p>
 
 
 </div>
 
 `;
 
+}
 
 
 
 
 
-
-
-
-case "coquette":
+if(design.layout==="coquette"){
 
 
 
@@ -615,33 +595,32 @@ return `
 
 `;
 
+}
 
 
 }
 
 
 
-}
 
 
 
 
 
 
+// --------------------
+// GRADES
+// --------------------
 
 
-
-function createGrades(
-design
+if(
+design.feature==="grades"
 ){
 
 
 
-switch(design.layout){
+if(design.layout==="progress"){
 
-
-
-case "progress":
 
 
 return `
@@ -655,27 +634,23 @@ return `
 
 
 <p>
-Programming
+Programming 90%
 </p>
 
 
 <div class="progress">
-
-90%
-
 </div>
+
 
 
 <p>
-Database
+Database 85%
 </p>
 
 
 <div class="progress">
-
-85%
-
 </div>
+
 
 
 </div>
@@ -684,12 +659,13 @@ Database
 
 
 
+}
 
 
 
 
 
-case "card":
+if(design.layout==="card"){
 
 
 
@@ -711,7 +687,9 @@ Programming
 95
 </b>
 
+
 </div>
+
 
 
 <div class="grade-item">
@@ -722,7 +700,9 @@ Database
 90
 </b>
 
+
 </div>
+
 
 
 </div>
@@ -732,13 +712,15 @@ Database
 
 
 
+}
 
 
 
 
 
 
-case "minimal":
+if(design.layout==="table"){
+
 
 
 return `
@@ -747,46 +729,71 @@ return `
 
 
 <h2>
-Grades
+📋 Grade Table
 </h2>
 
 
-<p>
-Programming - 95
-</p>
+<table>
 
 
-<p>
-Database - 90
-</p>
+<tr>
+<td>
+Programming
+</td>
+
+<td>
+95
+</td>
+
+</tr>
+
+
+
+<tr>
+<td>
+Database
+</td>
+
+<td>
+90
+</td>
+
+</tr>
+
+
+</table>
+
 
 
 </div>
-
 
 `;
 
 
 
-
-}
-
-
-
 }
 
 
 
 
+}
 
 
 
 
 
-function createCourses(
-design
+
+
+
+
+// --------------------
+// COURSES
+// --------------------
+
+
+if(
+design.feature==="courses"
 ){
-
 
 
 return `
@@ -814,9 +821,15 @@ Networking
 </p>
 
 
+
 </div>
 
+
 `;
+
+
+
+}
 
 
 
@@ -830,9 +843,9 @@ Networking
 
 
 
-// ========================================
+// =====================================
 // COMMUNICATION
-// ========================================
+// =====================================
 
 
 function renderCommunication(){
@@ -853,18 +866,20 @@ footer.innerHTML="";
 
 
 
-Object.values(activeDesigns)
+
+Object.values(
+selectedDesigns
+)
 .forEach(design=>{
 
 
 if(
-design.category !==
-"communication"
-)
-return;
-
-
-
+design.feature==="announcement"
+||
+design.feature==="messages"
+||
+design.feature==="notifications"
+){
 
 
 footer.innerHTML +=
@@ -874,10 +889,31 @@ design
 );
 
 
+}
+
 
 });
 
 
+
+
+
+
+
+if(
+footer.innerHTML===""
+
+){
+
+
+footer.innerHTML=
+`
+<p>
+Choose communication design
+</p>
+`;
+
+}
 
 
 
@@ -891,17 +927,22 @@ design
 
 
 
-function createCommunication(
-design
+function createCommunication(design){
+
+
+
+
+
+// ANNOUNCEMENT
+
+
+if(
+design.feature==="announcement"
 ){
 
 
 
-switch(design.feature){
-
-
-
-case "announcement":
+if(design.layout==="classic"){
 
 
 return `
@@ -909,13 +950,122 @@ return `
 <div class="portal-card">
 
 <h2>
-📢 Announcement
+📢 Announcement Board
 </h2>
 
 
 <p>
-Enrollment starts August 15
+Enrollment schedule posted.
 </p>
+
+
+</div>
+
+`;
+
+}
+
+
+
+if(design.layout==="card"){
+
+
+
+return `
+
+<div class="portal-card">
+
+
+<h2>
+✨ Announcements
+</h2>
+
+
+<div class="grade-item">
+
+New Event
+
+</div>
+
+
+<div class="grade-item">
+
+School Update
+
+</div>
+
+
+</div>
+
+
+`;
+
+}
+
+
+
+if(design.layout==="timeline"){
+
+
+
+return `
+
+<div class="portal-card">
+
+
+<h2>
+🕒 Updates
+</h2>
+
+
+<p>
+Today - Enrollment notice
+</p>
+
+
+<p>
+Yesterday - New schedule
+</p>
+
+
+</div>
+
+
+`;
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// MESSAGES
+
+
+if(
+design.feature==="messages"
+){
+
+
+
+if(design.layout==="bubble"){
+
+
+
+return `
+
+<div class="floating-message">
+
+
+💬
 
 
 </div>
@@ -925,23 +1075,26 @@ Enrollment starts August 15
 
 
 
+}
 
 
-case "messages":
+
+
+
+
+
+
+if(design.layout==="messenger"){
+
 
 
 return `
 
-<div class="portal-card">
 
-<h2>
+<div class="messenger-tab">
+
+
 💬 Messages
-</h2>
-
-
-<p>
-Adviser: Good morning!
-</p>
 
 
 </div>
@@ -951,12 +1104,105 @@ Adviser: Good morning!
 
 
 
+}
 
 
-case "notifications":
+
+
+
+
+
+
+if(design.layout==="inbox"){
+
 
 
 return `
+
+
+<div class="portal-card">
+
+
+<h2>
+📥 Inbox
+</h2>
+
+
+<p>
+Teacher message</p>
+
+
+<p>
+Adviser message</p>
+
+
+</div>
+
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+if(design.layout==="minimal"){
+
+
+
+return `
+
+
+<div class="portal-card">
+
+
+<h2>
+💬 Chat
+</h2>
+
+
+<p>
+No new messages</p>
+
+
+</div>
+
+
+`;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// NOTIFICATIONS
+
+
+if(
+design.feature==="notifications"
+){
+
+
+
+return `
+
 
 <div class="portal-card">
 
@@ -967,13 +1213,11 @@ return `
 
 
 <p>
-New announcement posted
-</p>
+New announcement</p>
 
 
 <p>
-Schedule updated
-</p>
+Schedule updated</p>
 
 
 </div>
@@ -987,6 +1231,7 @@ Schedule updated
 
 
 
+
 }
 
 
@@ -997,88 +1242,137 @@ Schedule updated
 
 
 
-// ========================================
+// =====================================
 // SYSTEM
-// ========================================
+// =====================================
 
 
 function renderSystem(){
 
 
 
-const header =
+const container =
 document.getElementById(
 "system-content"
 );
 
 
 
-if(!header)
-return;
-
-
-
-
-header.innerHTML="";
+container.innerHTML="";
 
 
 
 
 
 
-
-Object.values(activeDesigns)
+Object.values(
+selectedDesigns
+)
 .forEach(design=>{
 
 
 if(
-design.category !==
-"system"
-)
-return;
-
-
-
-
-
-if(design.feature==="search"){
-
-
-
-if(
-design.layout==="floating"
+design.feature==="search"
 ){
 
 
-header.innerHTML += `
+
+if(design.layout==="floating"){
+
+
+
+container.innerHTML +=
+
+`
 
 <div class="floating-search">
 
-
 🔍 Search student portal...
-
 
 </div>
 
 `;
 
+
+
 }
 
 
-else{
 
 
-header.innerHTML += `
+if(design.layout==="navbar"){
+
+
+
+container.innerHTML +=
+
+`
 
 <div class="navbar-search">
 
-🔎 Search...
+🔎 Search
 
 </div>
 
 `;
 
+
+
 }
+
+
+
+
+
+if(design.layout==="smart"){
+
+
+
+container.innerHTML +=
+
+
+`
+
+<div class="smart-search">
+
+
+🔍 Search anything...
+
+
+
+<div>
+
+📅 Schedule
+
+</div>
+
+
+<div>
+
+📊 Grades
+
+</div>
+
+
+<div>
+
+📚 Courses
+
+</div>
+
+
+
+</div>
+
+
+`;
+
+
+
+}
+
+
+
 
 
 }
@@ -1099,26 +1393,32 @@ header.innerHTML += `
 
 
 
-// ========================================
-// FIND DESIGN
-// ========================================
+// =====================================
+// PROFILE CUSTOMIZATION
+// =====================================
 
 
-function findDesign(
-category,
-feature
+export function updateProfile(
+name,
+course,
+year
 ){
 
 
-return Object.values(activeDesigns)
-.find(
-item=>
+profileData.name =
+name;
 
-item.category===category
-&&
-item.feature===feature
 
-);
+profileData.course =
+course;
+
+
+profileData.year =
+year;
+
+
+
+renderProfile();
 
 
 }
@@ -1130,10 +1430,11 @@ item.feature===feature
 
 
 
-export function getDesigns(){
+
+export function getCurrentDesign(){
 
 
-return activeDesigns;
+return selectedDesigns;
 
 
 }

@@ -4,6 +4,7 @@
 export const components = {
 
 
+
 // =====================================
 // PROFILE
 // =====================================
@@ -20,7 +21,7 @@ features:[
 
 {
 
-id:"profile",
+key:"profile",
 
 
 name:"Student Profile",
@@ -32,18 +33,14 @@ styles:[
 {
 id:"profile-classic",
 
-name:"Classic",
+name:"Classic Profile",
 
 icon:"👤",
 
+layout:"classic",
+
 description:
-"Traditional student information card",
-
-data:{
-
-layout:"classic"
-
-}
+"Traditional student information card"
 
 },
 
@@ -52,61 +49,46 @@ layout:"classic"
 {
 id:"profile-modern",
 
-name:"Modern",
+name:"Modern Profile",
 
 icon:"✨",
 
+layout:"modern",
+
 description:
-"Clean modern profile design",
-
-data:{
-
-layout:"modern"
-
-}
+"Clean modern dashboard profile"
 
 },
-
 
 
 
 {
 id:"profile-coquette",
 
-name:"Coquette",
+name:"Coquette Profile",
 
 icon:"🎀",
 
+layout:"coquette",
+
 description:
-"Soft aesthetic student profile",
-
-data:{
-
-layout:"coquette"
-
-}
+"Soft aesthetic student profile"
 
 },
-
-
 
 
 
 {
 id:"profile-minimal",
 
-name:"Minimalist",
+name:"Minimal Profile",
 
 icon:"◻️",
 
+layout:"minimal",
+
 description:
-"Simple clean profile",
-
-data:{
-
-layout:"minimal"
-
-}
+"Simple and clean profile"
 
 }
 
@@ -119,7 +101,6 @@ layout:"minimal"
 
 
 ]
-
 
 },
 
@@ -146,12 +127,9 @@ features:[
 
 {
 
-
-id:"schedule",
-
+key:"schedule",
 
 name:"Class Schedule",
-
 
 
 styles:[
@@ -159,120 +137,67 @@ styles:[
 
 
 {
-
-
 id:"schedule-classic",
 
-
-name:"Classic Schedule",
-
+name:"Classic Table",
 
 icon:"📅",
 
+layout:"classic",
 
 description:
-"Simple timetable layout",
-
-
-
-data:{
-
-layout:"classic"
-
-}
-
+"Traditional timetable design"
 
 },
 
 
 
 
-
-
 {
-
-
 id:"schedule-modern",
 
-
-name:"Modern Schedule",
-
+name:"Modern Cards",
 
 icon:"✨",
 
+layout:"modern",
 
 description:
-"Modern card based schedule",
-
-
-data:{
-
-layout:"modern"
-
-}
-
+"Card based schedule design"
 
 },
 
 
 
 
-
-
-
 {
-
-
 id:"schedule-minimal",
 
-
-name:"Minimal Schedule",
-
+name:"Minimal Planner",
 
 icon:"◻️",
 
+layout:"minimal",
 
 description:
-"Clean minimal timetable",
-
-
-data:{
-
-layout:"minimal"
-
-}
-
+"Simple organized schedule"
 
 },
 
 
 
 
-
-
-
 {
-
-
 id:"schedule-coquette",
 
-
-name:"Coquette Schedule",
-
+name:"Coquette Planner",
 
 icon:"🎀",
 
+layout:"coquette",
 
 description:
-"Aesthetic student planner style",
-
-
-data:{
-
-layout:"coquette"
-
-}
-
+"Cute aesthetic student planner"
 
 }
 
@@ -280,7 +205,6 @@ layout:"coquette"
 
 ]
 
-
 },
 
 
@@ -291,9 +215,7 @@ layout:"coquette"
 
 {
 
-
-id:"grades",
-
+key:"grades",
 
 name:"Grade Progress",
 
@@ -303,87 +225,50 @@ styles:[
 
 
 {
-
-
 id:"grades-progress",
-
 
 name:"Progress Bar",
 
-
 icon:"📊",
 
+layout:"progress",
 
 description:
-"Visual academic progress",
-
-
-data:{
-
-layout:"progress"
-
-}
-
+"Visual grade progress"
 
 },
 
 
 
 
-
-
 {
-
-
 id:"grades-card",
-
 
 name:"Grade Cards",
 
-
 icon:"📈",
 
+layout:"card",
 
 description:
-"Individual subject cards",
-
-
-data:{
-
-layout:"card"
-
-}
-
+"Subject grade cards"
 
 },
 
 
 
 
-
-
 {
+id:"grades-table",
 
+name:"Grade Table",
 
-id:"grades-minimal",
+icon:"📋",
 
-
-name:"Minimal Grades",
-
-
-icon:"◻️",
-
+layout:"table",
 
 description:
-"Simple grade list",
-
-
-data:{
-
-layout:"minimal"
-
-}
-
+"Classic grade table"
 
 }
 
@@ -391,10 +276,7 @@ layout:"minimal"
 
 ]
 
-
 },
-
-
 
 
 
@@ -403,9 +285,7 @@ layout:"minimal"
 
 {
 
-
-id:"course-list",
-
+key:"courses",
 
 name:"Course List",
 
@@ -415,86 +295,50 @@ styles:[
 
 
 {
-
-
-id:"course-classic",
-
+id:"courses-list",
 
 name:"Classic List",
 
-
 icon:"📚",
 
+layout:"list",
 
 description:
-"Traditional course list",
-
-
-data:{
-
-layout:"classic"
-
-}
-
+"Simple course list"
 
 },
 
 
 
 
-
-
 {
+id:"courses-card",
 
-
-id:"course-modern",
-
-
-name:"Modern Cards",
-
+name:"Course Cards",
 
 icon:"✨",
 
+layout:"card",
 
 description:
-"Course cards design",
-
-
-data:{
-
-layout:"cards"
-
-}
-
+"Modern course cards"
 
 },
 
 
 
 
-
 {
-
-
-id:"course-coquette",
-
+id:"courses-coquette",
 
 name:"Cute Planner",
 
-
 icon:"🎀",
 
+layout:"coquette",
 
 description:
-"Aesthetic course planner",
-
-
-data:{
-
-layout:"coquette"
-
-}
-
+"Aesthetic course planner"
 
 }
 
@@ -502,13 +346,11 @@ layout:"coquette"
 
 ]
 
-
 }
 
 
 
 ]
-
 
 },
 
@@ -535,9 +377,7 @@ features:[
 
 {
 
-
-id:"announcement",
-
+key:"announcement",
 
 name:"Announcement Board",
 
@@ -547,85 +387,50 @@ styles:[
 
 
 {
-
-
 id:"announcement-classic",
-
 
 name:"Classic Board",
 
-
 icon:"📢",
 
+layout:"classic",
 
 description:
-"School announcement style",
-
-
-data:{
-
-layout:"classic"
-
-}
-
+"Traditional announcement board"
 
 },
 
 
 
 
-
 {
-
-
 id:"announcement-card",
-
 
 name:"Announcement Cards",
 
-
 icon:"✨",
 
+layout:"card",
 
 description:
-"Modern announcement cards",
-
-
-data:{
-
-layout:"card"
-
-}
-
+"Modern announcement cards"
 
 },
 
 
 
 
-
 {
-
-
 id:"announcement-timeline",
-
 
 name:"Timeline Updates",
 
-
 icon:"🕒",
 
+layout:"timeline",
 
 description:
-"Updates timeline",
-
-
-data:{
-
-layout:"timeline"
-
-}
-
+"News timeline style"
 
 }
 
@@ -633,7 +438,6 @@ layout:"timeline"
 
 ]
 
-
 },
 
 
@@ -645,11 +449,9 @@ layout:"timeline"
 
 {
 
+key:"messages",
 
-id:"messages",
-
-
-name:"Message Box",
+name:"Message System",
 
 
 styles:[
@@ -657,56 +459,67 @@ styles:[
 
 
 {
+id:"message-bubble",
 
-
-id:"message-chat",
-
-
-name:"Chat Style",
-
+name:"Floating Bubble",
 
 icon:"💬",
 
+layout:"bubble",
 
 description:
-"Messaging interface",
-
-
-data:{
-
-layout:"chat"
-
-}
-
+"Floating chat bubble like support chat"
 
 },
 
 
 
 
-
 {
+id:"message-messenger",
 
+name:"Messenger Tab",
 
-id:"message-card",
+icon:"🟦",
 
-
-name:"Card Style",
-
-
-icon:"✨",
-
+layout:"messenger",
 
 description:
-"Simple message card",
+"Facebook-style messenger panel"
+
+},
 
 
-data:{
 
-layout:"card"
 
-}
+{
+id:"message-inbox",
 
+name:"Inbox Panel",
+
+icon:"📥",
+
+layout:"inbox",
+
+description:
+"Email style message inbox"
+
+},
+
+
+
+
+{
+id:"message-minimal",
+
+name:"Minimal Chat",
+
+icon:"◻️",
+
+layout:"minimal",
+
+description:
+"Simple message card"
 
 }
 
@@ -714,7 +527,6 @@ layout:"card"
 
 ]
 
-
 },
 
 
@@ -725,9 +537,7 @@ layout:"card"
 
 {
 
-
-id:"notifications",
-
+key:"notifications",
 
 name:"Notifications",
 
@@ -737,73 +547,64 @@ styles:[
 
 
 {
-
-
 id:"notification-list",
-
 
 name:"Notification List",
 
-
 icon:"🔔",
 
+layout:"list",
 
 description:
-"Notification feed",
-
-
-data:{
-
-layout:"list"
-
-}
-
+"Simple notification feed"
 
 },
-
 
 
 
 
 {
-
-
 id:"notification-card",
-
 
 name:"Notification Cards",
 
-
 icon:"✨",
 
+layout:"card",
 
 description:
-"Modern notification cards",
-
-
-data:{
-
-layout:"card"
-
-}
-
-
-}
-
-
-
-]
-
-
-}
-
-
-
-]
-
+"Modern notification cards"
 
 },
 
+
+
+
+{
+id:"notification-priority",
+
+name:"Priority Alerts",
+
+icon:"🚨",
+
+layout:"priority",
+
+description:
+"Important alerts first"
+
+}
+
+
+
+]
+
+}
+
+
+
+]
+
+},
 
 
 
@@ -828,9 +629,7 @@ features:[
 
 {
 
-
-id:"search",
-
+key:"search",
 
 name:"Search Engine",
 
@@ -840,67 +639,59 @@ styles:[
 
 
 {
-
-
 id:"search-floating",
-
 
 name:"Floating Search",
 
-
 icon:"🔍",
 
+layout:"floating",
 
 description:
-"Modern floating search bar",
-
-
-data:{
-
-layout:"floating"
-
-}
-
+"Modern floating search box"
 
 },
 
 
 
 
-
 {
-
-
 id:"search-navbar",
-
 
 name:"Navbar Search",
 
-
 icon:"🔎",
 
+layout:"navbar",
 
 description:
-"Search inside navigation",
+"Search inside navigation"
+
+},
 
 
-data:{
 
-layout:"navbar"
+
+{
+id:"search-smart",
+
+name:"Smart Search",
+
+icon:"✨",
+
+layout:"smart",
+
+description:
+"Search suggestions like modern apps"
 
 }
-
-
-}
-
-
 
 
 
 ]
 
-
 },
+
 
 
 
@@ -910,11 +701,9 @@ layout:"navbar"
 
 {
 
+key:"footer",
 
-id:"footer",
-
-
-name:"Footer",
+name:"Footer Design",
 
 
 styles:[
@@ -922,85 +711,67 @@ styles:[
 
 
 {
-
-
 id:"footer-simple",
-
 
 name:"Simple Footer",
 
-
 icon:"🌐",
 
+layout:"simple",
 
 description:
-"Minimal website footer",
-
-
-data:{
-
-layout:"simple"
-
-}
-
+"Clean minimal footer"
 
 },
 
 
 
 
-
 {
-
-
 id:"footer-student",
 
-
-name:"Student Footer",
-
+name:"Student Services",
 
 icon:"🎓",
 
+layout:"student",
 
 description:
-"Student service footer",
-
-
-data:{
-
-layout:"student"
-
-}
-
+"Student help and services"
 
 },
 
 
 
 
-
 {
-
-
 id:"footer-creative",
-
 
 name:"Creative Footer",
 
-
 icon:"✨",
 
+layout:"creative",
 
 description:
-"Creative design footer",
+"Creative website ending"
+
+},
 
 
-data:{
 
-layout:"creative"
 
-}
+{
+id:"footer-minimal",
 
+name:"Minimal Footer",
+
+icon:"◻️",
+
+layout:"minimal",
+
+description:
+"Small clean footer"
 
 }
 
@@ -1008,13 +779,11 @@ layout:"creative"
 
 ]
 
-
 }
 
 
 
 ]
-
 
 }
 
