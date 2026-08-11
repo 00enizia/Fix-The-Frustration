@@ -4,90 +4,68 @@ export const components = {
 Profile:[
 
 {
+id:"profile",
 name:"Student Profile",
-icon:"👤",
-type:"profile"
-},
-
-{
-name:"Student Information",
-icon:"📝",
-type:"info"
+icon:"👤"
 }
 
 ],
-
-
 
 
 Academic:[
 
 {
+id:"schedule",
 name:"Class Schedule",
-icon:"📅",
-type:"schedule"
+icon:"📅"
 },
 
+
 {
+id:"grades",
 name:"Grades",
-icon:"📊",
-type:"grades"
+icon:"📊"
 },
 
+
 {
+id:"courses",
 name:"Course List",
-icon:"📚",
-type:"courses"
+icon:"📚"
 }
 
 
 ],
-
-
 
 
 Communication:[
 
-
 {
+id:"notifications",
 name:"Notifications",
-icon:"🔔",
-type:"notifications"
-},
-
-
-{
-name:"Announcements",
-icon:"📢",
-type:"announcement"
+icon:"🔔"
 }
 
 
 ],
 
 
-
-
 System:[
 
-
 {
+id:"search",
 name:"Search Bar",
-icon:"🔍",
-type:"search"
+icon:"🔍"
 },
 
 
 {
+id:"settings",
 name:"Settings",
-icon:"⚙",
-type:"settings"
+icon:"⚙"
 }
 
 
-
 ]
-
-
 
 };

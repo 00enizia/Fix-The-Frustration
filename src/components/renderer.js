@@ -1,143 +1,512 @@
-export function renderComponent(item,slot){
-
-
-let card=document.createElement("div");
-
-
-card.className="card";
-
-
-card.dataset.type=item.type;
+let placedComponents = [];
 
 
 
-card.innerHTML=`
-
-<button class="delete">
-❌
-</button>
-
-`;
+export function renderComponent(component){
 
 
-
-if(item.type==="profile"){
-
-
-card.innerHTML+=`
-
-<div class="profile-icon">
-👤
-</div>
+const canvas = document.getElementById(
+"website-canvas"
+);
 
 
-<input 
-class="student-name"
-placeholder="Enter Student Name"
->
 
+/*
+Prevent duplicate components
+Example:
+Only one Schedule allowed
+Only one Profile allowed
+*/
 
-<input 
-class="student-course"
-placeholder="Enter Course"
->
+if(
+placedComponents.includes(component.id)
+){
 
+alert(
+`${component.name} is already added!`
+);
 
-`;
+return;
 
 }
 
 
 
-if(item.type==="calendar"){
+placedComponents.push(component.id);
 
 
-card.innerHTML+=`
+
+
+
+const card = document.createElement("div");
+
+
+card.className="website-widget";
+
+card.dataset.type = component.id;
+
+
+
+card.style.left = "40px";
+
+card.style.top = 
+(placedComponents.length * 30) + "px";
+
+
+
+
+
+card.innerHTML = createWidgetHTML(component);
+
+
+
+
+
+
+// REMOVE BUTTON
+
+const remove = document.createElement("button");
+
+
+remove.className="remove";
+
+remove.innerHTML="×";
+
+
+
+remove.onclick=()=>{
+
+
+card.remove();
+
+
+placedComponents =
+placedComponents.filter(
+item=>item !== component.id
+);
+
+
+};
+
+
+
+card.appendChild(remove);
+
+
+
+
+
+canvas.appendChild(card);
+
+
+
+
+
+enableMove(card);
+
+
+
+
+}
+
+
+
+
+
+function createWidgetHTML(component){
+
+
+
+switch(component.id){
+
+
+
+case "profile":
+
+
+return `
+
+<h3>👤 Student Profile</h3>
+
+<input 
+class="editable"
+placeholder="Student Name"
+value="Student Name"
+>
+
+
+<input 
+class="editable"
+placeholder="Course"
+value="Course"
+>
+
+
+`;
+
+
+
+
+
+case "schedule":
+
+
+return `
+
 
 <h3>
-📅 Schedule
+📅 Class Schedule
 </h3>
 
-<p>
-8:00 Programming
-</p>
 
 <p>
-10:00 Database
+8:00 AM - Programming
 </p>
+
+
+<p>
+10:00 AM - Database
+</p>
+
 
 `;
 
-}
 
 
 
-if(item.type==="grades"){
 
 
-card.innerHTML+=`
+case "grades":
+
+
+return `
+
 
 <h3>
 📊 Grades
 </h3>
 
+
 <p>
-Programming - 95%
+Programming : 95%
 </p>
+
+
+<p>
+Database : 90%
+</p>
+
 
 `;
 
-}
 
 
 
-if(item.type==="notifications"){
 
 
-card.innerHTML+=`
+case "courses":
+
+
+return `
+
+
+<h3>
+📚 Course List
+</h3>
+
+
+<ul>
+
+<li>Programming</li>
+
+<li>Database</li>
+
+<li>Networking</li>
+
+
+</ul>
+
+
+`;
+
+
+
+
+
+
+case "notifications":
+
+
+return `
+
 
 <h3>
 🔔 Notifications
 </h3>
 
+
 <p>
-New announcement posted
+No new announcements
 </p>
 
+
 `;
 
-}
 
 
 
-if(item.type==="search"){
 
 
-card.innerHTML+=`
 
-<div class="search-widget">
+case "search":
 
-🔍
+
+return `
+
+
+<h3>
+🔍 Search
+</h3>
+
 
 <input 
-placeholder="Search courses, schedules, announcements..."
->
+placeholder="
+Search schedules, courses...
+">
 
-
-</div>
 
 `;
+
+
+
+
+
+
+case "settings":
+
+
+return `
+
+
+<h3>
+⚙ Settings
+</h3>
+
+
+<p>
+Account Settings
+</p>
+
+
+<p>
+Privacy
+</p>
+
+
+`;
+
+
+
+
+
+default:
+
+
+return `
+
+<h3>
+${component.icon}
+${component.name}
+</h3>
+
+`;
+
+
 
 }
 
 
 
-card.querySelector(".delete")
-.onclick=()=>card.remove();
+
+
+}
 
 
 
-slot.appendChild(card);
+
+
+
+
+function enableMove(element){
+
+
+
+let offsetX;
+
+let offsetY;
+
+let dragging=false;
+
+
+
+
+
+element.addEventListener(
+"mousedown",
+(e)=>{
+
+
+if(
+e.target.classList.contains("remove")
+||
+e.target.tagName==="INPUT"
+){
+
+return;
+
+}
+
+
+
+dragging=true;
+
+
+
+offsetX =
+e.clientX -
+element.offsetLeft;
+
+
+offsetY =
+e.clientY -
+element.offsetTop;
+
+
+
+element.style.zIndex=999;
+
+
+}
+);
+
+
+
+
+
+
+document.addEventListener(
+"mousemove",
+(e)=>{
+
+
+if(!dragging)
+return;
+
+
+
+const canvas =
+document.getElementById(
+"website-canvas"
+);
+
+
+
+let x =
+e.clientX -
+canvas.getBoundingClientRect().left -
+offsetX;
+
+
+
+let y =
+e.clientY -
+canvas.getBoundingClientRect().top -
+offsetY;
+
+
+
+
+
+// KEEP INSIDE CANVAS
+
+
+x=Math.max(
+0,
+Math.min(
+x,
+canvas.clientWidth-element.offsetWidth
+)
+);
+
+
+
+y=Math.max(
+0,
+Math.min(
+y,
+canvas.clientHeight-element.offsetHeight
+)
+);
+
+
+
+
+
+element.style.left =
+x+"px";
+
+
+element.style.top =
+y+"px";
+
+
+
+}
+);
+
+
+
+
+
+
+document.addEventListener(
+"mouseup",
+()=>{
+
+
+dragging=false;
+
+
+}
+);
+
+
+
+}
+
+
+
+
+
+
+export function clearDesign(){
+
+
+placedComponents=[];
+
+
+const canvas =
+document.getElementById(
+"website-canvas"
+);
+
+
+canvas.innerHTML=
+`
+<p class="instruction">
+Drag components here
+</p>
+`;
 
 
 

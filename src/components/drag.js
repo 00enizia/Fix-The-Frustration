@@ -1,4 +1,4 @@
-export function createDragItem(element){
+export function makeDraggable(element){
 
 
 
@@ -8,11 +8,30 @@ element.addEventListener(
 (e)=>{
 
 
+const component =
+{
+
+id:
+element.dataset.id,
+
+
+name:
+element.dataset.name,
+
+
+icon:
+element.dataset.icon
+
+
+};
+
+
+
 e.dataTransfer.setData(
 
 "component",
 
-element.dataset.name
+JSON.stringify(component)
 
 );
 
@@ -23,13 +42,5 @@ element.dataset.name
 );
 
 
-
-}
-
-
-
-export function enableDragging(){
-
-// reserved for future upgrades
 
 }

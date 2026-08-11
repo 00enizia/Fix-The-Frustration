@@ -1,43 +1,36 @@
-import {components} 
+import {components}
 from "../../data/components.js";
 
 
-
 import {
-createDragItem
+makeDraggable
 }
 from "./drag.js";
 
 
 
 
-export function loadCategories(){
+
+export function loadInventory(){
 
 
 
-const buttons =
-document.querySelectorAll(
-"#category-buttons button"
-);
-
-
-
-buttons.forEach(button=>{
+document
+.querySelectorAll(
+".category-button"
+)
+.forEach(button=>{
 
 
 button.onclick=()=>{
 
 
-let category =
-button.dataset.category;
+showItems(
+button.dataset.category
+);
 
 
-
-showItems(category);
-
-
-}
-
+};
 
 
 });
@@ -50,7 +43,10 @@ showItems(category);
 
 
 
+
+
 function showItems(category){
+
 
 
 const container =
@@ -64,49 +60,70 @@ container.innerHTML="";
 
 
 
+
+
 components[category]
 .forEach(item=>{
 
 
-let div =
+
+const card =
 document.createElement(
 "div"
 );
 
 
 
-div.className=
-"inventory-item";
+card.className =
+"inventory-card";
 
 
 
-div.draggable=true;
+card.draggable=true;
 
 
 
-div.dataset.name=
+card.dataset.id =
+item.id;
+
+
+
+card.dataset.name =
 item.name;
 
 
 
-div.innerHTML=
+card.dataset.icon =
+item.icon;
+
+
+
+
+card.innerHTML=
+
 `
 
+<h2>
 ${item.icon}
+</h2>
 
-<br>
-
+<p>
 ${item.name}
+</p>
+
+<small>
+Drag me
+</small>
 
 `;
 
 
 
-createDragItem(div);
+makeDraggable(card);
 
 
 
-container.appendChild(div);
+container.appendChild(card);
 
 
 

@@ -2,90 +2,95 @@
 <html>
 
 <head>
-    <title>Fix The Frustration</title>
 
-    <link rel="stylesheet" href="style.css">
+<title>
+Fix The Frustration - Student Portal Designer
+</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 
 <body>
 
-<header class="game-header">
 
-    <h1>🎨 Fix The Frustration</h1>
+<header>
 
-    <p>Student Portal Designer Challenge</p>
+<h1>
+🎨 Fix The Frustration
+</h1>
+
+<p>
+Student Portal Designer Challenge
+</p>
 
 </header>
 
 
 
-<section class="mission-panel">
-
-    <div>
-        <h2>🎯 Mission</h2>
-
-        <h3 id="problem-title">
-            Loading problem...
-        </h3>
-
-        <p id="problem-description"></p>
-    </div>
+<div id="editor">
 
 
-    <div class="game-info">
-
-        <h3>
-            ⏳ Time:
-            <span id="timer">60</span>
-        </h3>
-
-
-        <h3>
-            ⭐ Score:
-            <span id="score">0</span>
-        </h3>
-
-    </div>
-
-</section>
+<main>
 
 
 
+<!-- COMPONENT CLOSET -->
 
-<main class="game-container">
-
-
-<!-- COMPONENT INVENTORY -->
-
-<section class="inventory">
+<section class="closet">
 
 
 <h2>
-🎒 Component Closet
+👜 Component Closet
 </h2>
 
 
-<div id="category-buttons">
+<p>
+Choose elements to add
+</p>
 
 
-<button data-category="Profile">
+
+<div class="category-buttons">
+
+
+<button 
+class="category-button"
+data-category="Profile">
+
 👤 Profile
+
 </button>
 
 
-<button data-category="Academic">
+
+<button 
+class="category-button"
+data-category="Academic">
+
 📚 Academic
+
 </button>
 
 
-<button data-category="Communication">
+
+<button 
+class="category-button"
+data-category="Communication">
+
 🔔 Communication
+
 </button>
 
 
-<button data-category="System">
+
+<button 
+class="category-button"
+data-category="System">
+
 ⚙ System
+
 </button>
 
 
@@ -95,10 +100,18 @@
 
 <div id="inventory-items">
 
+
+<p>
+Select a category
+</p>
+
+
 </div>
 
 
+
 </section>
+
 
 
 
@@ -107,11 +120,12 @@
 
 <!-- WEBSITE BUILDER -->
 
-<section class="website-area">
+<section class="designer">
+
 
 
 <h2>
-💻 Website Prototype
+💻 Your Student Portal
 </h2>
 
 
@@ -119,49 +133,23 @@
 <div class="website-frame">
 
 
-<div 
-class="drop-zone header-zone"
-id="header">
+<div class="fake-navbar">
 
 
 <h3>
-HEADER
+🎓 Student Portal
 </h3>
 
 
-</div>
+<div class="nav-links">
 
+Home
 
+Courses
 
+Schedule
 
-
-<div class="middle-layout">
-
-
-<div 
-class="drop-zone sidebar-zone"
-id="sidebar">
-
-
-<h3>
-SIDEBAR
-</h3>
-
-
-</div>
-
-
-
-
-<div 
-class="drop-zone main-zone"
-id="main">
-
-
-<h3>
-MAIN DASHBOARD
-</h3>
-
+Profile
 
 </div>
 
@@ -173,26 +161,39 @@ MAIN DASHBOARD
 
 
 <div 
-class="drop-zone footer-zone"
-id="footer">
+id="website-canvas"
+class="website-canvas">
 
 
-<h3>
-FOOTER
-</h3>
+<p class="instruction">
+
+Drag components here
+
+</p>
 
 
 </div>
 
 
+
+
+<footer>
+
+Student Portal Prototype
+
+</footer>
+
+
 </div>
 
 
 
 
-<button id="test-button">
+<button 
+id="finish-button">
 
-🧪 Test Website
+
+✨ Finish Design
 
 </button>
 
@@ -200,101 +201,29 @@ FOOTER
 
 </section>
 
-
-
-
-
-
-<!-- LEADERBOARD -->
-
-<section class="leaderboard">
-
-
-<h2>
-🏆 Leaderboard
-</h2>
-
-
-<div>
-
-Group 1 ⭐ <span>0</span>
-
-</div>
-
-
-<div>
-
-Group 2 ⭐ <span>0</span>
-
-</div>
-
-
-<div>
-
-Group 3 ⭐ <span>0</span>
-
-</div>
-
-
-
-</section>
 
 
 
 </main>
 
 
-
-
-
-<!-- RESULT MODAL -->
-
-
-<div id="result-modal">
-
-
-<div class="result-box">
-
-
-<button id="close-result">
-❌
-</button>
-
-
-<h1 id="result-title">
-
-</h1>
-
-
-<h2>
-
-Score:
-<span id="final-score">
-
-</span>
-
-</h2>
-
-
-
-<div id="feedback">
-
 </div>
 
 
 
-<button id="retry-button">
 
-🔄 Try Again
 
-</button>
 
+
+<!-- FINAL OUTPUT -->
+
+
+<div 
+id="final-preview">
 
 
 </div>
 
-
-</div>
 
 
 

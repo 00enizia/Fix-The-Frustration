@@ -1,36 +1,24 @@
-import {problems} from "../../data/problems.js";
+import {
+loadInventory
+}
+from "./inventory.js";
 
 
-let currentProblem;
-
-
-
-export function loadProblem(){
-
-
-currentProblem =
-problems[
-Math.floor(
-Math.random()*problems.length
-)
-];
-
-
-document
-.getElementById("problem-title")
-.innerText =
-currentProblem.title;
+import {
+enableDrop
+}
+from "./drop.js";
 
 
 
-document
-.getElementById("problem-description")
-.innerText =
-currentProblem.description;
+export function startGame(){
 
 
+loadInventory();
 
-window.currentProblem=currentProblem;
+
+enableDrop();
+
 
 
 }
