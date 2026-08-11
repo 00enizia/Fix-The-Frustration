@@ -16,7 +16,9 @@ from "./renderer.js";
 
 
 
-let selectedComponents = {};
+let selectedCategory = null;
+
+let selectedFeature = null;
 
 
 
@@ -27,44 +29,36 @@ let selectedComponents = {};
 export function loadInventory(){
 
 
-
-const categoryButtons =
-document.querySelectorAll(
-".category-list button"
-);
-
+    const categoryButtons =
+    document.querySelectorAll(
+        ".category-button"
+    );
 
 
 
 
-categoryButtons.forEach(button=>{
+    categoryButtons.forEach(button=>{
+
+
+        button.addEventListener(
+            "click",
+            ()=>{
+
+
+                const category =
+                button.dataset.category;
 
 
 
-button.addEventListener(
-"click",
-()=>{
-
-
-const category =
-button.dataset.category;
+                showFeatures(category);
 
 
 
-showChoices(
-category
-);
+            }
+        );
 
 
-
-}
-
-);
-
-
-
-});
-
+    });
 
 
 }
@@ -77,156 +71,128 @@ category
 
 
 
-function showChoices(category){
+// =====================================
+// SHOW FEATURES
+// =====================================
 
 
+function showFeatures(category){
 
-const container =
-document.getElementById(
-"design-options"
-);
 
 
+    selectedCategory = category;
 
 
 
-container.innerHTML="";
+    const container =
+    document.getElementById(
+        "design-options"
+    );
 
 
 
+    container.innerHTML = "";
 
 
 
-const data =
-components[category];
 
 
+    const data =
+    components[category];
 
 
 
 
-if(!data){
+    if(!data) return;
 
-return;
 
-}
 
 
 
 
 
+    container.innerHTML = `
 
+        <h3>
+        ${data.name}
+        </h3>
 
-const title =
-document.createElement(
-"h3"
-);
+        <p>
+        Choose Feature
+        </p>
 
+    `;
 
 
-title.innerHTML =
-data.title;
 
 
 
-container.appendChild(
-title
-);
 
 
 
 
+    data.features.forEach(feature=>{
 
 
 
+        const card =
+        document.createElement(
+            "div"
+        );
 
-data.choices.forEach(choice=>{
 
 
+        card.className =
+        "design-choice";
 
-const card =
-document.createElement(
-"div"
-);
 
 
+        card.innerHTML = `
 
+            <h2>
+            ${feature.name}
+            </h2>
 
+            <p>
+            Choose a design
+            </p>
 
-card.className =
-"design-choice";
+        `;
 
 
 
 
 
-card.dataset.id =
-choice.id;
 
 
+        card.addEventListener(
+            "click",
+            ()=>{
 
 
+                showStyles(
+                    category,
+                    feature
+                );
 
-card.innerHTML =
 
-`
 
-<h3>
+            }
+        );
 
-${choice.icon}
 
-</h3>
 
 
-<h4>
 
-${choice.name}
+        container.appendChild(
+            card
+        );
 
-</h4>
 
 
-<p>
+    });
 
-${choice.description}
 
-</p>
-
-
-`;
-
-
-
-
-
-
-
-card.addEventListener(
-"click",
-()=>{
-
-
-selectChoice(
-category,
-choice,
-card
-);
-
-
-});
-
-
-
-
-
-
-
-container.appendChild(
-card
-);
-
-
-
-});
 
 
 
@@ -240,51 +206,52 @@ card
 
 
 
-function selectChoice(
-category,
-choice,
-card
+// =====================================
+// SHOW STYLES
+// =====================================
+
+
+function showStyles(
+    category,
+    feature
 ){
 
 
 
-// remove active style
-
-document
-.querySelectorAll(
-".design-choice"
-)
-.forEach(item=>{
+    selectedFeature = feature;
 
 
-item.classList.remove(
-"active"
-);
 
-
-});
+    const container =
+    document.getElementById(
+        "design-options"
+    );
 
 
 
 
 
-card.classList.add(
-"active"
-);
+    container.innerHTML = `
+
+        <button 
+        class="back-button"
+        id="back-feature">
+
+        ← Back
+
+        </button>
 
 
+        <h3>
+        ${feature.name}
+        </h3>
 
 
+        <p>
+        Choose Style
+        </p>
 
-
-
-
-// save selected design
-
-
-selectedComponents[category]
-=
-choice;
+    `;
 
 
 
@@ -293,12 +260,108 @@ choice;
 
 
 
-// send to renderer
+    feature.styles.forEach(style=>{
 
 
-renderDesign(
-choice
-);
+
+        const card =
+        document.createElement(
+            "div"
+        );
+
+
+
+        card.className =
+        "design-choice";
+
+
+
+
+
+        card.innerHTML = `
+
+
+            <h2>
+            ${style.icon}
+            </h2>
+
+
+            <h3>
+            ${style.name}
+            </h3>
+
+
+            <p>
+            ${style.description}
+            </p>
+
+
+        `;
+
+
+
+
+
+
+
+
+
+        card.addEventListener(
+            "click",
+            ()=>{
+
+
+                applyStyle(
+                    category,
+                    feature,
+                    style
+                );
+
+
+
+            }
+        );
+
+
+
+
+
+        container.appendChild(
+            card
+        );
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+    document
+    .getElementById(
+        "back-feature"
+    )
+    .addEventListener(
+        "click",
+        ()=>{
+
+
+            showFeatures(
+                category
+            );
+
+
+        }
+    );
+
+
 
 
 
@@ -312,10 +375,171 @@ choice
 
 
 
-export function getSelectedComponents(){
+// =====================================
+// APPLY DESIGN
+// =====================================
 
 
-return selectedComponents;
+
+function applyStyle(
+    category,
+    feature,
+    style
+){
+
+
+
+    const design = {
+
+
+        category:
+
+
+        category,
+
+
+
+        feature:
+
+
+        feature.id,
+
+
+
+        name:
+
+
+        feature.name,
+
+
+
+        style:
+
+
+        style.id,
+
+
+
+        layout:
+
+
+        style.data.layout,
+
+
+
+        icon:
+
+
+        style.icon
+
+
+
+    };
+
+
+
+
+
+
+
+
+    renderDesign(
+        design
+    );
+
+
+
+
+
+
+
+    showAppliedMessage(
+        style.name
+    );
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================================
+// MESSAGE
+// =====================================
+
+
+function showAppliedMessage(
+    name
+){
+
+
+
+    const old =
+    document.querySelector(
+        ".design-message"
+    );
+
+
+
+    if(old)
+    old.remove();
+
+
+
+
+
+
+    const message =
+    document.createElement(
+        "div"
+    );
+
+
+
+    message.className =
+    "design-message";
+
+
+
+    message.innerHTML =
+
+    `
+    ✅ ${name} applied
+    `;
+
+
+
+
+
+
+
+    document.body.appendChild(
+        message
+    );
+
+
+
+
+
+
+    setTimeout(
+        ()=>{
+
+
+            message.remove();
+
+
+
+        },
+        2000
+    );
+
 
 
 }

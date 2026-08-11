@@ -4,65 +4,87 @@
 export const components = {
 
 
-
-
-
-/* =========================
-PROFILE DESIGNS
-========================= */
+// =====================================
+// PROFILE
+// =====================================
 
 
 profile:{
 
 
-title:"Student Profile",
+name:"👤 Profile",
 
 
-section:"sidebar",
-
-
-choices:[
+features:[
 
 
 {
 
+id:"profile",
+
+
+name:"Student Profile",
+
+
+styles:[
+
+
+{
 id:"profile-classic",
 
-name:"Classic Profile",
-
-type:"profile",
-
-style:"classic",
+name:"Classic",
 
 icon:"👤",
 
-
 description:
-"Traditional student information card"
+"Traditional student information card",
 
+data:{
+
+layout:"classic"
+
+}
 
 },
 
 
 
-
-
 {
-
 id:"profile-modern",
 
-name:"Modern Profile",
-
-type:"profile",
-
-style:"modern",
+name:"Modern",
 
 icon:"✨",
 
+description:
+"Clean modern profile design",
+
+data:{
+
+layout:"modern"
+
+}
+
+},
+
+
+
+
+{
+id:"profile-coquette",
+
+name:"Coquette",
+
+icon:"🎀",
 
 description:
-"Clean modern student profile"
+"Soft aesthetic student profile",
 
+data:{
+
+layout:"coquette"
+
+}
 
 },
 
@@ -70,51 +92,30 @@ description:
 
 
 
-
 {
-
-id:"profile-avatar",
-
-name:"Avatar Profile",
-
-type:"profile",
-
-style:"avatar",
-
-icon:"😊",
-
-
-description:
-"Friendly profile with avatar"
-
-
-},
-
-
-
-
-
-{
-
 id:"profile-minimal",
 
-name:"Minimal Profile",
-
-type:"profile",
-
-style:"minimal",
+name:"Minimalist",
 
 icon:"◻️",
 
-
 description:
-"Simple and clean design"
+"Simple clean profile",
 
+data:{
+
+layout:"minimal"
+
+}
 
 }
 
 
 
+]
+
+
+}
 
 
 ]
@@ -128,39 +129,57 @@ description:
 
 
 
-/* =========================
-ACADEMIC
-========================= */
+// =====================================
+// ACADEMIC
+// =====================================
 
 
 academic:{
 
 
-title:"Academic Components",
+name:"📚 Academic",
 
 
-section:"dashboard",
-
-
-choices:[
+features:[
 
 
 
 {
 
-id:"schedule-calendar",
 
-name:"Calendar Schedule",
+id:"schedule",
 
-type:"schedule",
 
-style:"calendar",
+name:"Class Schedule",
+
+
+
+styles:[
+
+
+
+{
+
+
+id:"schedule-classic",
+
+
+name:"Classic Schedule",
+
 
 icon:"📅",
 
 
 description:
-"Schedule displayed as calendar"
+"Simple timetable layout",
+
+
+
+data:{
+
+layout:"classic"
+
+}
 
 
 },
@@ -169,21 +188,28 @@ description:
 
 
 
+
 {
 
-id:"schedule-card",
 
-name:"Schedule Cards",
+id:"schedule-modern",
 
-type:"schedule",
 
-style:"card",
+name:"Modern Schedule",
 
-icon:"🗓️",
+
+icon:"✨",
 
 
 description:
-"Modern schedule card layout"
+"Modern card based schedule",
+
+
+data:{
+
+layout:"modern"
+
+}
 
 
 },
@@ -193,21 +219,28 @@ description:
 
 
 
+
 {
 
-id:"schedule-timeline",
 
-name:"Timeline Schedule",
+id:"schedule-minimal",
 
-type:"schedule",
 
-style:"timeline",
+name:"Minimal Schedule",
 
-icon:"⏰",
+
+icon:"◻️",
 
 
 description:
-"Timeline based class schedule"
+"Clean minimal timetable",
+
+
+data:{
+
+layout:"minimal"
+
+}
 
 
 },
@@ -220,19 +253,76 @@ description:
 
 {
 
-id:"grades-progress",
+
+id:"schedule-coquette",
+
+
+name:"Coquette Schedule",
+
+
+icon:"🎀",
+
+
+description:
+"Aesthetic student planner style",
+
+
+data:{
+
+layout:"coquette"
+
+}
+
+
+}
+
+
+
+]
+
+
+},
+
+
+
+
+
+
+
+{
+
+
+id:"grades",
+
 
 name:"Grade Progress",
 
-type:"grades",
 
-style:"progress",
+styles:[
+
+
+
+{
+
+
+id:"grades-progress",
+
+
+name:"Progress Bar",
+
 
 icon:"📊",
 
 
 description:
-"Visual progress bar grades"
+"Visual academic progress",
+
+
+data:{
+
+layout:"progress"
+
+}
 
 
 },
@@ -241,21 +331,28 @@ description:
 
 
 
+
 {
+
 
 id:"grades-card",
 
+
 name:"Grade Cards",
 
-type:"grades",
-
-style:"card",
 
 icon:"📈",
 
 
 description:
-"Individual grade cards"
+"Individual subject cards",
+
+
+data:{
+
+layout:"card"
+
+}
 
 
 },
@@ -267,19 +364,143 @@ description:
 
 {
 
+
+id:"grades-minimal",
+
+
+name:"Minimal Grades",
+
+
+icon:"◻️",
+
+
+description:
+"Simple grade list",
+
+
+data:{
+
+layout:"minimal"
+
+}
+
+
+}
+
+
+
+]
+
+
+},
+
+
+
+
+
+
+
+
+{
+
+
 id:"course-list",
+
 
 name:"Course List",
 
-type:"courses",
 
-style:"list",
+styles:[
+
+
+
+{
+
+
+id:"course-classic",
+
+
+name:"Classic List",
+
 
 icon:"📚",
 
 
 description:
-"List of enrolled courses"
+"Traditional course list",
+
+
+data:{
+
+layout:"classic"
+
+}
+
+
+},
+
+
+
+
+
+
+{
+
+
+id:"course-modern",
+
+
+name:"Modern Cards",
+
+
+icon:"✨",
+
+
+description:
+"Course cards design",
+
+
+data:{
+
+layout:"cards"
+
+}
+
+
+},
+
+
+
+
+
+{
+
+
+id:"course-coquette",
+
+
+name:"Cute Planner",
+
+
+icon:"🎀",
+
+
+description:
+"Aesthetic course planner",
+
+
+data:{
+
+layout:"coquette"
+
+}
+
+
+}
+
+
+
+]
 
 
 }
@@ -297,61 +518,55 @@ description:
 
 
 
-/* =========================
-COMMUNICATION
-========================= */
+// =====================================
+// COMMUNICATION
+// =====================================
 
 
 communication:{
 
 
-title:"Communication",
+name:"💬 Communication",
 
 
-section:"footer",
-
-
-choices:[
+features:[
 
 
 
 {
 
-id:"notification-card",
 
-name:"Notification Cards",
-
-type:"notification",
-
-style:"card",
-
-icon:"🔔",
+id:"announcement",
 
 
-description:
-"Card based announcements"
+name:"Announcement Board",
 
 
-},
-
+styles:[
 
 
 
 {
 
-id:"notification-list",
 
-name:"Notification List",
+id:"announcement-classic",
 
-type:"notification",
 
-style:"list",
+name:"Classic Board",
+
 
 icon:"📢",
 
 
 description:
-"Simple announcement list"
+"School announcement style",
+
+
+data:{
+
+layout:"classic"
+
+}
 
 
 },
@@ -362,19 +577,25 @@ description:
 
 {
 
-id:"message-box",
 
-name:"Message Box",
+id:"announcement-card",
 
-type:"message",
 
-style:"chat",
+name:"Announcement Cards",
 
-icon:"💬",
+
+icon:"✨",
 
 
 description:
-"Student message panel"
+"Modern announcement cards",
+
+
+data:{
+
+layout:"card"
+
+}
 
 
 },
@@ -385,19 +606,25 @@ description:
 
 {
 
-id:"announcement-board",
 
-name:"Announcement Board",
+id:"announcement-timeline",
 
-type:"announcement",
 
-style:"board",
+name:"Timeline Updates",
 
-icon:"📣",
+
+icon:"🕒",
 
 
 description:
-"School announcement section"
+"Updates timeline",
+
+
+data:{
+
+layout:"timeline"
+
+}
 
 
 }
@@ -415,39 +642,224 @@ description:
 
 
 
-/* =========================
-SYSTEM
-========================= */
+
+{
+
+
+id:"messages",
+
+
+name:"Message Box",
+
+
+styles:[
+
+
+
+{
+
+
+id:"message-chat",
+
+
+name:"Chat Style",
+
+
+icon:"💬",
+
+
+description:
+"Messaging interface",
+
+
+data:{
+
+layout:"chat"
+
+}
+
+
+},
+
+
+
+
+
+{
+
+
+id:"message-card",
+
+
+name:"Card Style",
+
+
+icon:"✨",
+
+
+description:
+"Simple message card",
+
+
+data:{
+
+layout:"card"
+
+}
+
+
+}
+
+
+
+]
+
+
+},
+
+
+
+
+
+
+
+{
+
+
+id:"notifications",
+
+
+name:"Notifications",
+
+
+styles:[
+
+
+
+{
+
+
+id:"notification-list",
+
+
+name:"Notification List",
+
+
+icon:"🔔",
+
+
+description:
+"Notification feed",
+
+
+data:{
+
+layout:"list"
+
+}
+
+
+},
+
+
+
+
+
+{
+
+
+id:"notification-card",
+
+
+name:"Notification Cards",
+
+
+icon:"✨",
+
+
+description:
+"Modern notification cards",
+
+
+data:{
+
+layout:"card"
+
+}
+
+
+}
+
+
+
+]
+
+
+}
+
+
+
+]
+
+
+},
+
+
+
+
+
+
+
+
+// =====================================
+// SYSTEM
+// =====================================
 
 
 system:{
 
 
-title:"System Features",
+name:"⚙️ System",
 
 
-section:"navbar",
-
-
-choices:[
+features:[
 
 
 
 {
 
-id:"search-bar",
 
-name:"Search Bar",
+id:"search",
 
-type:"search",
 
-style:"bar",
+name:"Search Engine",
+
+
+styles:[
+
+
+
+{
+
+
+id:"search-floating",
+
+
+name:"Floating Search",
+
 
 icon:"🔍",
 
 
 description:
-"Full search navigation"
+"Modern floating search bar",
+
+
+data:{
+
+layout:"floating"
+
+}
 
 
 },
@@ -458,19 +870,34 @@ description:
 
 {
 
-id:"search-icon",
 
-name:"Search Icon",
+id:"search-navbar",
 
-type:"search",
 
-style:"icon",
+name:"Navbar Search",
+
 
 icon:"🔎",
 
 
 description:
-"Compact search button"
+"Search inside navigation",
+
+
+data:{
+
+layout:"navbar"
+
+}
+
+
+}
+
+
+
+
+
+]
 
 
 },
@@ -480,21 +907,41 @@ description:
 
 
 
+
 {
 
-id:"settings",
 
-name:"Settings",
+id:"footer",
 
-type:"settings",
 
-style:"card",
+name:"Footer",
 
-icon:"⚙️",
+
+styles:[
+
+
+
+{
+
+
+id:"footer-simple",
+
+
+name:"Simple Footer",
+
+
+icon:"🌐",
 
 
 description:
-"User settings panel"
+"Minimal website footer",
+
+
+data:{
+
+layout:"simple"
+
+}
 
 
 },
@@ -505,19 +952,61 @@ description:
 
 {
 
-id:"logout",
 
-name:"Logout Button",
+id:"footer-student",
 
-type:"logout",
 
-style:"button",
+name:"Student Footer",
 
-icon:"🚪",
+
+icon:"🎓",
 
 
 description:
-"Account logout option"
+"Student service footer",
+
+
+data:{
+
+layout:"student"
+
+}
+
+
+},
+
+
+
+
+
+{
+
+
+id:"footer-creative",
+
+
+name:"Creative Footer",
+
+
+icon:"✨",
+
+
+description:
+"Creative design footer",
+
+
+data:{
+
+layout:"creative"
+
+}
+
+
+}
+
+
+
+]
 
 
 }

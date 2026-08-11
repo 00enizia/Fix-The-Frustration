@@ -1,6 +1,7 @@
 // src/components/finish.js
 
 
+
 export function finishDesign(){
 
 
@@ -19,7 +20,7 @@ document.getElementById(
 
 
 
-const preview =
+const website =
 document.getElementById(
 "website-preview"
 );
@@ -36,27 +37,73 @@ document.getElementById(
 
 
 
-// copy final website
+if(
+!website ||
+!finalPreview
+){
+
+console.error(
+"Final preview container missing"
+);
+
+return;
+
+}
 
 
-finalPreview.innerHTML = "";
 
 
+
+
+
+// clear previous output
+
+finalPreview.innerHTML="";
+
+
+
+
+
+
+
+
+// copy website design
 
 const clone =
-preview.cloneNode(true);
+website.cloneNode(true);
 
 
-
-clone.removeAttribute(
-"id"
-);
 
 
 
 clone.classList.add(
 "final-portal"
 );
+
+
+
+
+
+
+// remove unnecessary editor texts/buttons if present
+
+const editElements =
+clone.querySelectorAll(
+".category-list, #design-options, button"
+);
+
+
+
+
+editElements.forEach(element=>{
+
+element.remove();
+
+});
+
+
+
+
 
 
 
@@ -70,7 +117,10 @@ clone
 
 
 
-// show group
+
+
+
+// show group name
 
 
 const group =
@@ -81,7 +131,8 @@ localStorage.getItem(
 
 
 
-const groupText =
+
+const groupDisplay =
 document.getElementById(
 "final-group-name"
 );
@@ -89,22 +140,24 @@ document.getElementById(
 
 
 
+
 if(group){
 
 
-groupText.innerHTML =
+groupDisplay.innerHTML =
 `
 🎨 Designed by ${group}
 `;
 
 
 
-}else{
+}
+else{
 
 
-groupText.innerHTML =
+groupDisplay.innerHTML =
 `
-🎨 Student Portal Design Team
+🎨 Student Design Team
 `;
 
 
@@ -118,7 +171,8 @@ groupText.innerHTML =
 
 
 
-// switch screens
+
+// change screens
 
 
 designerScreen.classList.add(
@@ -130,6 +184,9 @@ designerScreen.classList.add(
 finalScreen.classList.remove(
 "hidden"
 );
+
+
+
 
 
 
@@ -158,6 +215,7 @@ const finalScreen =
 document.getElementById(
 "final-screen"
 );
+
 
 
 

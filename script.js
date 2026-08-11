@@ -7,6 +7,7 @@ import {
 from "./src/components/inventory.js";
 
 
+
 import {
     finishDesign,
     backToEdit
@@ -20,18 +21,14 @@ from "./src/components/finish.js";
 
 
 
+// =====================================
+// GROUP SELECTION
+// =====================================
+
+
 let selectedGroup = "";
 
 
-
-
-
-
-
-
-// ==========================
-// GROUP SELECTION
-// ==========================
 
 
 
@@ -39,6 +36,8 @@ const groupButtons =
 document.querySelectorAll(
 ".group-buttons button"
 );
+
+
 
 
 
@@ -51,21 +50,69 @@ document.getElementById(
 
 
 
+
+
 groupButtons.forEach(button=>{
 
 
-button.addEventListener(
-"click",
-()=>{
+    button.addEventListener(
+        "click",
+        ()=>{
 
 
 
-groupButtons.forEach(btn=>{
+            // remove previous selection
 
 
-btn.classList.remove(
-"selected"
-);
+            groupButtons.forEach(btn=>{
+
+
+                btn.classList.remove(
+                    "selected"
+                );
+
+
+            });
+
+
+
+
+
+
+
+
+            // select current group
+
+
+            button.classList.add(
+                "selected"
+            );
+
+
+
+
+
+
+            selectedGroup =
+            button.dataset.group;
+
+
+
+
+
+
+            selectedGroupText.innerHTML =
+
+            `
+            Selected: ${selectedGroup}
+            `;
+
+
+
+
+
+        }
+    );
 
 
 });
@@ -75,53 +122,14 @@ btn.classList.remove(
 
 
 
-button.classList.add(
-"selected"
-);
 
 
 
 
 
-
-selectedGroup =
-button.dataset.group;
-
-
-
-
-
-
-selectedGroupText.innerHTML =
-`
-Selected: ${selectedGroup}
-`;
-
-
-
-}
-
-
-);
-
-
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-// ==========================
+// =====================================
 // START DESIGN
-// ==========================
+// =====================================
 
 
 
@@ -134,38 +142,28 @@ document.getElementById(
 
 
 
-
 startButton.addEventListener(
 "click",
 ()=>{
 
 
 
-if(selectedGroup===""){
+    if(
+        selectedGroup === ""
+    ){
 
 
 
-alert(
-"Please select your group first!"
-);
+        alert(
+        "Please choose your group first!"
+        );
 
 
 
-return;
+        return;
 
 
-}
-
-
-
-
-
-
-
-localStorage.setItem(
-"group",
-selectedGroup
-);
+    }
 
 
 
@@ -173,41 +171,13 @@ selectedGroup
 
 
 
-
-document
-.getElementById(
-"start-screen"
-)
-.classList.add(
-"hidden"
-);
+    // save group
 
 
-
-
-
-
-document
-.getElementById(
-"designer-screen"
-)
-.classList.remove(
-"hidden"
-);
-
-
-
-
-
-
-
-loadInventory();
-
-
-
-}
-
-);
+    localStorage.setItem(
+        "group",
+        selectedGroup
+    );
 
 
 
@@ -217,55 +187,116 @@ loadInventory();
 
 
 
+    // switch screen
 
 
-// ==========================
-// FINISH BUTTON
-// ==========================
+    document
+    .getElementById(
+        "start-screen"
+    )
+    .classList.add(
+        "hidden"
+    );
 
 
-document
-.getElementById(
+
+
+
+
+
+
+    document
+    .getElementById(
+        "designer-screen"
+    )
+    .classList.remove(
+        "hidden"
+    );
+
+
+
+
+
+
+
+
+    // load categories
+
+
+    loadInventory();
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+// =====================================
+// FINISH DESIGN
+// =====================================
+
+
+
+const finishButton =
+document.getElementById(
 "finish-button"
-)
-.addEventListener(
-"click",
-()=>{
-
-
-finishDesign();
-
-
-}
-
 );
 
 
 
 
 
+finishButton.addEventListener(
+"click",
+()=>{
+
+
+    finishDesign();
+
+
+
+});
 
 
 
 
-// ==========================
+
+
+
+
+
+
+
+// =====================================
 // BACK TO EDIT
-// ==========================
+// =====================================
 
 
 
-document
-.getElementById(
+const backButton =
+document.getElementById(
 "back-button"
-)
-.addEventListener(
+);
+
+
+
+
+
+backButton.addEventListener(
 "click",
 ()=>{
 
 
-backToEdit();
+    backToEdit();
 
 
-}
 
-);
+});

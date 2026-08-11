@@ -1,43 +1,21 @@
 // src/components/renderer.js
 
 
-const currentDesigns = {};
+const activeDesigns = {};
 
 
 
 
 
-export function renderDesign(component){
-
-
-    currentDesigns[component.type] = component;
+export function renderDesign(design){
 
 
 
-    updatePreview();
+    activeDesigns[design.category + "-" + design.feature] = design;
 
 
 
-}
-
-
-
-
-
-
-
-
-function updatePreview(){
-
-
-
-    renderSidebar();
-
-    renderDashboard();
-
-    renderFooter();
-
-    renderNavbar();
+    updateWebsite();
 
 
 
@@ -51,77 +29,20 @@ function updatePreview(){
 
 
 
-// ===============================
-// NAVBAR
-// ===============================
-
-
-function renderNavbar(){
+function updateWebsite(){
 
 
 
-const navbar =
-document.querySelector(
-".portal-header"
-);
+    renderProfile();
 
 
-
-const search =
-currentDesigns.search;
+    renderAcademic();
 
 
-
-if(!search){
-
-
-navbar.innerHTML =
-
-`
-
-<h1>
-Student Portal
-</h1>
+    renderCommunication();
 
 
-<p>
-Your personalized academic dashboard
-</p>
-
-
-`;
-
-return;
-
-
-}
-
-
-
-
-
-
-
-if(search.style==="bar"){
-
-
-navbar.innerHTML =
-
-`
-
-<h1>
-Student Portal
-</h1>
-
-
-<div class="search-box">
-
-🔍 Search student portal...
-
-</div>
-
-
-`;
+    renderSystem();
 
 
 
@@ -133,49 +54,17 @@ Student Portal
 
 
 
-if(search.style==="icon"){
 
 
-navbar.innerHTML =
-
-`
-
-<h1>
-Student Portal
-</h1>
+// ========================================
+// PROFILE
+// ========================================
 
 
-<div class="search-icon">
-
-🔎
-
-</div>
+function renderProfile(){
 
 
-`;
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// SIDEBAR
-// ===============================
-
-
-function renderSidebar(){
-
-
-const sidebar =
+const container =
 document.getElementById(
 "sidebar-content"
 );
@@ -183,16 +72,17 @@ document.getElementById(
 
 
 const profile =
-currentDesigns.profile;
+findDesign(
+"profile",
+"profile"
+);
 
 
 
 if(!profile){
 
 
-sidebar.innerHTML =
-
-`
+container.innerHTML = `
 
 <p>
 Choose profile design
@@ -211,68 +101,57 @@ return;
 
 
 
-sidebar.innerHTML =
-createProfile(profile);
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-function createProfile(profile){
-
-
-
-switch(profile.style){
+switch(profile.layout){
 
 
 
 case "classic":
 
 
-return `
 
-<div class="portal-card profile-classic">
+container.innerHTML = `
+
+<div class="portal-card classic-profile">
 
 
-<div class="profile-icon">
+<div class="avatar">
+
 👤
+
 </div>
 
 
-
-<h3>
+<h2>
 Student Profile
-</h3>
+</h2>
 
 
 <p>
-Name: Jennylyn Dionecio
+Name:
+<span id="student-name">
+Jennylyn Dionecio
+</span>
 </p>
 
 
 <p>
-Course: BSIT
+Course:
+BSIT
 </p>
 
 
 <p>
-Year Level: 3rd Year
+Year Level:
+3rd Year
 </p>
+
 
 
 </div>
-
 
 `;
+
+break;
 
 
 
@@ -283,13 +162,13 @@ Year Level: 3rd Year
 case "modern":
 
 
-return `
+
+container.innerHTML = `
+
+<div class="portal-card modern-profile">
 
 
-<div class="portal-card profile-modern">
-
-
-<div class="profile-icon">
+<div class="avatar">
 
 ✨
 
@@ -302,56 +181,74 @@ Jennylyn Dionecio
 
 
 <p>
-BS Information Technology
+Bachelor of Science in Information Technology
 </p>
 
 
-<span>
-Student ID: 2026
-</span>
+<div class="profile-tag">
 
+Student
 
 </div>
 
+
+</div>
 
 `;
 
+break;
 
 
 
 
 
 
-case "avatar":
 
 
-return `
+case "coquette":
 
 
-<div class="portal-card profile-avatar">
+
+container.innerHTML = `
+
+<div class="portal-card coquette-profile">
 
 
-<div class="profile-icon">
+<div class="avatar">
 
-😊
+🎀
 
 </div>
 
 
-<h3>
-Jennylyn
-</h3>
+<h2>
+My Profile
+</h2>
 
 
 <p>
-BSIT Student
+♡ Jennylyn Dionecio
 </p>
+
+
+<p>
+♡ BSIT Student
+</p>
+
+
+<p>
+♡ 3rd Year
+</p>
+
 
 
 </div>
 
 
 `;
+
+break;
+
 
 
 
@@ -362,15 +259,15 @@ BSIT Student
 case "minimal":
 
 
-return `
+
+container.innerHTML = `
+
+<div class="portal-card minimal-profile">
 
 
-<div class="portal-card">
-
-
-<h3>
+<h2>
 Jennylyn Dionecio
-</h3>
+</h2>
 
 
 <p>
@@ -380,15 +277,18 @@ BSIT 3A
 
 </div>
 
-
 `;
 
+break;
+
 
 
 }
 
 
 
+
+
 }
 
 
@@ -399,12 +299,12 @@ BSIT 3A
 
 
 
-// ===============================
-// DASHBOARD
-// ===============================
+// ========================================
+// ACADEMIC
+// ========================================
 
 
-function renderDashboard(){
+function renderAcademic(){
 
 
 
@@ -421,89 +321,118 @@ dashboard.innerHTML="";
 
 
 
-const schedule =
-currentDesigns.schedule;
-
-
-
-const grades =
-currentDesigns.grades;
-
-
-
-const courses =
-currentDesigns.courses;
+const designs =
+Object.values(activeDesigns);
 
 
 
 
 
 
+designs.forEach(design=>{
 
-if(schedule){
+
+
+if(
+design.category !== "academic"
+)
+return;
+
+
+
+
 
 
 dashboard.innerHTML +=
 
-createSchedule(schedule);
-
-
-}
-
-
+createAcademicCard(
+design
+);
 
 
 
+});
 
-
-if(grades){
-
-
-dashboard.innerHTML +=
-
-createGrades(grades);
-
-
-}
-
-
-
-
-
-
-
-if(courses){
-
-
-dashboard.innerHTML +=
-
-createCourses(courses);
-
-
-}
 
 
 
 
 if(
-dashboard.innerHTML===""
-
+dashboard.innerHTML === ""
 ){
 
 
-dashboard.innerHTML=
-
+dashboard.innerHTML =
 `
-
 <p>
 Choose academic design
 </p>
-
 `;
 
 }
 
 
+}
+
+
+
+
+
+
+
+
+
+function createAcademicCard(
+design
+){
+
+
+
+switch(design.feature){
+
+
+
+case "schedule":
+
+
+
+return createSchedule(
+design
+);
+
+
+
+case "grades":
+
+
+
+return createGrades(
+design
+);
+
+
+
+case "course-list":
+
+
+
+return createCourses(
+design
+);
+
+
+
+default:
+
+return "";
+
+
+
+}
+
+
+
+
 
 }
 
@@ -515,126 +444,93 @@ Choose academic design
 
 
 
-function createSchedule(schedule){
+function createSchedule(
+design
+){
 
 
 
-if(schedule.style==="calendar"){
+switch(design.layout){
+
+
+
+case "classic":
+
 
 
 return `
 
-
 <div class="portal-card">
 
 
-<h3>
-📅 Calendar Schedule
-</h3>
+<h2>
+📅 Class Schedule
+</h2>
 
 
-<div class="calendar-box">
+<p>
+Monday
+</p>
 
 
-MON
-&nbsp;
-TUE
-&nbsp;
-WED
+<p>
+8:00 AM - Programming
+</p>
 
 
-<br><br>
-
-
-IT301
-&nbsp;
-DB
-&nbsp;
-MATH
+<p>
+10:00 AM - Database
+</p>
 
 
 </div>
-
-
-</div>
-
 
 `;
 
-}
 
 
 
-if(schedule.style==="card"){
+
+
+
+
+
+case "modern":
 
 
 
 return `
 
-
-<div class="portal-card">
-
-
-<h3>
-🗓 Class Schedule
-</h3>
+<div class="portal-card modern-card">
 
 
-<div class="schedule-item">
+<h2>
+✨ Today's Schedule
+</h2>
 
-8:00 AM
+
+<div class="schedule-box">
+
+08:00
+
 <br>
-💻 Programming
+
+Programming
 
 </div>
 
 
-<div class="schedule-item">
 
-10:00 AM
+<div class="schedule-box">
+
+10:00
+
 <br>
-🗄 Database
+
+Database
 
 </div>
 
-
-</div>
-
-
-`;
-
-}
-
-
-
-if(schedule.style==="timeline"){
-
-
-return `
-
-
-<div class="portal-card">
-
-
-<h3>
-⏰ Timeline Schedule
-</h3>
-
-
-
-<p>
-08:00 ● Programming
-</p>
-
-
-<p>
-10:00 ● Database
-</p>
-
-
-<p>
-13:00 ● Networking
-</p>
 
 
 </div>
@@ -642,10 +538,6 @@ return `
 
 `;
 
-}
-
-
-}
 
 
 
@@ -654,24 +546,112 @@ return `
 
 
 
+case "minimal":
 
-function createGrades(grades){
-
-
-
-if(grades.style==="progress"){
 
 
 return `
 
+<div class="portal-card">
+
+
+<h2>
+Schedule
+</h2>
+
+
+<ul>
+
+<li>
+Programming - 8:00
+</li>
+
+
+<li>
+Database - 10:00
+</li>
+
+
+</ul>
+
+
+</div>
+
+`;
+
+
+
+
+
+
+
+
+
+case "coquette":
+
+
+
+return `
+
+<div class="portal-card coquette-card">
+
+
+<h2>
+🎀 My Classes
+</h2>
+
+
+<p>
+♡ Programming
+</p>
+
+
+<p>
+♡ Database
+</p>
+
+
+</div>
+
+`;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function createGrades(
+design
+){
+
+
+
+switch(design.layout){
+
+
+
+case "progress":
+
+
+return `
 
 <div class="portal-card">
 
 
-<h3>
+<h2>
 📊 Grade Progress
-</h3>
-
+</h2>
 
 
 <p>
@@ -679,16 +659,11 @@ Programming
 </p>
 
 
-<div class="grade-bar">
+<div class="progress">
 
-<span style="width:90%">
-
-</span>
+90%
 
 </div>
-
-
-
 
 
 <p>
@@ -696,22 +671,17 @@ Database
 </p>
 
 
-<div class="grade-bar">
+<div class="progress">
 
-<span style="width:85%">
-
-</span>
+85%
 
 </div>
 
 
-
 </div>
-
 
 `;
 
-}
 
 
 
@@ -719,45 +689,40 @@ Database
 
 
 
-if(grades.style==="card"){
+case "card":
+
 
 
 return `
 
-
 <div class="portal-card">
 
 
-<h3>
+<h2>
 📈 Grade Cards
-</h3>
+</h2>
 
 
-
-<div class="grade-card">
+<div class="grade-item">
 
 Programming
 
-<strong>
+<b>
 95
-</strong>
-
+</b>
 
 </div>
 
 
-
-<div class="grade-card">
+<div class="grade-item">
 
 Database
 
-<strong>
+<b>
 90
-</strong>
-
+</b>
 
 </div>
-
 
 
 </div>
@@ -765,11 +730,6 @@ Database
 
 `;
 
-}
-
-
-
-}
 
 
 
@@ -778,34 +738,26 @@ Database
 
 
 
-
-function createCourses(){
+case "minimal":
 
 
 return `
 
-
 <div class="portal-card">
 
 
-<h3>
-📚 Course List
-</h3>
-
+<h2>
+Grades
+</h2>
 
 
 <p>
-💻 Application Development
+Programming - 95
 </p>
 
 
 <p>
-🗄 Database Systems
-</p>
-
-
-<p>
-🌐 Networking
+Database - 90
 </p>
 
 
@@ -813,6 +765,13 @@ return `
 
 
 `;
+
+
+
+
+}
+
+
 
 }
 
@@ -824,12 +783,59 @@ return `
 
 
 
-// ===============================
-// FOOTER
-// ===============================
+function createCourses(
+design
+){
 
 
-function renderFooter(){
+
+return `
+
+<div class="portal-card">
+
+
+<h2>
+📚 Course List
+</h2>
+
+
+<p>
+Application Development
+</p>
+
+
+<p>
+Database Systems
+</p>
+
+
+<p>
+Networking
+</p>
+
+
+</div>
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ========================================
+// COMMUNICATION
+// ========================================
+
+
+function renderCommunication(){
 
 
 
@@ -846,38 +852,118 @@ footer.innerHTML="";
 
 
 
-const notification =
-currentDesigns.notification;
+
+Object.values(activeDesigns)
+.forEach(design=>{
+
+
+if(
+design.category !==
+"communication"
+)
+return;
 
 
 
-const message =
-currentDesigns.message;
-
-
-
-const announcement =
-currentDesigns.announcement;
-
-
-
-
-
-
-
-if(notification){
 
 
 footer.innerHTML +=
 
-`
+createCommunication(
+design
+);
+
+
+
+});
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function createCommunication(
+design
+){
+
+
+
+switch(design.feature){
+
+
+
+case "announcement":
+
+
+return `
+
+<div class="portal-card">
+
+<h2>
+📢 Announcement
+</h2>
+
+
+<p>
+Enrollment starts August 15
+</p>
+
+
+</div>
+
+
+`;
+
+
+
+
+
+case "messages":
+
+
+return `
+
+<div class="portal-card">
+
+<h2>
+💬 Messages
+</h2>
+
+
+<p>
+Adviser: Good morning!
+</p>
+
+
+</div>
+
+
+`;
+
+
+
+
+
+case "notifications":
+
+
+return `
 
 <div class="portal-card">
 
 
-<h3>
+<h2>
 🔔 Notifications
-</h3>
+</h2>
 
 
 <p>
@@ -892,37 +978,14 @@ Schedule updated
 
 </div>
 
+
 `;
+
+
 
 }
 
 
-
-
-
-if(message){
-
-
-footer.innerHTML +=
-
-`
-
-<div class="portal-card">
-
-
-<h3>
-💬 Messages
-</h3>
-
-
-<p>
-Adviser: Good morning!</p>
-
-
-</div>
-
-
-`;
 
 }
 
@@ -932,52 +995,86 @@ Adviser: Good morning!</p>
 
 
 
-if(announcement){
 
 
-footer.innerHTML +=
-
-`
-
-<div class="portal-card">
+// ========================================
+// SYSTEM
+// ========================================
 
 
-<h3>
-📢 Announcement
-</h3>
+function renderSystem(){
 
 
-<p>
-Enrollment starts August 15
-</p>
+
+const header =
+document.getElementById(
+"system-content"
+);
 
 
-</div>
 
-
-`;
-
-}
+if(!header)
+return;
 
 
 
 
+header.innerHTML="";
+
+
+
+
+
+
+
+Object.values(activeDesigns)
+.forEach(design=>{
+
+
+if(
+design.category !==
+"system"
+)
+return;
+
+
+
+
+
+if(design.feature==="search"){
 
 
 
 if(
-footer.innerHTML===""
-
+design.layout==="floating"
 ){
 
 
-footer.innerHTML=
+header.innerHTML += `
 
-`
+<div class="floating-search">
 
-<p>
-Choose communication design
-</p>
+
+🔍 Search student portal...
+
+
+</div>
+
+`;
+
+}
+
+
+else{
+
+
+header.innerHTML += `
+
+<div class="navbar-search">
+
+🔎 Search...
+
+</div>
 
 `;
 
@@ -988,25 +1085,55 @@ Choose communication design
 
 
 
+});
+
+
+
+}
 
 
 
 
 
 
-// ===============================
-// FINAL COPY
-// ===============================
 
 
-export function getFinalDesign(){
+
+// ========================================
+// FIND DESIGN
+// ========================================
 
 
-return document
-.getElementById(
-"website-preview"
-)
-.cloneNode(true);
+function findDesign(
+category,
+feature
+){
+
+
+return Object.values(activeDesigns)
+.find(
+item=>
+
+item.category===category
+&&
+item.feature===feature
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+export function getDesigns(){
+
+
+return activeDesigns;
 
 
 }

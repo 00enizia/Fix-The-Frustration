@@ -7,11 +7,14 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <title>
 Fix The Frustration - Student Portal Designer
 </title>
 
+
 <link rel="stylesheet" href="style.css">
+
 
 </head>
 
@@ -19,9 +22,10 @@ Fix The Frustration - Student Portal Designer
 <body>
 
 
-<!-- ==========================
+
+<!-- =================================
 START SCREEN
-========================== -->
+================================= -->
 
 
 <section id="start-screen">
@@ -41,6 +45,7 @@ Student Portal Designer Challenge
 
 
 
+
 <div class="mission-box">
 
 
@@ -50,16 +55,18 @@ Mission
 
 
 <p>
-Students are having difficulty finding their schedules, grades, announcements, and important information.
+Design a student portal that is organized, attractive, and easy to use.
 </p>
 
 
 <p>
-Your task is to design a student portal that is organized, attractive, and easy to use.
+Choose your features and customize your own website design.
 </p>
 
 
 </div>
+
+
 
 
 
@@ -71,6 +78,7 @@ Your task is to design a student portal that is organized, attractive, and easy 
 <h3>
 Choose Your Group
 </h3>
+
 
 
 
@@ -102,13 +110,19 @@ Group 5
 </button>
 
 
+
 </div>
 
 
 
+
+
 <p id="selected-group">
+
 No group selected
+
 </p>
+
 
 
 </div>
@@ -138,9 +152,9 @@ No group selected
 
 
 
-<!-- ==========================
-DESIGNER SCREEN
-========================== -->
+<!-- =================================
+DESIGN SCREEN
+================================= -->
 
 
 <section 
@@ -151,7 +165,9 @@ class="hidden">
 
 
 
-<header>
+
+
+<header class="game-header">
 
 
 <h1>
@@ -160,7 +176,7 @@ class="hidden">
 
 
 <p>
-Create your own website design
+Choose features and customize your portal style
 </p>
 
 
@@ -171,17 +187,23 @@ Create your own website design
 
 
 
-<main>
+
+
+
+<main class="game-layout">
 
 
 
 
-<!-- ==========================
+
+
+
+<!-- =================================
 COMPONENT CLOSET
-========================== -->
+================================= -->
 
 
-<section class="closet">
+<section class="component-closet">
 
 
 
@@ -193,7 +215,7 @@ COMPONENT CLOSET
 
 
 <p>
-Choose a category
+Step 1: Choose Category
 </p>
 
 
@@ -203,7 +225,9 @@ Choose a category
 <div class="category-list">
 
 
-<button data-category="profile">
+<button 
+class="category-button"
+data-category="profile">
 
 👤 Profile
 
@@ -211,7 +235,10 @@ Choose a category
 
 
 
-<button data-category="academic">
+
+<button 
+class="category-button"
+data-category="academic">
 
 📚 Academic
 
@@ -219,7 +246,11 @@ Choose a category
 
 
 
-<button data-category="communication">
+
+
+<button 
+class="category-button"
+data-category="communication">
 
 💬 Communication
 
@@ -227,24 +258,42 @@ Choose a category
 
 
 
-<button data-category="system">
+
+
+<button 
+class="category-button"
+data-category="system">
 
 ⚙ System
 
 </button>
 
 
+
 </div>
 
 
 
 
+
+
+
+
+<!-- OPTIONS APPEAR HERE -->
 
 
 <div id="design-options">
 
 
+<p>
+Select a category to start
+</p>
+
+
 </div>
+
+
+
 
 
 
@@ -258,12 +307,12 @@ Choose a category
 
 
 
-<!-- ==========================
+<!-- =================================
 WEBSITE PREVIEW
-========================== -->
+================================= -->
 
 
-<section class="preview-area">
+<section class="website-preview-area">
 
 
 
@@ -275,10 +324,16 @@ WEBSITE PREVIEW
 
 
 
+
 <div id="website-preview">
 
 
 
+
+
+
+
+<!-- HEADER -->
 
 
 <div class="portal-header">
@@ -290,8 +345,16 @@ Student Portal
 
 
 <p>
-Your personalized academic dashboard
+Welcome to your academic dashboard
 </p>
+
+
+
+<div id="system-content">
+
+
+</div>
+
 
 
 </div>
@@ -303,18 +366,27 @@ Your personalized academic dashboard
 
 
 
-<div class="portal-layout">
+
+
+<!-- BODY -->
+
+
+<div class="portal-body">
 
 
 
+
+
+
+
+<!-- SIDEBAR -->
 
 
 <div class="portal-sidebar">
 
 
-
 <h3>
-Sidebar
+Profile
 </h3>
 
 
@@ -340,8 +412,11 @@ Choose profile design
 
 
 
-<div class="portal-main">
 
+<!-- DASHBOARD -->
+
+
+<div class="portal-dashboard">
 
 
 <h3>
@@ -350,23 +425,26 @@ Dashboard
 
 
 
+
 <div id="dashboard-content">
 
 
 <p>
-Choose academic components
+Choose academic design
 </p>
 
 
-</div>
-
-
-
 
 </div>
 
 
 
+</div>
+
+
+
+
+
 
 </div>
 
@@ -376,14 +454,17 @@ Choose academic components
 
 
 
+
+
+<!-- FOOTER -->
 
 
 <div class="portal-footer">
 
 
-
 <h3>
-Footer
+Communication
+
 </h3>
 
 
@@ -392,7 +473,7 @@ Footer
 
 
 <p>
-Choose communication/system components
+Choose communication design
 </p>
 
 
@@ -400,13 +481,17 @@ Choose communication/system components
 
 
 
-</div>
-
-
-
-
 
 </div>
+
+
+
+
+
+
+
+</div>
+
 
 
 
@@ -422,7 +507,11 @@ Choose communication/system components
 
 
 
+
 </section>
+
+
+
 
 
 
@@ -435,6 +524,8 @@ Choose communication/system components
 
 
 
+
+
 </section>
 
 
@@ -445,9 +536,9 @@ Choose communication/system components
 
 
 
-<!-- ==========================
+<!-- =================================
 FINAL SCREEN
-========================== -->
+================================= -->
 
 
 <section 
@@ -458,9 +549,12 @@ class="hidden">
 
 
 
+
 <h1>
-🎉 Final Website Design
+🎉 Final Student Portal Design
 </h1>
+
+
 
 
 
@@ -475,7 +569,9 @@ class="hidden">
 
 
 
-<div class="finish-message">
+
+
+<div class="complete-message">
 
 
 <h2>
@@ -489,7 +585,7 @@ Your student portal prototype is complete.
 
 
 <p>
-Take a screenshot and submit it to your class group chat.
+Take a screenshot and submit it for judging.
 </p>
 
 
@@ -506,9 +602,11 @@ Take a screenshot and submit it to your class group chat.
 
 
 
+
+
 <button id="back-button">
 
-⬅ Edit Again
+⬅ Continue Editing
 
 </button>
 
@@ -516,6 +614,7 @@ Take a screenshot and submit it to your class group chat.
 
 
 </section>
+
 
 
 
